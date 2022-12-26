@@ -1,40 +1,40 @@
 /*─────────────────────────HOOKS─────────────────────────*/
 
 Hooks.once("init", function () {
-    let link = document.createElement('link');
-    //link.href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
-    link.rel= "stylesheet";
-    document.getElementsByTagName("head")[0].append(link);
-    
-    CONFIG.TinyMCE.content_css.push("modules/mrkb-ui/style/ui/tinymce.css");
-    
-    let body = document.getElementsByClassName("vtt")[0];
-    let loadscreen = document.createElement("div");
-    loadscreen.setAttribute("id", "mrkb-loading");
-    body.appendChild(loadscreen);
-    $("#mrkb-loading").load("modules/mrkb-ui/templates/loadscreen.html");
-    
-    let ui = document.createElement("div");
-    ui.setAttribute("id", "mrkb-hud");
-    body.appendChild(ui);
-    
-    CONFIG.debug.hooks = false;
-    
-    $("#mrkb-hud").load("modules/mrkb-ui/templates/main.html");
+	let link = document.createElement('link');
+	//link.href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
+	link.rel= "stylesheet";
+	document.getElementsByTagName("head")[0].append(link);
+	
+	CONFIG.TinyMCE.content_css.push("modules/mrkb-ui/style/ui/tinymce.css");
+	
+	let body = document.getElementsByClassName("vtt")[0];
+	let loadscreen = document.createElement("div");
+	loadscreen.setAttribute("id", "mrkb-loading");
+	body.appendChild(loadscreen);
+	$("#mrkb-loading").load("modules/mrkb-ui/templates/loadscreen.html");
+	
+	let ui = document.createElement("div");
+	ui.setAttribute("id", "mrkb-hud");
+	body.appendChild(ui);
+	
+	CONFIG.debug.hooks = false;
+	
+	$("#mrkb-hud").load("modules/mrkb-ui/templates/main.html");
 });
 Hooks.once("ready", function() {
 	HUDSetting.register();
-    
+	
 	if (HUDSetting.get('roll20chat')) {
-	    document.getElementById("chat-log").classList.add("roll20");
+		document.getElementById("chat-log").classList.add("roll20");
 	}
 	if (game.user.flags["mrkb-ui"] === undefined) {
-	    game.user.update({
-	        "flags.mrkb-ui" : {
-	            currenttab : [],
-	            favorites: []
-	        }
-	    });
+		game.user.update({
+			"flags.mrkb-ui" : {
+				currenttab : [],
+				favorites: []
+			}
+		});
 	}
 	game.actors.forEach((e) => {
 		if (e.flags["mrkb-ui"] === undefined) {
@@ -49,23 +49,41 @@ Hooks.once("ready", function() {
 		}
 	});
 	
-    hudInit();
-    observerinit();
+	hudInit();
+	observerinit();
 	readDisplay();
-    announce();
-    getBoss();
-    changeProfile();
-    
-    getAllies();
-    getResource();
-    getItemCaster();
-    
-    $("#mrkb-loading").fadeOut(1000);
-    //setTimeout(function() {
-        //document.getElementById("mrkb-loading").remove();
-    //}, 1100);
+	announce();
+	getBoss();
+	changeProfile();
+	
+	getAllies();
+	getResource();
+	getItemCaster();
+	
+	$("#mrkb-loading").fadeOut(1000);
+	//setTimeout(function() {
+		//document.getElementById("mrkb-loading").remove();
+	//}, 1100);
 	
 	document.documentElement.style.setProperty("--caster-height", HUDSetting.get("caster-height") + "px");
+	
+	if (game.system.id == "dx3rd") {
+		const div = document.createElement("div");
+		div.id = "conref";
+		div.innerHTML = `
+			<h4 id="con-title">컨센트레이트</h4>
+			<button type="button" id="con-minus" onclick="conref('con','down')"><i class="fa-solid fa-caret-left"></i></button>
+			<div id="con-value">0</div>
+			<button type="button" id="con-minus" onclick="conref('con','up')"><i class="fa-solid fa-caret-right"></i></button>
+			<div id="conref-divider"></div>
+			<h4 id="ref-title">리플렉스</h4>
+			<button type="button" id="ref-minus" onclick="conref('ref','down')"><i class="fa-solid fa-caret-left"></i></button>
+			<div id="ref-value">0</div>
+			<button type="button" id="ref-minus" onclick="conref('ref','up')"><i class="fa-solid fa-caret-right"></i></button>
+		`
+		document.querySelector("#chat-controls").before(div);
+		getConref();
+	}
 });
 Hooks.once("socketlib.ready", function() {
 	socket = socketlib.registerModule("mrkb-ui");
@@ -78,41 +96,44 @@ Hooks.once("socketlib.ready", function() {
 
 Hooks.on("chatCommandsReady", function(chatCommands) {
   chatCommands.registerCommand(chatCommands.createCommandFromData({
-    commandKey: "/anno",
-    invokeOnCommand: (chatlog, messageText, chatdata) => {
-      HUDSetting.set("announcement", messageText);
-    },
-    shouldDisplayToChat: false,
-    iconClass: "fa-sticky-note",
-    description: "Display to chat",
-    gmOnly: true
+	commandKey: "/anno",
+	invokeOnCommand: (chatlog, messageText, chatdata) => {
+	  HUDSetting.set("announcement", messageText);
+	},
+	shouldDisplayToChat: false,
+	iconClass: "fa-sticky-note",
+	description: "Display to chat",
+	gmOnly: true
   }));
 });
 Hooks.on("updateSetting", function() {
-    getBoss();
-    announce();
+	getBoss();
+	announce();
 })
 Hooks.on("updateUser", function() {
-    changeProfile();
-    getAllies();
-    getItemCaster();
-    getResource();
-    acts.render();
-    canvas.tokens.releaseAll();
+	changeProfile();
+	getAllies();
+	getItemCaster();
+	getResource();
+	acts.render();
+	canvas.tokens.releaseAll();
 });
 Hooks.on("updateActor", function() {
-    loadCharaData();
-    getAllies();
-    getResource();
-    getItemCaster();
-    acts.render();
-    getBoss();
+	loadCharaData();
+	getAllies();
+	getResource();
+	getItemCaster();
+	acts.render();
+	getBoss();
+	if (game.system.id == "dx3rd") {
+		getConref();
+	}
 });
 Hooks.on("createItem", function() {
-    getItemCaster();
+	getItemCaster();
 });
 Hooks.on("updateItem", function() {
-    loadCharaData();
+	loadCharaData();
 });
 Hooks.on("updateJournalEntry", function() {
 	if (dialog === undefined) {
@@ -124,176 +145,179 @@ Hooks.on("updateJournalEntry", function() {
 	}
 });
 Hooks.on("updateCombat", function(combat, turn, data) {
-    turnNotice();
+	turnNotice();
 })
 Hooks.on("getSceneControlButtons", function(controls) {
-    if (game.user.isGM) {
-        controls[0].tools.push({
-            name: "remote",
-            title: "리모콘",
-            icon: "fa-solid fa-house-laptop",
-            visible: true,
-            onClick: () => remoteControl(),
-            button: true
-        });
-    }
+	if (game.user.isGM) {
+		controls[0].tools.push({
+			name: "remote",
+			title: "리모콘",
+			icon: "fa-solid fa-house-laptop",
+			visible: true,
+			onClick: () => remoteControl(),
+			button: true
+		});
+	}
 });
 Hooks.on("renderKakaoTalk", function() {
-    getKakaoData();
+	getKakaoData();
 	addEnter();
 	addOpacity();
 });
 Hooks.on("renderItemCaster", function() {
-    let container = document.getElementsByClassName("caster-tab")[0];
-    container.classList.add("active");
-    let tabs = document.getElementsByClassName("item-tab");
-    for (tab of tabs) {
-        tab.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            let target = document.querySelector(".caster-tab.active").lastElementChild;
-            let newheight;
-            if (e.deltaY < 0) {
-                newheight = target.scrollTop - 25;
-            }else {
-                newheight = target.scrollTop + 25;
-            }
-            target.scrollTo(0, newheight);
-        });
-    }
+	let container = document.getElementsByClassName("caster-tab")[0];
+	container.classList.add("active");
+	let tabs = document.getElementsByClassName("item-tab");
+	for (tab of tabs) {
+		tab.addEventListener('wheel', (e) => {
+			e.preventDefault();
+			let target = document.querySelector(".caster-tab.active").lastElementChild;
+			let newheight;
+			if (e.deltaY < 0) {
+				newheight = target.scrollTop - 25;
+			}else {
+				newheight = target.scrollTop + 25;
+			}
+			target.scrollTo(0, newheight);
+		});
+	}
 });
 Hooks.on("renderDisplayRemote", function() {
-    const types = ["youtube", "embed", "image", "video"];
-    for (type of types) {
-        document.getElementById(`${type}-url`).value = HUDSetting.get(type);
-    }
+	const types = ["youtube", "embed", "image", "video"];
+	for (type of types) {
+		document.getElementById(`${type}-url`).value = HUDSetting.get(type);
+	}
 });
-    
+	
 Hooks.on("renderActorSelector", function() {
-    onRenderInit("tab-actor", "actor-grid")
+	onRenderInit("tab-actor", "actor-grid")
 });
 Hooks.on("renderInventory", function() {
-    onRenderInit("tab-folder", "inv-grid");
+	onRenderInit("tab-folder", "inv-grid");
 });
 Hooks.on("renderQuest", function() {
-    onRenderInit("quest-name", "quest");
+	onRenderInit("quest-name", "quest");
 });
 Hooks.on("renderTokenHUD", function() {
-    addBossButton();
-    addStanceButton();
-    addTemplateButton();
+	addBossButton();
+	addStanceButton();
+	addTemplateButton();
 });
 Hooks.on("createChatMessage", function(message, options) {
-    if (options.mrkbturn) {
-        message.setFlag("mrkb-ui", "turner", true);
-    }
+	if (options.mrkbturn) {
+		message.setFlag("mrkb-ui", "turner", true);
+	}
 });
 Hooks.on("renderChatMessage", function(message, html, data) {
-    chatPlay();
-    checkNotice(message, html, data);
+	chatPlay();
+	checkNotice(message, html, data);
 });
 Hooks.on("controlToken", function() {
-    GoToChat();
+	GoToChat();
 });
 Hooks.on("renderPlayerList", function() {
-    userFace();
+	userFace();
 });
 Hooks.on("renderDX3rdActorSheet", function() {
-    document.querySelector(".stat-list > input[name='system.attributes.hp.value'] ~ input.stat:last-child").value = 50;
+	let a = document.querySelectorAll(".stat-list > input[name='system.attributes.hp.value'] ~ input.stat:last-child");
+	a.forEach((e) => {
+		e.value = 50;
+	});
 });
 
 /*─────────────────────────INITIAL FUNCTIONS─────────────────────────*/
 
 function hudInit() {
-    const left = document.getElementById("mrkb-left");
-    const center = document.getElementById("mrkb-center");
-    const right = document.getElementById("mrkb-right");
-    const bot = document.getElementById("mrkb-bottom");
-    
-    left.append(document.getElementById("players"));
-    center.append(document.getElementById("notifications"));
-    bot.append(document.getElementById("controls"));
-    bot.append(document.getElementById("hotbar"));
-    bot.append(document.getElementById("sidebar-tabs"));
-    
+	const left = document.getElementById("mrkb-left");
+	const center = document.getElementById("mrkb-center");
+	const right = document.getElementById("mrkb-right");
+	const bot = document.getElementById("mrkb-bottom");
+	
+	left.append(document.getElementById("players"));
+	center.append(document.getElementById("notifications"));
+	bot.append(document.getElementById("controls"));
+	bot.append(document.getElementById("hotbar"));
+	bot.append(document.getElementById("sidebar-tabs"));
+	
 	if (game.system.id === "archmage") {
-	    right.appendChild(document.getElementsByClassName("archmage-escalation")[0]);
+		right.appendChild(document.getElementsByClassName("archmage-escalation")[0]);
 	}
-    ui.players._showOffline = true;
-    ui.players.render();
-    
-    if (game.system.id !== "swade" && game.system.id !== "archmage" && game.system.id !== "dx3rd") {
-        document.querySelector("#characon-toggle").classList.add("disabled");
-        document.querySelector("#characon-toggle").click();
-    }
-    if (game.system.id !== "swade" && game.system.id !== "archmage") {
-        document.querySelector("#item-caster").classList.add("hidden");
+	ui.players._showOffline = true;
+	ui.players.render();
+	
+	if (game.system.id !== "swade" && game.system.id !== "archmage" && game.system.id !== "dx3rd") {
+		document.querySelector("#characon-toggle").classList.add("disabled");
+		document.querySelector("#characon-toggle").click();
+	}
+	if (game.system.id !== "swade" && game.system.id !== "archmage") {
+		document.querySelector("#item-caster").classList.add("hidden");
 	}
 }
 function observerinit() {
-    let sidebar = document.getElementById("sidebar");
-    let width = sidebar.style.width;
+	let sidebar = document.getElementById("sidebar");
+	let width = sidebar.style.width;
 	document.documentElement.style.setProperty("--sidebar-width", width);
-    let observer = new MutationObserver((mutations) => {
-	    newidth = mutations[0].target.attributes.style.value.replace("width: ", "");
-	    document.documentElement.style.setProperty("--sidebar-width", newidth);
-    })
-    let config = { 
-        attributes: true, 
-        childList: false,
-        characterData: false 
-    };
-    observer.observe(sidebar, config);
+	let observer = new MutationObserver((mutations) => {
+		newidth = mutations[0].target.attributes.style.value.replace("width: ", "");
+		document.documentElement.style.setProperty("--sidebar-width", newidth);
+	})
+	let config = { 
+		attributes: true, 
+		childList: false,
+		characterData: false 
+	};
+	observer.observe(sidebar, config);
 }
 function onRenderInit(a, b) {
-    let c = a;
-    let currenttab = game.user.flags["mrkb-ui"].currenttab;
-    if (currenttab.find(e => e.tab == a) === undefined) {
-        currenttab.push({tab: c, id: "unclassified"});
-        game.user.update({"flags.mrkb-ui.currenttab" : currenttab});
-    }
-    let target = game.user.flags["mrkb-ui"].currenttab.find(e => e.tab == a).id;
-    let bar = document.querySelector(`.${a}[data-tab=${target}]`);
-    let tab = document.querySelector(`.${b}[data-tab=${target}]`);
-    bar.classList.add("active");
-    tab.classList.add("active");
+	let c = a;
+	let currenttab = game.user.flags["mrkb-ui"].currenttab;
+	if (currenttab.find(e => e.tab == a) === undefined) {
+		currenttab.push({tab: c, id: "unclassified"});
+		game.user.update({"flags.mrkb-ui.currenttab" : currenttab});
+	}
+	let target = game.user.flags["mrkb-ui"].currenttab.find(e => e.tab == a).id;
+	let bar = document.querySelector(`.${a}[data-tab=${target}]`);
+	let tab = document.querySelector(`.${b}[data-tab=${target}]`);
+	bar.classList.add("active");
+	tab.classList.add("active");
 }
 function onAppendInit(a, b, dir = false) {
-    if (dir === false || dir === undefined) {
-        document.getElementById(b).append(document.getElementById(a));
-    }else if (dir === true) {
-        document.getElementById(b).prepend(document.getElementById(a));
-    }
-    return;
+	if (dir === false || dir === undefined) {
+		document.getElementById(b).append(document.getElementById(a));
+	}else if (dir === true) {
+		document.getElementById(b).prepend(document.getElementById(a));
+	}
+	return;
 }
 function tabOpen(id, a, b) {
-    let bars = document.getElementsByClassName(a);
-    let tabs = document.getElementsByClassName(b);
-    for (var i = 0; i < tabs.length; i++) {
-        tabs[i].classList.remove("active");
-        bars[i].classList.remove("active");
-    }
-    let target = "[data-tab='" + id + "']";
-    let newtab = document.querySelectorAll(target);
-    let currenttab = game.user.flags["mrkb-ui"].currenttab;
-    let n = currenttab.findIndex((e) => e.tab == a);
-    currenttab[n].id = id
-    game.user.update({"flags.mrkb-ui.currenttab" : currenttab});
-    newtab[0].classList.add("active");
-    newtab[1].classList.add("active");
+	let bars = document.getElementsByClassName(a);
+	let tabs = document.getElementsByClassName(b);
+	for (var i = 0; i < tabs.length; i++) {
+		tabs[i].classList.remove("active");
+		bars[i].classList.remove("active");
+	}
+	let target = "[data-tab='" + id + "']";
+	let newtab = document.querySelectorAll(target);
+	let currenttab = game.user.flags["mrkb-ui"].currenttab;
+	let n = currenttab.findIndex((e) => e.tab == a);
+	currenttab[n].id = id
+	game.user.update({"flags.mrkb-ui.currenttab" : currenttab});
+	newtab[0].classList.add("active");
+	newtab[1].classList.add("active");
 }
 function checkFolder(name, type) {
-    let targetname = HUDSetting.get(name);
-    if (targetname === "") {
+	let targetname = HUDSetting.get(name);
+	if (targetname === "") {
 		//ui.notifications.error(game.i18n.localize("MRKB.Notifications.FolderIsNull"));
 		return false;
-    }
-    let target = game.folders.getName(targetname);
+	}
+	let target = game.folders.getName(targetname);
 	if (target == undefined) {
-	    //ui.notifications.error(game.i18n.format("MRKB.Notifications.FolderIsNone", {name: targetname}));
-	    return false;
+		//ui.notifications.error(game.i18n.format("MRKB.Notifications.FolderIsNone", {name: targetname}));
+		return false;
 	}else if (target.type !== type) {
-	    //ui.notifications.error(game.i18n.format("MRKB.Notifications.FolderIsNone", {name: targetname}));
-	    return false;
+		//ui.notifications.error(game.i18n.format("MRKB.Notifications.FolderIsNone", {name: targetname}));
+		return false;
 	}
 	return true;
 }
@@ -302,85 +326,85 @@ function checkFolder(name, type) {
 /*─────────────────────────HP CALCULATER─────────────────────────*/
 
 function calcHP(target) {
-    let hp = {
-        value : 0,
-        max : 0,
-        hpm : 0
-    };
-    if (game.system.id == "swade") {
-        let wounds = game.actors.get(target).system.wounds;
-        hp.value = wounds.value;
-        hp.max = wounds.max;
-        hp.temp = 0;
-        hp.hpm = (hp.max <= 0) ? 100 : (parseInt(100 - ((hp.value / hp.max) * 100)));
-    }else if (game.system.id == "archmage") {
-        let health = game.actors.get(target).system.attributes.hp;
-        hp.value = health.value;
-        hp.max = health.max;
-        hp.temp = health.temp;
-        hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
-    }else if (game.system.id == "pf2e") {
-        let health = game.actors.get(target).system.attributes.hp;
-        hp.value = health.value;
-        hp.max = health.max;
-        hp.temp = health.temp;
-        hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
-    }else if (game.system.id == "dx3rd") {
-        let health = game.actors.get(target).system.attributes.hp;
-        hp.value = health.value;
-        hp.max = 50;
-        hp.temp = 0;
-        hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
-    }
-    return hp;
+	let hp = {
+		value : 0,
+		max : 0,
+		hpm : 0
+	};
+	if (game.system.id == "swade") {
+		let wounds = game.actors.get(target).system.wounds;
+		hp.value = wounds.value;
+		hp.max = wounds.max;
+		hp.temp = 0;
+		hp.hpm = (hp.max <= 0) ? 100 : (parseInt(100 - ((hp.value / hp.max) * 100)));
+	}else if (game.system.id == "archmage") {
+		let health = game.actors.get(target).system.attributes.hp;
+		hp.value = health.value;
+		hp.max = health.max;
+		hp.temp = health.temp;
+		hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
+	}else if (game.system.id == "pf2e") {
+		let health = game.actors.get(target).system.attributes.hp;
+		hp.value = health.value;
+		hp.max = health.max;
+		hp.temp = health.temp;
+		hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
+	}else if (game.system.id == "dx3rd") {
+		let health = game.actors.get(target).system.attributes.hp;
+		hp.value = health.value;
+		hp.max = 50;
+		hp.temp = 0;
+		hp.hpm = (hp.max <= 0) ? 100 : parseInt((hp.value / hp.max) * 100);
+	}
+	return hp;
 }
 function calcMana(target) {
-    const actor = game.actors.get(target);
-    let mana = {
-        value : 0,
-        max : 0,
-        mpm : 0
-    };
-    if (game.system.id == "swade") {
-        let pp = actor.system.powerPoints.general;
-        mana.value = pp.value === undefined ? 0 : pp.value;
-        mana.max = pp.max === undefined ? 0 : pp.max;
-        mana.mpm = (pp.value == undefined || pp.max == undefined) ? 0 : parseInt((pp.value / pp.max) * 100);
-    }else if (game.system.id == "archmage" && actor.type == "character") {
-        let recovery = actor.system.attributes.recoveries;
-        mana.value = recovery.value;
-        mana.max = recovery.max;
-        mana.mpm = parseInt((recovery.value / recovery.max) * 100);
-    }else if (game.system.id == "pf2e") {
-        let xp = actor.system.details.xp;
-        mana.value = xp.value;
-        mana.max = xp.max;
-        mana.mpm = parseInt((xp.value / xp.max) * 100);
-    }else if (game.system.id == "dx3rd") {
-        let encroachment = actor.system.attributes.encroachment;
-        mana.value = encroachment.value;
-        mana.max = encroachment.max;
-        mana.mpm = parseInt((encroachment.value / encroachment.max) * 100);
-    }
-    return mana;
+	const actor = game.actors.get(target);
+	let mana = {
+		value : 0,
+		max : 0,
+		mpm : 0
+	};
+	if (game.system.id == "swade") {
+		let pp = actor.system.powerPoints.general;
+		mana.value = pp.value === undefined ? 0 : pp.value;
+		mana.max = pp.max === undefined ? 0 : pp.max;
+		mana.mpm = (pp.value == undefined || pp.max == undefined) ? 0 : parseInt((pp.value / pp.max) * 100);
+	}else if (game.system.id == "archmage" && actor.type == "character") {
+		let recovery = actor.system.attributes.recoveries;
+		mana.value = recovery.value;
+		mana.max = recovery.max;
+		mana.mpm = parseInt((recovery.value / recovery.max) * 100);
+	}else if (game.system.id == "pf2e") {
+		let xp = actor.system.details.xp;
+		mana.value = xp.value;
+		mana.max = xp.max;
+		mana.mpm = parseInt((xp.value / xp.max) * 100);
+	}else if (game.system.id == "dx3rd") {
+		let encroachment = actor.system.attributes.encroachment;
+		mana.value = encroachment.value;
+		mana.max = encroachment.max;
+		mana.mpm = parseInt((encroachment.value / encroachment.max) * 100);
+	}
+	return mana;
 }
 
 /*─────────────────────────UTILLS─────────────────────────*/
 
 function uiPoint(target, value) {
-    if (game.user == undefined || game.user.character == undefined) {
-        return;
-    }
-    let hp = game.user.character.system.wounds.value;
-    let mp = game.user.character.system.powerPoints.general.value;
-    let point = (target == "hp") ? hp : mp;
-    let newpoint = (value == "heal") ? (target == "hp") ? --point : ++point : (target == "hp") ? ++point : --point;
-        console.log(newpoint);
-    if (target == "hp") {
-        game.user.character.update({'system.wounds.value': newpoint});
-    }else if (target == "mp") {
-        game.user.character.update({'system.powerPoints.general.value': newpoint});
-    }
+	if (game.user == undefined || game.user.character == undefined) {
+		return;
+	}
+	let hp = game.user.character.system.wounds.value;
+	let mp = game.user.character.system.powerPoints.general.value;
+	let point = (target == "hp") ? hp : mp;
+	let newpoint = (value == "heal") ? (target == "hp") ? --point : ++point : (target == "hp") ? ++point : --point;
+		console.log(newpoint);
+	if (target == "hp") {
+		game.user.character.update({'system.wounds.value': newpoint});
+	}else if (target == "mp") {
+		game.user.character.update({'system.powerPoints.general.value': newpoint});
+	}
 }
 function GoToChat() {
 	if (!HUDSetting.get('quickchat') || canvas.tokens.controlled.length < 1) return;
@@ -398,199 +422,199 @@ function GoToChat() {
 }
 
 function changeProfile() {
-    let name, src;
-    if (game.user == undefined) {
-        return;
-    }
-    if (game.user.character == undefined) {
-        name = "UNDEFINED";
-        src = "modules/mrkb-ui/src/chestnut.png";
-    }else {
-        let img = game.user.character.img;
-        name = game.user.character.name;
-        src = `${location.origin}/${img}`;
-    }
-    let profilepic = document.getElementById("profilepic");
-    let profilename = document.getElementById("profilename");
-    if (game.modules.get("illandril-chat-enhancements") == !undefined) {
-        let nameplace = document.getElementsByClassName("illandril-chat-enhancements--currentSpeaker");
-        nameplace.innerHTML = name;
-    }
-    profilepic.src = src;
-    profilename.innerHTML = name;
-    loadCharaData();
+	let name, src;
+	if (game.user == undefined) {
+		return;
+	}
+	if (game.user.character == undefined) {
+		name = "UNDEFINED";
+		src = "modules/mrkb-ui/src/chestnut.png";
+	}else {
+		let img = game.user.character.img;
+		name = game.user.character.name;
+		src = `${location.origin}/${img}`;
+	}
+	let profilepic = document.getElementById("profilepic");
+	let profilename = document.getElementById("profilename");
+	if (game.modules.get("illandril-chat-enhancements") == !undefined) {
+		let nameplace = document.getElementsByClassName("illandril-chat-enhancements--currentSpeaker");
+		nameplace.innerHTML = name;
+	}
+	profilepic.src = src;
+	profilename.innerHTML = name;
+	loadCharaData();
 }
 
 function loadCharaData() {
-    if (game.user == undefined || game.user.character == undefined) {
-        return;
-    }
-    let hpgage = document.getElementById("healthbar");
-    let hpvalue = document.getElementById("healthnumber");
-    let hp = calcHP(game.user.character.id);
-    hpgage.value = hp.hpm;
-    if (hp.temp === 0) {
-        hpvalue.innerHTML = hp.value + "/" + hp.max;
-    }else {
-        hpvalue.innerHTML = hp.value + "+" + hp.temp + "/" + hp.max;
-    }
-    let managage = document.getElementById("manabar");
-    let manavalue = document.getElementById("mananumber");
-    let mana = calcMana(game.user.character.id);
-    managage.value = mana.mpm;
-    manavalue.innerHTML = mana.value + "/" + mana.max;
-    setAttribute();
+	if (game.user == undefined || game.user.character == undefined) {
+		return;
+	}
+	let hpgage = document.getElementById("healthbar");
+	let hpvalue = document.getElementById("healthnumber");
+	let hp = calcHP(game.user.character.id);
+	hpgage.value = hp.hpm;
+	if (hp.temp === 0) {
+		hpvalue.innerHTML = hp.value + "/" + hp.max;
+	}else {
+		hpvalue.innerHTML = hp.value + "+" + hp.temp + "/" + hp.max;
+	}
+	let managage = document.getElementById("manabar");
+	let manavalue = document.getElementById("mananumber");
+	let mana = calcMana(game.user.character.id);
+	managage.value = mana.mpm;
+	manavalue.innerHTML = mana.value + "/" + mana.max;
+	setAttribute();
 }
 
 function setAttribute() {
-    const element = document.getElementById("mrkb-info");
-    while (element.hasChildNodes()) {
-        element.removeChild(element.firstChild);
-    }
-    let list = [];
-    if (game.system.id === "swade") {
-        const stats = game.user.character.system.stats;
-        list.push({
-            fa : "person-running",
-            name : "SP",
-            value : stats.speed.value
-        },
-        {
-            fa : "shield-halved",
-            name : "PR",
-            value : stats.parry.value
-        },
-        {
-            fa : "shield-heart",
-            name : "TN",
-            value : stats.toughness.value
-        },
-        {
-            fa : "heart",
-            name : "<i class='fa-solid fa-minus'></i>",
-            value : "",
-            onclick : "uiPoint('hp', 'dmg')"
-        },
-        {
-            fa : "heart",
-            name : "<i class='fa-solid fa-plus'></i>",
-            value : "",
-            onclick : "uiPoint('hp', 'heal')"
-        },
-        {
-            fa : "wand-magic-sparkles",
-            name : "<i class='fa-solid fa-minus'></i>",
-            value : "",
-            onclick : "uiPoint('mp', 'dmg')"
-        },
-        {
-            fa : "wand-magic-sparkles",
-            name : "<i class='fa-solid fa-plus'></i>",
-            value : "",
-            onclick : "uiPoint('mp', 'heal')"
-        });
-    }else if (game.system.id === "archmage") {
-        let attr = game.user.character.data.data.attributes;
-        list.push({
-            fa : "shield",
-            name : "AC",
-            value : attr.ac.value
-        },
-        {
-            fa : "shield-halved",
-            name : "PD",
-            value : attr.pd.value
-        },
-        {
-            fa : "shield-heart",
-            name : "MD",
-            value : attr.md.value
-        });
-    }else if (game.system.id === "pf2e") {
-        let attr = game.user.character.data.data.attributes;
-        list.push({
-            fa : "shield-halved",
-            name : "AC",
-            value : attr.ac.value
-        },
-        {
-            fa : "shield-halved",
-            name : "DC",
-            value : attr.classDC.value
-        },
-        {
-            fa : "person-running",
-            name : "SP",
-            value : attr.speed.value
-        });
-    }
-    list.forEach((e) => {
-        let info = document.createElement("div");
-        if (e.onclick !== undefined) {
-            info.setAttribute("onclick", e.onclick);
-        }
-        info.setAttribute("class", "info");
-        info.innerHTML = `<i class="fa-solid fa-${e.fa}"></i>${e.name} ${e.value}`;
-        element.appendChild(info);
-    });
+	const element = document.getElementById("mrkb-info");
+	while (element.hasChildNodes()) {
+		element.removeChild(element.firstChild);
+	}
+	let list = [];
+	if (game.system.id === "swade") {
+		const stats = game.user.character.system.stats;
+		list.push({
+			fa : "person-running",
+			name : "SP",
+			value : stats.speed.value
+		},
+		{
+			fa : "shield-halved",
+			name : "PR",
+			value : stats.parry.value
+		},
+		{
+			fa : "shield-heart",
+			name : "TN",
+			value : stats.toughness.value
+		},
+		{
+			fa : "heart",
+			name : "<i class='fa-solid fa-minus'></i>",
+			value : "",
+			onclick : "uiPoint('hp', 'dmg')"
+		},
+		{
+			fa : "heart",
+			name : "<i class='fa-solid fa-plus'></i>",
+			value : "",
+			onclick : "uiPoint('hp', 'heal')"
+		},
+		{
+			fa : "wand-magic-sparkles",
+			name : "<i class='fa-solid fa-minus'></i>",
+			value : "",
+			onclick : "uiPoint('mp', 'dmg')"
+		},
+		{
+			fa : "wand-magic-sparkles",
+			name : "<i class='fa-solid fa-plus'></i>",
+			value : "",
+			onclick : "uiPoint('mp', 'heal')"
+		});
+	}else if (game.system.id === "archmage") {
+		let attr = game.user.character.data.data.attributes;
+		list.push({
+			fa : "shield",
+			name : "AC",
+			value : attr.ac.value
+		},
+		{
+			fa : "shield-halved",
+			name : "PD",
+			value : attr.pd.value
+		},
+		{
+			fa : "shield-heart",
+			name : "MD",
+			value : attr.md.value
+		});
+	}else if (game.system.id === "pf2e") {
+		let attr = game.user.character.data.data.attributes;
+		list.push({
+			fa : "shield-halved",
+			name : "AC",
+			value : attr.ac.value
+		},
+		{
+			fa : "shield-halved",
+			name : "DC",
+			value : attr.classDC.value
+		},
+		{
+			fa : "person-running",
+			name : "SP",
+			value : attr.speed.value
+		});
+	}
+	list.forEach((e) => {
+		let info = document.createElement("div");
+		if (e.onclick !== undefined) {
+			info.setAttribute("onclick", e.onclick);
+		}
+		info.setAttribute("class", "info");
+		info.innerHTML = `<i class="fa-solid fa-${e.fa}"></i>${e.name} ${e.value}`;
+		element.appendChild(info);
+	});
 }
-    
+	
 
 function announce() {
-    let noti = document.getElementById("mrkb-notification");
-    let notiopen = document.getElementById("ui-noti-open");
-    let precept = HUDSetting.get("announcement");
-    if (precept == "") {
-        noti.classList.add("hidden");
-        notiopen.classList.remove("hidden");
-    }else {
-        noti.classList.remove("hidden");
-        notiopen.classList.add("hidden");
-        document.getElementById("notify").innerHTML = precept;
-    }
+	let noti = document.getElementById("mrkb-notification");
+	let notiopen = document.getElementById("ui-noti-open");
+	let precept = HUDSetting.get("announcement");
+	if (precept == "") {
+		noti.classList.add("hidden");
+		notiopen.classList.remove("hidden");
+	}else {
+		noti.classList.remove("hidden");
+		notiopen.classList.add("hidden");
+		document.getElementById("notify").innerHTML = precept;
+	}
 }
 
 function turnNotice() {
-    const turnToken = game.combat.current.tokenId
-    const turnPlayer = game.canvas.tokens.get(turnToken).actor;
-    const turnTitle = `${turnPlayer.name}의 턴`;
-    const turnOwner = game.users.character?.find(e => e.character.id === turnPlayer.id);
-    if (game.user.isGM) {
-        if (turnOwner === undefined) {
-            ChatMessage.create({
-                type : 0,
-                speaker : {
-                    actor : turnPlayer.id,
-                    alias : turnTitle,
-                    token : turnToken
-                }
-            }, {mrkbturn : true});
-        }else {
-            ChatMessage.create({
-                type : 0,
-                speaker : {
-                    actor : turnPlayer.id,
-                    alias : turnTitle,
-                    token : turnToken
-                },
-                user : turnOwner
-            }, {mrkbturn : true});
-        }
-    }
-    const container = document.getElementById("turn-notice");
-    const image = document.getElementById("turn-img");
-    const name = document.getElementById("turn-name");
-    image.src = game.canvas.tokens.get(game.combat.current.tokenId).data.img;
-    name.innerHTML = turnTitle;
-    container.classList.remove("hidden");
-    setTimeout(function() {
-        container.classList.add("hidden");
-    }, 1300);
+	const turnToken = game.combat.current.tokenId
+	const turnPlayer = game.canvas.tokens.get(turnToken).actor;
+	const turnTitle = `${turnPlayer.name}의 턴`;
+	const turnOwner = game.users.character?.find(e => e.character.id === turnPlayer.id);
+	if (game.user.isGM) {
+		if (turnOwner === undefined) {
+			ChatMessage.create({
+				type : 0,
+				speaker : {
+					actor : turnPlayer.id,
+					alias : turnTitle,
+					token : turnToken
+				}
+			}, {mrkbturn : true});
+		}else {
+			ChatMessage.create({
+				type : 0,
+				speaker : {
+					actor : turnPlayer.id,
+					alias : turnTitle,
+					token : turnToken
+				},
+				user : turnOwner
+			}, {mrkbturn : true});
+		}
+	}
+	const container = document.getElementById("turn-notice");
+	const image = document.getElementById("turn-img");
+	const name = document.getElementById("turn-name");
+	image.src = game.canvas.tokens.get(game.combat.current.tokenId).data.img;
+	name.innerHTML = turnTitle;
+	container.classList.remove("hidden");
+	setTimeout(function() {
+		container.classList.add("hidden");
+	}, 1300);
 }
 function checkNotice(message, html, data) {
-    if (message.getFlag("mrkb-ui", "turner")) {
-        html[0].classList.add("mrkb-turn");
-    }
+	if (message.getFlag("mrkb-ui", "turner")) {
+		html[0].classList.add("mrkb-turn");
+	}
 }
 
 function uiStop() {
@@ -734,62 +758,62 @@ function uiStop() {
 	}).render(true);
 }
 function uiSheet() {
-    game.user.character.sheet.render("true");
+	game.user.character.sheet.render("true");
 }
 
 function chatPlay() {
-    let chat = game.messages.contents[game.messages.size - 1];
-    let actor = game.actors.get(chat.data.speaker.actor);
-    if (chat.data.type != 2) {
-        return;
-    };
-    if (actor.hasPlayerOwner) {
-        LR = "left";
-    }else {
-        LR = "right";
-    };
-    let uiportrait = document.getElementById(`ui-portrait-${LR}`);
-    let uiname = document.getElementById(`ui-name-${LR}`);
-    let uichat = document.getElementById(`ui-chat-${LR}`);
-    let img = actor.img;
-    uiportrait.src = `${location.origin}/${img}`;
-    uiname.innerHTML = chat.alias;
-    uichat.innerHTML = chat.data.content;
+	let chat = game.messages.contents[game.messages.size - 1];
+	let actor = game.actors.get(chat.data.speaker.actor);
+	if (chat.data.type != 2) {
+		return;
+	};
+	if (actor.hasPlayerOwner) {
+		LR = "left";
+	}else {
+		LR = "right";
+	};
+	let uiportrait = document.getElementById(`ui-portrait-${LR}`);
+	let uiname = document.getElementById(`ui-name-${LR}`);
+	let uichat = document.getElementById(`ui-chat-${LR}`);
+	let img = actor.img;
+	uiportrait.src = `${location.origin}/${img}`;
+	uiname.innerHTML = chat.alias;
+	uichat.innerHTML = chat.data.content;
 }
 
 /*─────────────────────────TOGGLEBUTTONS─────────────────────────*/
 
 function toggleChara() {
-    let con = document.getElementById("character-container");
-    let toggler = document.getElementById("characon-toggle");
-    let buttons = document.getElementById("mrkb-buttons");
-    let toal = document.getElementById("toggleAllies");
-    if (con.classList.contains("hidden")) {
-        con.classList.remove("hidden");
-        toggler.classList.remove("fold")
-        buttons.classList.remove("moved");
-        toal.classList.remove("moved");
-    }else {
-        con.classList.add("hidden");
-        toggler.classList.add("fold")
-        buttons.classList.add("moved");
-        toal.classList.add("moved");
-    }
+	let con = document.getElementById("character-container");
+	let toggler = document.getElementById("characon-toggle");
+	let buttons = document.getElementById("mrkb-buttons");
+	let toal = document.getElementById("toggleAllies");
+	if (con.classList.contains("hidden")) {
+		con.classList.remove("hidden");
+		toggler.classList.remove("fold")
+		buttons.classList.remove("moved");
+		toal.classList.remove("moved");
+	}else {
+		con.classList.add("hidden");
+		toggler.classList.add("fold")
+		buttons.classList.add("moved");
+		toal.classList.add("moved");
+	}
 }
 function toggleNotify() {
-    let noti = document.getElementById("mrkb-notification");
-    let notiopen = document.getElementById("ui-noti-open");
-    if (noti.classList.contains("hidden")) {
-        noti.classList.remove("hidden");
-        notiopen.classList.add("hidden");
-    }else {
-        noti.classList.add("hidden");
-        notiopen.classList.remove("hidden");
-    };
+	let noti = document.getElementById("mrkb-notification");
+	let notiopen = document.getElementById("ui-noti-open");
+	if (noti.classList.contains("hidden")) {
+		noti.classList.remove("hidden");
+		notiopen.classList.add("hidden");
+	}else {
+		noti.classList.add("hidden");
+		notiopen.classList.remove("hidden");
+	};
 }
 function uiHideChat() {
-    let chat = document.getElementById("mrkb-chat");
-    let chatopener = document.getElementById("ui-chat-open");
+	let chat = document.getElementById("mrkb-chat");
+	let chatopener = document.getElementById("ui-chat-open");
 	if (chat.classList.contains("hidden")) {
 		chat.classList.remove("hidden");
 		chatopener.classList.add("hidden");
@@ -799,9 +823,9 @@ function uiHideChat() {
 	};
 }
 function hideBotHud() {
-    let bot = document.getElementById("mrkb-bottom");
-    let botopener = document.getElementById("ui-bot-open");
-    if (bot.classList.contains("hidden")) {
+	let bot = document.getElementById("mrkb-bottom");
+	let botopener = document.getElementById("ui-bot-open");
+	if (bot.classList.contains("hidden")) {
 		bot.classList.remove("hidden");
 		botopener.classList.add("hidden");
 	}else {
@@ -810,17 +834,53 @@ function hideBotHud() {
 	};
 }
 function displayOpacity() {
-    let display = document.getElementById("mrkb-display");
-    let button = document.querySelector(".mrkbmenu[onclick='displayOpacity();']");
-    if (display.classList.contains("trans")) {
-        display.classList.remove("trans");
-        button.classList.remove("active");
-    }else {
-        display.classList.add("trans");
-        button.classList.add("active");
-    }
+	let display = document.getElementById("mrkb-display");
+	let button = document.querySelector(".mrkbmenu[onclick='displayOpacity();']");
+	if (display.classList.contains("trans")) {
+		display.classList.remove("trans");
+		button.classList.remove("active");
+	}else {
+		display.classList.add("trans");
+		button.classList.add("active");
+	}
 }
-    
-    
-    
-    
+function getConref() {
+	const chara = game.user.character;
+	if (chara === undefined) {
+		return;
+	}
+	const conitem = chara.items.getName("컨센트레이트");
+	const refitem = chara.items.getName("리플렉스");
+	if (conitem === undefined || refitem === undefined) {
+		return;
+	}
+	const con = document.querySelector("#con-value");
+	const ref = document.querySelector("#ref-value");
+	const convalue = conitem.system.level.init;
+	const refvalue = refitem.system.level.init;
+	con.innerHTML = convalue;
+	ref.innerHTML = refvalue;
+	return ({
+		con : convalue,
+		ref : refvalue
+	});
+}
+function conref(type, dir) {
+	const chara = game.user.character;
+	const target = document.querySelector(`#${type}-value`);
+	const value = getConref();
+	if (value === undefined) {
+		return;
+	}
+	let skill = value[type];
+	let lvl = ((skill <= 0 && dir == "down") || (skill >= 3 && dir == "up")) ? skill : (dir == "up") ? ++skill : --skill;
+	let enc = (type == "con") ? (lvl == 0) ? 0 : (lvl == 1) ? 2 : (lvl == 2) ? 6 : (lvl == 3) ? 20 : 0 : (lvl == 0) ? 0 : (lvl == 1) ? 1 : (lvl == 2) ? 5 : (lvl == 3) ? 10 : 0;
+	
+	const item = (type == "con") ? chara.items.getName("컨센트레이트") : chara.items.getName("리플렉스");
+	
+	target.innerHTML = lvl;
+	item.update({
+		"system.level.init" : lvl,
+		"system.encroach.value" : enc
+	});
+}
