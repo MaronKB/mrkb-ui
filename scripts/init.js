@@ -846,7 +846,7 @@ function displayOpacity() {
 }
 function getConref() {
 	const chara = game.user.character;
-	if (chara === undefined) {
+	if (chara === undefined || chara === null) {
 		return;
 	}
 	const conitem = chara.items.getName("컨센트레이트");
