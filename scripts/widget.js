@@ -258,7 +258,7 @@ function readDisplay() {
 /*─────────────────────────ITEM CASTER─────────────────────────*/
 
 function getItemCaster() {
-    if (game.system.id !== "swade" && game.system.id !== "archmage" && game.system.id !== "dx3rd") {
+    if (game.system.id !== "swade" && game.system.id !== "archmage") {
         return;
     }
     const chara = game.user.character;
