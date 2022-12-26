@@ -1,0 +1,8 @@
+@media (max-width: 400px) {
+    #mrkb-hud {
+        display: none!important;
+    }
+    #sidebar {
+        width: 100vw!important;
+    }
+}

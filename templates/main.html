@@ -1,0 +1,127 @@
+<div id="mrkb-head">
+    <div id="mrkb-notification">
+        <a onclick="toggleNotify();"><i class="fa-solid fa-bell"></i></a>
+        <h3 id="notify">내용</h3>
+        <a onclick="toggleNotify();"><i class="fa-solid fa-xmark"></i></a>
+    </div>
+    <div id="mrkb-boss" class="hidden">
+        <progress id="bossbar" value="100" max="100"></progress>
+        <div id="bossframe">
+	        <div id="bossprofile">
+		        <img id="bossimg" src="">
+	        </div>
+	    </div>
+	    <div id="bosstitle">
+	        <h3>BOSS</h3>
+	        <h3 id="bossname">이름</h3>
+	    </div>
+    </div>
+</div>
+
+<div id="mrkb-top">
+	<div id="top-openers">
+	    <a id="characon-toggle" onclick="toggleChara();"><i class="fa-solid fa-user"></i></a>
+	    <div id="right-opener">
+		    <div id="ui-resrc-open" class="hidden">
+		    	<a id="toggle-resource" onclick="toggleResource();">0</a>
+		    </div>
+		    <div id="ui-skill-open" class="hidden">
+		    	<a id="toggle-caster" onclick="toggleCaster();"><i class="fa-solid fa-wand-magic-sparkles"></i></a>
+		    </div>
+		    <div id="ui-noti-open" class="hidden">
+		    	<a id="ui-noti-opener" onclick="toggleNotify();"><i class="fa-solid fa-bell"></i></a>
+		    </div>
+		</div>
+	</div>
+	<div id="character-container" class="alies-container">
+		<div id="charaprofile">
+			<img id="profilepic" src="">
+		</div>
+		<div id="namespace">
+			<h3 id="profilename"></h3>
+		</div>
+		<div id="mrkb-health">
+			<h4 id="healthnumber">0/0</h4><progress id="healthbar" value="0" max="100"></progress>
+		</div>
+		<div id="mrkb-mana">
+			<h4 id="mananumber">0/0</h4><progress id="manabar" value="0" max="100"></progress>
+		</div>
+		<div id="mrkb-info">
+		</div>
+	</div>
+	<div id="mrkb-buttons">
+        <button class="functionkey char" type="button" onclick="toggleAllies();" id="toggleAllies"><i class="fa-solid fa-people-group"></i></button>
+		<button class="functionkey" type="button" onclick="uiSheet();"><i class="fa-solid fa-id-card"></i></button>
+		<button class="functionkey" type="button" onclick="uiChange()"><i class="fa-solid fa-arrows-rotate"></i></button>
+		<button class="functionkey" type="button" onclick="uiStop()"><i class="fa-solid fa-pause"></i></button>
+		<button class="functionkey" type="button" onclick="">4</button>
+		<button class="functionkey" type="button" onclick="">5</button>
+		<button class="functionkey" type="button" onclick="">6</button>
+		<button class="functionkey" type="button" onclick="">7</button>
+		<button class="functionkey" type="button" onclick="">8</button>
+		<button class="functionkey" type="button" onclick="">9</button>
+	</div>
+</div>
+
+<div id="mrkb-middle">
+	<div id="mrkb-left" class="char">
+	    <div id="allies" class="app"></div>
+	</div>
+	<div id="mrkb-center">
+	    <div id="loud-speaker">
+	    </div>
+	    <div id="turn-notice" class="hidden">
+	        <h3>TURN CHANGED</h3>
+	        <div><img id="turn-img" src=""></div>
+	        <h3 id="turn-name"></h3>
+	    </div>
+	</div>
+    <div id="mrkb-right">
+        <div id="custom-resource" class="app"></div>
+        <div id="item-caster" class="app"></div>
+    </div>
+</div>
+
+<div id="mrkb-display">
+	<iframe id="display-youtube" class="hidden" src="" frameborder=0 framespacing=0 allow="autoplay"></iframe>
+	<iframe id="display-embed" class="hidden" src="" frameborder=0 framespacing=0></iframe>
+	<img id="display-image-background" class="hidden" src="">
+	<img id="display-image" class="hidden" src="">
+	<video id="display-video-background" class="hidden" src="" allow="autoplay" autoplay muted loop></video>
+	<video id="display-video" class="hidden" src="" allow="autoplay" autoplay muted loop></video>
+	<video id="display-overlay" class="hidden" src="" allow="autoplay" autoplay muted loop></video>
+	<video id="display-flash" class="hidden" src="" allow="autoplay" autoplay onended="removeDisplay('flash')"></video>
+</div>
+
+<div id="mrkb-chat">
+    <h3 id="ui-name-left" class="uiname"></h3>
+    <a id="ui-chat-fold" onclick="uiHideChat();"><i class="fa-solid fa-caret-down"></i></a>
+    <h3 id="ui-name-right" class="uiname"></h3>
+    <div id="chat-container" class="chat-container">
+        <div id="port-container-left" class="uiport">
+            <img id="ui-portrait-left" src="">
+        </div>
+        <div id="ui-chat-left" class="uichat">
+        </div>
+        <div id="ui-chat-right" class="uichat">
+        </div>
+        <div id="port-container-right" class="uiport">
+            <img id="ui-portrait-right" src="">
+        </div>
+    </div>
+</div>
+
+<div id="mrkb-openers">
+    <a id="ui-chat-open" class="hidden" onclick="uiHideChat();"><i class="fa-solid fa-caret-up"></i></a>
+    <a id="ui-bot-open" class="hidden" onclick="hideBotHud();"><i class="fa-solid fa-caret-up"></i></a>
+</div>
+
+<div id="mrkb-bottom">
+	<div id="mrkb-utils">
+		<a class="mrkbmenu" onclick="uiInventory();"><i class="fa-solid fa-box"></i></a>
+		<a class="mrkbmenu" onclick="kakaoDialog();"><i class="fa-solid fa-comment-dots"></i></a>
+		<a class="mrkbmenu" onclick="uiQuest();"><i class="fa-solid fa-clipboard-question"></i></a>
+		<a class="mrkbmenu" onclick="displayOpacity();"><i class="fa-solid fa-circle-half-stroke"></i></a>
+		<a class="mrkbmenu" onclick="hideBotHud();"><i class="fa-solid fa-caret-down"></i></a>
+	</div>
+</div>

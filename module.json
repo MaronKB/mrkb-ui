@@ -1,0 +1,63 @@
+{
+	"id": "mrkb-ui",
+	"name": "mrkb-ui",
+	"title": "MRKB UI",
+	"description": "<p>UI</p>",
+	"version": "1.0.6",
+	"minimumCoreVersion" : "0.6.4",
+	"compatibleCoreVersion": "1.0.0",
+    "compatibility": {
+        "minimum": 10,
+        "verified": "10.290"
+    },
+	"author": "mrkb",
+    "authors": [
+        {
+            "name": "MRKB",
+            "discord": "MRKB#9999"
+        }
+    ],
+	"type": "module",
+	"esmodules": [],
+	"scripts": [
+		"./scripts/init.js",
+		"./scripts/widget.js",
+        "./scripts/application.js",
+		"./scripts/setting.js"
+	],
+	"styles": [
+		"./style/root.css",
+		"./style/hud.css",
+		"./style/application.css",
+		"./style/ui/main.css",
+		"./style/ui/chat.css",
+		"./style/ui/mobile.css",
+		"./style/ui/sheet.css"
+	],
+	"packs": [],
+	"relationships": {
+	    "requires": [
+            {
+                "type": "module",
+                "id": "socketlib",
+                "manifest": "https://raw.githubusercontent.com/manuelVo/foundryvtt-socketlib/master/module.json"
+            },
+            {
+                "type": "module",
+                "id": "_chatcommands",
+                "manifest": "https://github.com/League-of-Foundry-Developers/Chat-Commands-Lib/releases/latest/download/module.json"
+            }
+        ]
+	},
+    "socket": true,
+	"languages": [
+	    {
+            "lang": "ko",
+            "name": "한국어 (Korean)",
+            "path": "ko.json"
+        }
+    ],
+	"url": "https://github.com/MaronKB/MRKB_CSS",
+	"manifest": "https://raw.githubusercontent.com/MaronKB/MRKB_CSS/main/module.json",
+	"download": "https://github.com/MaronKB/MRKB_CSS/archive/main.zip"
+}

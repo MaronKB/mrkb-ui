@@ -1,0 +1,29 @@
+<div id="actor-favorite">
+		<a class="actor-icon" onclick="resetActor()">
+			<img src="modules/mrkb-ui/src/chestnut.png">
+			<h4>벗기</h4>
+		</a>
+	{{#each favor}}
+		<a class="actor-icon" onmousedown="selectActor('{{id}}')">
+			<img src="{{img}}">
+			<h4>{{name}}</h4>
+		</a>
+	{{/each}}
+</div>
+<ul id="actor-folder" data-group="primary">
+	{{#each folder}}
+		<li class="tab-actor" data-tab="{{id}}"><a onclick="tabOpen('{{id}}', 'tab-actor', 'actor-grid')">{{name}}</a></li>
+	{{/each}}
+</ul>
+{{#each folder}}
+	<div class="actor-grid tab" data-tab="{{id}}">
+		{{#each content}}
+		    <a class="actor-icon" onmousedown="selectActor('{{id}}')">
+		        <input id="{{id}}" type="checkbox" disabled {{favor}}>
+                <label for="cb1"><i class="fa-solid fa-star"></i></label>
+				<img src="{{img}}">
+				<h4>{{name}}</h4>
+		    </a>
+		{{/each}}
+	</div>
+{{/each}}

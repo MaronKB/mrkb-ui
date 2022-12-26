@@ -1,0 +1,30 @@
+<div id="tablet-overlay">
+    <div class="tablet-top"></div>
+    <div class="tablet-bottom">
+        <a onclick="activeApp('home')"><i class="fa-solid fa-house-chimney"></i></a>
+        <div></div>
+    </div>
+</div>
+<div id="tablet-body">
+	<div id="tablet-home" class="tablet-window active">
+		{{#each app}}
+			<a class="tablet-app" onclick="run('{{id}}')">
+				<img src="{{img}}">
+				<h4>{{name}}</h4>
+			</a>
+		{{/each}}
+		<div class="tablet-dock-background">
+		</div>
+		<div class="tablet-dock">
+			{{#each dock}}
+				<a class="tablet-app" onclick="activeApp('{{name}}')">
+					<i class="fa-solid fa-{{fas}}"></i>
+					<h4>{{name}}</h4>
+				</a>
+			{{/each}}
+		</div>
+	</div>
+	{{#each dock}}
+		<iframe id="tablet-{{name}}" class="tablet-window" src="{{url}}"></iframe>
+	{{/each}}
+</div>

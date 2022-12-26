@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv2 Gothic Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YESMyoungjo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESMyoungjo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'YESMyoungjo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/YESMyoungjo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+    --text-heading: white;
+    --text-color: lightgrey;
+    --text-tooltip: grey;
+    --highlight: cyan;
+    
+    --health-color: white;
+    --mana-color: lightgrey;
+    --boss-color: darkred;
+    
+    --foreground: #1f1f1f;
+    --foreground-trans: #1f1f1f77;
+    
+    --background: #1a1a1a;
+    --background-trans: #1a1a1a77;
+    --background-highlight: darkcyan;
+    --background-bright: #333333;
+    
+    --radius: 10px;
+}
+.vtt h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+.vtt img {
+    border: 0;
+}
+
+.vtt a:hover,
+.vtt a:focus,
+.vtt a.active {
+    color: white!important;
+    text-shadow: 0 0 10px var(--highlight);
+}
+.vtt input[type="text"],
+.vtt input[type="number"],
+.vtt input[type="password"],
+.vtt input[type="date"],
+.vtt input[type="time"],
+.vtt textarea {
+    border: 0;
+    border-radius: 0;
+    color: var(--text-color);
+    background: none;
+}
+.vtt input[type="text"]:hover,
+.vtt input[type="number"]:hover,
+.vtt input[type="password"]:hover,
+.vtt input[type="date"]:hover,
+.vtt input[type="time"]:hover,
+.vtt textarea:hover,
+.vtt input[type="text"]:focus,
+.vtt input[type="number"]:focus,
+.vtt input[type="password"]:focus,
+.vtt input[type="date"]:focus,
+.vtt input[type="time"]:focus,
+.vtt textarea:focus,
+.vtt select:focus {
+    border: 0!important;
+    outline: none!important;
+    box-shadow: none!important;
+}
+.vtt input[type="text"]::placeholder,
+.vtt input[type="number"]::placeholder,
+.vtt input[type="password"]::placeholder,
+.vtt input[type="date"]::placeholder,
+.vtt input[type="time"]::placeholder {
+  color: var(--text-tooltip)!important;
+  font-style: italic;
+}
+.vtt select {
+    color: var(--text-color);
+    border: 0!important;
+    border-radius: 0;
+    background: none;
+}
+.vtt option {
+    background: var(--background);
+}
+.vtt button {
+    color: var(--text-color);
+    font-family: 'GmarketSansMedium';
+    border: 0;
+    background: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.vtt button:hover,
+.vtt button:focus,
+.vtt button.active {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: none;
+}
+.vtt button > i {
+    margin: 0;
+}

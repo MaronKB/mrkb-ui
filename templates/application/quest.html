@@ -1,0 +1,18 @@
+<div id="quest-list" data-group="primary">
+	{{#each quest}}
+	    <h3>{{name}}</h3>
+	    <ul>
+	        {{#each content}}
+		        <li class="quest-name" data-tab="{{id}}"><a onclick="tabOpen('{{id}}', 'quest-name', 'quest')">{{name}}</a></li>
+		    {{/each}}
+		</ul>
+	{{/each}}
+</div>
+{{#each quest}}
+	{{#each content}}
+	    <div class="quest" data-tab="{{id}}">
+	        <h3>{{name}}</h3>
+	        {{{desc}}}
+	    </div>
+	{{/each}}
+{{/each}}

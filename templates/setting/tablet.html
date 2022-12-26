@@ -1,0 +1,34 @@
+<form id="tablet-setting">
+    <div class="setting-container">
+        <div>
+            <h4>{{localize "MRKB.Settings.Tablet.Direction.Title"}}</h4>
+            <select setting-data="tablet-direction" value={{direction}} onchange="settingUpdate('tablet-direction');">
+                <option value="horizontal" selected="{{selected.hor}}">{{localize "MRKB.Settings.Tablet.Direction.Horizontal"}}</option>
+                <option value="vertical" selected="{{selected.ver}}">{{localize "MRKB.Settings.Tablet.Direction.Vertical"}}</option>
+            </select>
+            <h4>{{localize "MRKB.Settings.Tablet.Size.Title"}}</h4>
+            <select setting-data="tablet-size" value="{{size}}" onchange="settingUpdate('tablet-size');">
+                <option value="big" selected="{{selected.big}}">{{localize "MRKB.Settings.Tablet.Size.Big"}}</option>
+                <option value="med" selected="{{selected.med}}">{{localize "MRKB.Settings.Tablet.Size.Med"}}</option>
+                <option value="small" selected="{{selected.small}}">{{localize "MRKB.Settings.Tablet.Size.Small"}}</option>
+            </select>
+        </div>
+    </div>
+	{{#each dock}}
+		<div class="setting-container">
+			<h3>{{localize "MRKB.Settings.Tablet.DockApp.Title"}} {{order}}</h3>
+			<div>
+				<h4>{{localize "MRKB.Settings.Tablet.DockApp.Name"}} {{order}}</h4>
+				<input type="text" setting-data="dock{{order}}-name" value="{{name}}" onchange="settingUpdate('dock{{order}}-name')">
+			</div>
+			<div>
+				<h4>{{localize "MRKB.Settings.Tablet.DockApp.Icon"}} {{order}}</h4>
+				<input type="text" setting-data="dock{{order}}-fas" value="{{fas}}" onchange="settingUpdate('dock{{order}}-fas')">
+			</div>
+			<div>
+				<h4>{{localize "MRKB.Settings.Tablet.DockApp.Icon"}} {{order}}</h4>
+				<input type="text" setting-data="dock{{order}}-url" value="{{url}}" onchange="settingUpdate('dock{{order}}-url')">
+			</div>
+		</div>
+	{{/each}}
+</form>

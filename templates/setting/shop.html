@@ -1,0 +1,30 @@
+<form id="shop-setting">
+    <div class="setting-container">
+        <h3>{{localize "MRKB.Settings.Shop.Folder.Title"}}</h3>
+        <p>{{localize "MRKB.Settings.Shop.Folder.Hint"}}</p>
+        <div>
+            <h4>{{localize "MRKB.Settings.Shop.Folder.Title"}}</h4>
+            <input type="text" setting-data="shop" value="{{folder}}" onchange="settingUpdate('shop')">
+        </div>
+    </div>
+    <div class="setting-container">
+        <h3>{{localize "MRKB.Settings.Shop.Merchant.Title"}}</h3>
+        <p>{{localize "MRKB.Settings.Shop.Merchant.Hint"}}</p>
+        <div>
+            <h4>{{localize "MRKB.Settings.Shop.Merchant.Name"}}</h4>
+            <input type="text" setting-data="merchant" value="{{merchant.name}}" onchange="settingUpdate('merchant')">
+        </div>
+        <div>
+            <h4>{{localize "MRKB.Settings.Shop.Merchant.Welcome"}}</h4>
+            <input type="text" setting-data="merchant-comment" value="{{merchant.comment}}" onchange="settingUpdate('merchant-comment')">
+        </div>
+        <div>
+            <h4>{{localize "MRKB.Settings.Shop.Merchant.NotEnough"}}</h4>
+            <input type="text" setting-data="merchant-notenough" value="{{merchant.notenough}}" onchange="settingUpdate('merchant-notenough')">
+        </div>
+        <div>
+            <h4>{{localize "MRKB.Settings.Shop.Merchant.ThanksForBuying"}}</h4>
+            <input type="text" setting-data="merchant-thanks" value="{{merchant.thanks}}" onchange="settingUpdate('merchant-thanks')">
+        </div>
+    </div>
+</form>

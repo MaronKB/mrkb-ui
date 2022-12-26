@@ -1,0 +1,58 @@
+<div>
+    <a><i class="fa-brands fa-youtube"></i>유튜브</a>
+    <input id="youtube-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('youtube')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('youtube')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('youtube')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <a><i class="fa-solid fa-file-arrow-down"></i>임베드</a>
+    <input id="embed-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('embed')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('embed')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('embed')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <a onclick="browseDisplay('image')"><i class="fa-solid fa-image"></i>이미지</a>
+    <input id="image-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('image')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('image')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('image')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <a onclick="browseDisplay('video')"><i class="fa-solid fa-video"></i>동영상</a>
+    <input id="video-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('video')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('video')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('video')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <a onclick="browseDisplay('overlay')"><i class="fa-solid fa-video"></i>이펙트</a>
+    <input id="overlay-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('overlay')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('overlay')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('overlay')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <a onclick="browseDisplay('flash')"><i class="fa-solid fa-bolt-lightning"></i>파티클</a>
+    <input id="flash-url" type="text">
+    <div>
+        <a onclick="remoteDisplay('flash')"><i class="fa-solid fa-circle-play"></i></a>
+        <a onclick="killDisplay('flash')"><i class="fa-solid fa-circle-stop"></i></a>
+        <a onclick="clearDisplay('flash')"><i class="fa-solid fa-circle-xmark"></i></a>
+    </div>
+</div>
+<div>
+    <button type="button" onclick="removeAllDisplay()"><i class="fa-solid fa-stop"></i> 전체 정지</button>
+    <button type="button" onclick="clearAllDisplay()"><i class="fa-solid fa-stop"></i> 전체 삭제</button>
+</div>

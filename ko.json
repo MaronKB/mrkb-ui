@@ -1,0 +1,114 @@
+{
+    "DF_CHAT_SCROLL": {
+        "EnableName": "Enable Chat Scroll Improvements",
+        "EnableHint": "Will display a Scroll To Bottom button, and if you are scrolling up through the log, it will prevent the chat log from scrolling down when a new message is posted. Instead it will highlight the Scroll To Bottom button when a new message is posted.",
+        "ScrollIfYouName": "Scroll To Bottom When You Send Message",
+        "ScrollIfYouHint": "If you have scrolled up through the chat log, this will automatically scroll you back to the bottom when you send a message.",
+        "ScrollButton": "최하단으로 이동",
+        "NewMessage": "새 메시지가 있습니다!"
+    },
+    "illandril-chat-enhancements": {
+        "currentSpeaker": "{name}"
+    },
+    "MRKB": {
+        "Settings": {
+            "Inventory": {
+                "Title": "인벤토리 설정",
+                "Folder": "인벤토리 폴더",
+                "Hint": "인벤토리로 사용될 폴더명을 지정합니다. 이름이 동일한 폴더가 아이템 디렉토리에 있어야 합니다. 중복되는 이름을 가진 폴더가 존재할 경우 오류가 발생할 수 있습니다."
+            },
+            "Quest": {
+                "Title": "인벤토리 설정",
+                "Folder": "퀘스트 폴더",
+                "Hint": "퀘스트로 사용될 폴더명을 지정합니다. 이름이 동일한 폴더가 저널 엔트리 디렉토리에 있어야 합니다. 중복되는 이름을 가진 폴더가 존재할 경우 오류가 발생할 수 있습니다."
+            },
+            "Shop": {
+                "Title": "상점 설정",
+                "Folder": {
+                    "Title": "폴더 설정",
+                    "Hint": "상점으로 사용될 폴더명을 지정합니다. 이름이 동일한 폴더가 아이템 디렉토리에 있어야 합니다. 중복되는 이름을 가진 폴더가 존재할 경우 오류가 발생할 수 있습니다."
+                },
+                "Merchant": {
+                    "Title": "상인 설정",
+                    "Name": "상인 이름",
+                    "Hint": "상점의 상인이 될 NPC를 지정합니다. 실제로 존재하는 NPC의 이름이어야 합니다.",
+                    "Welcome": "상인 기본 대사",
+                    "NotEnough": "자금 부족 시 대사",
+                    "ThanksForBuying": "거래 성공 시 대사"
+                }
+            },
+            "Tablet": {
+                "Title": "타블렛 설정",
+                "Size": {
+                    "Title": "타블렛 크기",
+                    "Big": "대형",
+                    "Med": "중형",
+                    "Small": "소형"
+                },
+                "Direction": {
+                    "Title": "타블렛 방향",
+                    "Horizontal": "가로",
+                    "Vertical": "세로"
+                },
+                "DockApp": {
+                    "Title": "독 추가 앱",
+                    "Name": "앱 이름",
+                    "Icon": "앱 아이콘",
+                    "URL": "앱 경로"
+                }
+            }
+        },
+        "Shop": {
+            "Welcome": "어서오세요.",
+            "NotEnough": "소지금이 충분하지 않습니다.",
+            "AreYouSure": "<span class='emphasis'>{name}</span><br/>정말 구매합니까?",
+            "ThanksForBuying": "감사합니다.",
+            "Error": {
+                "Price": "[오류] 대상 아이템의 가격이 존재하지 않습니다."
+            }
+        },
+        "Notifications": {
+            "FolderIsNull": "모듈 설정에서 폴더를 지정해주십시오.",
+            "FolderIsNone": "아이템 디렉토리에 \"{name}\" 폴더가 존재하지 않습니다."
+        },
+        "Unclassified": "미분류",
+        "Detail": "자세히",
+        "Buy": "구매",
+        "Confirm": "확인",
+        
+        "ItemType": {
+            "ABILITY": "특수 능력",
+            "ACTION": "행동",
+            "ANCESTRY": "기원",
+            "ARMOR": "갑옷",
+            "ASPECT": "면모",
+			"BACKGROUND": "배경",
+			"BACKPACK": "배낭",
+			"BOOK": "서적",
+			"CLASS": "클래스",
+			"CONDITION": "상태",
+			"CONSEQUENCE": "타격",
+			"CONSUMABLE": "소모품",
+			"DEITY": "신앙",
+			"EDGE": "장점",
+			"EFFECT": "효과",
+			"ETC": "기타",
+			"EQUIPMENT": "장비",
+			"FEAT": "특기",
+			"HERITAGE": "혈통",
+			"HINDRANCE": "단점",
+			"KIT": "도구",
+			"LORE": "전승 기술",
+			"MARTIAL": "갑옷 및 무기 숙련",
+			"MELEE": "NPC 공격",
+			"POWER": "이능",
+			"SKILL": "기능/기술",
+			"SPELL": "주문",
+			"SPELLCASTINGENTRY": "주문 시전 엔트리",
+			"STRESS": "스트레스",
+			"STUNT": "특기",
+			"TREASURE": "보물",
+			"WEAPON": "무기"
+        }
+    }
+}

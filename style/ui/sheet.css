@@ -1,0 +1,257 @@
+/*SWADE*/
+.swade.sheet.actor .sheet-body .attributes .attributes-list .attribute select,
+.swade.sheet.actor .sheet-body .attributes .attributes-list .attribute .toughness-block .armor-value,
+.swade-official .armor-display,
+.swade-official .parry-display {
+    color: var(--text-color);
+    text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+}
+.swade-official {
+    --default-font: inherit;
+    --section-header-font: inherit;
+}
+.swade-official .tabs .item {
+    color: var(--text-color);
+    font-family: inherit;
+}
+.swade-official .tabs .item.active {
+    text-shadow: 0 0 10px var(--highlight);
+}
+.swade-official .note-box {
+    grid-template-rows: 1fr;
+}
+.swade-official .note-box .note-header,
+.swade-official .note-box .note-footer {
+    display: none;
+}
+.swade-official .note-box .note-main {
+    background-image: none;
+    grid-row: 1/2;
+}
+.swade-official .header,
+.swade-official .effects.active .effect-header {
+    background-image: none;
+}
+
+.swade-official .primary .attribute select,
+.swade-official .derived .running-die,
+.swade-official .skills .skill-die .skill-die-icon {
+    filter: invert(1);
+}
+.swade-official .section-header {
+    color: white;
+}
+.swade-official input[type=number],
+.swade-official input[type=text],
+.swade-official input[type=number]:disabled,
+.swade-official input[type=text]:disabled {
+    background: none;
+    border: 0;
+}
+.swade-official input[type=number]:hover
+.swade-official input[type=text]:hover {
+    box-shadow: none;
+}
+
+/*Archmage*/
+.archmage.sheet .window-content {
+    background: none;
+    box-shadow: none;
+}
+.archmage.sheet .window-content form .sheet-tabs > .item.active {
+    border: 0;
+    box-shadow: none;
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+}
+.archmage.sheet .window-content form [type=text] {
+    border: 0;
+    color: var(--text-color);
+    padding: 0;
+}
+.archmage.sheet .window-content .editor-content {
+    background: none;
+}
+.archmage-v2.sheet .window-content .archmage-v2-vue {
+    background: none!important;
+    box-shadow: none!important;
+}
+.archmage-v2.sheet .window-content .resource .resource-max {
+    color: white!important;
+}
+.archmage-vue .input-edit {
+    background: var(--background)!important;
+    box-shadow: none!important;
+}
+#mrkb-hud .archmage-escalation {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30px 30px;
+    width: 100%;
+    height: 80px;
+    position: initial;
+    margin: 0;
+    border-width: 10px 2px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    color: var(--text-color);
+    font-family: inherit;
+    background: linear-gradient(45deg,
+        var(--background) 70%,
+        var(--background-bright) 70%
+    );
+}
+#mrkb-hud .archmage-escalation.hide {
+    display: none;
+}
+#mrkb-hud .archmage-escalation .ed-number {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+}
+#mrkb-hud .archmage-escalation .ed-controls {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: initial;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}
+#mrkb-hud .archmage-escalation .ed-controls .ed-control {
+    width: 100%;
+    height: 100%;
+    grid-row: 1/2;
+    font-size: 24px;
+    border: 0;
+    box-shadow: none;
+    color: inherit;
+    background: transparent;
+    pointer-events: all;
+}
+#mrkb-hud .archmage-escalation .ed-controls .ed-control.ed-plus {
+    grid-column: 3/4;
+}
+#mrkb-hud .archmage-escalation .ed-controls .ed-control.ed-minus {
+    grid-column: 1/2;
+    font-weight: 600;
+}
+#mrkb-hud .archmage-escalation::after {
+    content: "고조 주사위";
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 30px;
+    position: initial;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+    transform: unset;
+}
+/*FATEX*/
+.window-app.fatex-sheet .window-content {
+    background: none;
+    color: var(--text-color);
+}
+.window-app.fatex-sheet .fatex-header {
+    color: var(--text-color);
+    background: none;
+}
+.window-app.fatex-sheet .fatex-section-heading {
+    color: var(--text-heading);
+}
+.window-app.fatex-sheet .fatex-actions {
+    text-shadow: none;
+}
+.window-app.fatex-sheet .fatex-headline {
+    background: var(--text-color);
+    color: var(--background);
+}
+.window-app.fatex-sheet .fatex-headline::before {
+    border-top: 16px solid var(--background);
+    border-right: 16px solid transparent;
+}
+.window-app.fatex-sheet .fatex-headline::after {
+    border-bottom: 16px solid var(--background);
+    border-left: 16px solid transparent;
+}
+.window-app.fatex-sheet .fatex-artwork__wrapper::before {
+    border-top: 26px solid var(--background);
+    border-right: 26px solid transparent;
+}
+.window-app.fatex-sheet .fatex-artwork__wrapper::after {
+    border-bottom: 26px solid var(--background);
+    border-left: 26px solid transparent;
+}
+.window-app.fatex-sheet .fatex-text-input__label,
+.window-app.fatex-sheet input[type="text"].fatex-text-input__label {
+    color: var(--text-tooltip);
+}
+.window-app.fatex-sheet .fatex-text-input__icon,
+.window-app.fatex-sheet input[type="text"].fatex-text-input__icon {
+    color: var(--text-color);
+    border: 0;
+    text-shadow: none;
+}
+.window-app.fatex-sheet .fatex-text-input,
+.window-app.fatex-sheet input[type="text"].fatex-text-input {
+    border-bottom: 1px solid var(--text-tooltip);
+}
+.window-app.fatex-sheet .fatex-tabs-navigation {
+    color: var(--text-color);
+    border-bottom: 2px solid var(--text-color);
+}
+.window-app.fatex-sheet .fatex-tabs-navigation .fatex-tabs-navigation__item.active,
+.window-app.fatex-sheet .fatex-tabs-navigation .fatex-tabs-navigation__item:hover {
+    color: var(--background)!important;
+    text-shadow: none;
+    background: var(--text-color);
+}
+.window-app.fatex-sheet .fatex-tabs-navigation .fatex-tabs-navigation__item::after {
+    border-top: 16px solid var(--background);
+    border-left: 16px solid transparent;
+}
+.window-app.fatex-sheet .fatex-stress-track {
+    gap: 15px 12px;
+}
+.window-app.fatex-sheet .fatex-stress-track .fatex-checkbox {
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+.window-app.fatex-sheet .fatex-stress-track .fatex-checkbox .fatex-checkbox__label {
+    color: var(--text-color);
+    border: 0;
+    text-shadow: none;
+}
+
+.window-app.fatex-sheet .fatex-js-edit-mode .fatex-actions--headline,
+.window-app.fatex-sheet .fatex-js-edit-mode .fatex-actions--skill {
+    background: linear-gradient(90deg, transparent 0%, var(--text-color) 33%, var(--text-color) 100%);
+    
+}
+.window-app.fatex-sheet .fatex-js-edit-mode .fatex-actions--item,
+.window-app.fatex-sheet .fatex-js-edit-mode .fatex-actions--section-heading {
+    background: linear-gradient(90deg, transparent 0%, var(--background) 33%, var(--background) 100%);
+}
+/*DX3rd*/
+.window-app.dx3rd .sheet-stat input {
+	color: black;
+}
+.window-app.dx3rd .sheet-attributes input,
+.window-app.dx3rd .sheet-attributes select {
+	color: black;
+	background: white;
+}
+.window-app.dx3rd .tabs .item.active {
+	color: black!important;
+}

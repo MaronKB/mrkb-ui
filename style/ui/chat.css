@@ -1,0 +1,366 @@
+#chat-log {
+    padding: 2px 5px 0;
+    background:
+        linear-gradient(to bottom, var(--background-bright), transparent),
+        linear-gradient(15deg,var(--background) 30%, transparent 30%),
+        linear-gradient(-45deg,var(--background-bright) 50%, var(--foreground) 50%);
+}
+#chat-log::-webkit-scrollbar {
+    display: none;
+}
+#chat-log .chat-message.message {
+    margin: 3px 0 0 0;
+    padding: 0 10px 10px 10px;
+    background:
+        linear-gradient(to top, var(--foreground), transparent),
+        linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
+    border: 0;
+    border-radius: var(--radius);
+}
+#chat-log .chat-message.whisper {
+	background-color: transparent;
+    box-shadow: none;
+}
+#chat-log .chat-message .message-header {
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, transparent, var(--text-color) 140px, transparent 280px);
+    border-image-slice: 1;
+    margin-bottom: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+#chat-log .chat-message .message-header img {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    margin: 7px 5px 2px 0;
+    border: 0!important;
+}
+#chat-log .chat-message .message-header .message-sender{
+    flex: 1 1 auto;
+	font-family: 'YESMyoungjo-Regular';
+	font-weight: 600; 
+	font-size: 16px;
+    min-width: 0;
+	line-height: 20px;
+	color: var(--text-heading);
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+    padding: 7px 0 2px 0;
+    overflow: hidden;
+}
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName {
+    font-size: 8px;
+    line-height: 12px;
+    opacity: 0.5;
+}
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::before {
+    content: '[';
+}
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::after {
+    content: ']';
+}
+#chat-log .chat-message .message-header .message-metadata {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    flex: none;
+    width: 0;
+    height: 45px;
+    color: var(--text-tooltip);
+    background: linear-gradient(45deg, transparent 10px, var(--background) 45px);
+    background-origin: border-box;
+    border-left: 45px solid transparent;
+    margin: 0 0 0 -45px;
+    overflow: hidden;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: all 0.3s;
+}
+#chat-log .chat-message .message-header .message-metadata:hover {
+    width: 140px;
+}
+#chat-log .chat-message .message-header .message-metadata .hovertext:before {
+    display: none;
+}
+#chat-log .chat-message .message-header .message-metadata .message-timestamp,
+#chat-log .chat-message .message-header .message-metadata .message-timestamps {
+    white-space: nowrap;
+    margin: 0 5px 0 0;
+}
+#chat-log .chat-message .message-content {
+	font-family: 'NEXON Lv1 Gothic OTF';
+	font-size: 14px;
+	text-indent: 0px;
+	line-height: 18px;
+	color: var(--text-color);
+}
+#chat-log .chat-message .message-content img{
+	border: none;
+	max-width: 300px;
+	max-height: 300px;
+}
+#chat-log .chat-message .message-content img[src=""] {
+	max-width: 0;
+	max-height: 0;
+    overflow: hidden;
+}
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula,
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-total {
+    border: 0;
+    box-shadow: none;
+}
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .dice > label{
+    color: white!important;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+#chat-log .chat-message .message-content .entity-link,
+#chat-log .chat-message .message-content .content-link,
+#chat-log .chat-message .message-content .inline-roll {
+    border: 0;
+    background:none;
+}
+#chat-log .chat-message .message-content .inline-roll .dice-tooltip {
+    background: var(--background);
+    border: 0;
+    box-shadow: none;
+}
+#chat-log .chat-message .message-content .df-edited {
+    display:none;
+}
+
+/*ChatCard*/
+#chat-log .mrkb-itemcard {
+}
+#chat-log .mrkb-itemcard .mrkb-itemhead {
+    display: flex;
+    margin-bottom: 3px;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(to right, #00000000, var(--text-color), #00000000);
+    border-image-slice: 1;
+}
+#chat-log .mrkb-itemcard .mrkb-itemhead img {
+    width: 36px;
+    height: 36px;
+    margin-right: 5px;
+    object-fit: cover;
+    object-position: top;
+}
+#chat-log .mrkb-itemcard .mrkb-itemhead h3 {
+    line-height: 36px;
+    margin: 0;
+}
+#chat-log .mrkb-itemcard .mrkb-itemdesc {
+    margin: 10px;
+    font-size: 12px;
+}
+#chat-log .mrkb-itemcard .mrkb-itemdesc > * {
+    margin: 2px 0;
+}
+
+/*Turn*/
+
+#chat-log .chat-message.message.mrkb-turn {
+    padding: 3px;
+}
+#chat-log .chat-message.message.mrkb-turn .message-header {
+    margin: 0;
+    border: 0;
+}
+#chat-log .chat-message.message.mrkb-turn .message-header img {
+    max-width: 24px;
+    max-height: 24px;
+    margin: 0 -24px 0 0;
+    background: var(--text-color);
+    border-radius: 10px!important;
+}
+#chat-log .chat-message.message.mrkb-turn .message-header .message-sender {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+#chat-log .chat-message.message.mrkb-turn .message-header .message-metadata {
+    height: 30px;
+}
+
+/*NarratorChat*/
+
+#chat-log .chat-message.narrator-chat.narrator-description {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    padding: 3px;
+	border: 0;
+    text-align: center;
+    background:
+        linear-gradient(to top, var(--foreground), transparent),
+        linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-header {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border: 0;
+    margin: 0;
+    align-items: start;
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-header .message-sender{
+	padding: 0;
+	box-shadow: none;
+	border-bottom: none;
+	background: none;
+	margin: 0;
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-header .message-metadata {
+    width: inherit;
+    height: 30px;
+    margin: 0px 0px -30px;
+    color: var(--text-color);
+    font-style: normal;
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-content {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+    min-height: 20px;
+    font-family: 'YESMyoungjo-Regular';
+    font-style: italic;
+    font-weight: 600;
+    color: white;
+    line-height: 30px;
+    text-shadow: 0 0 10px var(--background);
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-content b,
+#chat-log .chat-message.narrator-chat.narrator-description .message-content strong {
+    font-family: 'YESMyoungjo-Bold';
+}
+#chat-log .chat-message.narrator-chat.narrator-description .message-content img {
+    max-width: 100%;
+    margin: auto;
+}
+
+#chat-log.roll20 .chat-message.message {
+    flex-direction: row;
+    padding: 3px;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #aaaaaa44!important;
+    border-radius: 0;
+    margin: 0px;
+}
+#chat-log.roll20 .chat-message.message .message-header {
+	flex-direction: row;
+    flex-wrap: nowrap;
+    width: fit-content;
+    height: 34px;
+    margin: 0 5px 0 0;
+    border: 0;
+    align-items: center;
+    flex: none;
+}
+#chat-log.roll20 .chat-message.message .message-header img {
+    width: 28px;
+    height: 28px;
+    margin: 0 3px 0 0;
+}
+#chat-log.roll20 .chat-message.message .message-header .message-sender {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-gap: 4px;
+}
+#chat-log.roll20 .chat-message.message .message-header .message-sender:after {
+    content: ":";
+    margin: 0 5px;
+} 
+#chat-log.roll20 .chat-message.message.narrator-chat .message-header .message-sender:after {
+    content: "";
+    margin: 0;
+} 
+#chat-log.roll20 .chat-message.message .message-header .message-sender .illandril-chat-enhancements--playerName {
+    display: none;
+}
+#chat-log.roll20 .chat-message.message .message-header .message-metadata {
+    display: none;
+}
+#chat-log.roll20 .chat-message.message .message-content {
+    padding: 8px 0;
+}
+
+/*each system*/
+#chat-log .swade.chat-card .card-header {
+    align-items: center;
+    border: 0;
+    padding: 3px 0;
+}
+#chat-log .swade.chat-card .card-header h3 {
+    flex: 1;
+    display: flex;
+    color: white;
+    align-items: center;
+}
+#chat-log .swade.chat-card .card-header h3 a {
+    pointer-events: none;
+}
+#chat-log .swade.chat-card .card-content {
+    display: block!important;
+}
+#chat-log .swade.chat-card .card-buttons {
+    
+}
+#chat-log .swade.chat-card .card-buttons .actions-subheading {
+    width: fit-conent;
+    font-weight: 600;
+    color: black;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+#chat-log .swade.chat-card .card-buttons > button {
+    background-color: black;
+    border-radius: 5px;
+    margin-top: 4px;
+}
+#chat-log .swade.chat-card .card-buttons > button:hover {
+    color: black;
+    text-shadow: none;
+    background-color: white;
+}
+#chat-log .swade.chat-card .card-footer {
+    border: 0;
+}
+#chat-log .chat-message .mrkb-fatexroll {
+    display: flex;
+    justify-content: center;
+}
+#chat-log .chat-message .mrkb-fatexroll .fatexroll {
+    font-size: 30px;
+    line-height: 30px;
+    text-align: center;
+    padding: 0;
+    margin: 5px 0 5px 5px;
+    border-radius: 5px;
+    color: background;
+    font-family: "Fate Icons", sans-serif;
+}
+#chat-log .chat-message .mrkb-fatexresult {
+    font-size: 24px;
+    text-align: center;
+    margin: 5px;
+}
+#chat-log .chat-message .mrkb-fatexcomment {
+    font-size: 12px;
+    text-align: center;
+    margin: 5px;
+}
+#chat-log .chat-message .header .title {
+	color: white;
+}
