@@ -51,15 +51,18 @@
     padding: 7px 0 2px 0;
     overflow: hidden;
 }
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName {
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName,
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name {
     font-size: 8px;
     line-height: 12px;
     opacity: 0.5;
 }
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::before {
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::before,
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name::before {
     content: '[';
 }
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::after {
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::after,
+#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name::after {
     content: ']';
 }
 #chat-log .chat-message .message-header .message-metadata {
