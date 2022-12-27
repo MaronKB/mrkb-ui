@@ -285,6 +285,7 @@
     content: "";
     margin: 0;
 } 
+#chat-log.roll20 .chat-message.message .message-header .message-sender .illandril-chat-enhancements--playerName,
 #chat-log.roll20 .chat-message.message .message-header .message-sender .illandril-chat-enhancements--player-name {
     display: none;
 }
