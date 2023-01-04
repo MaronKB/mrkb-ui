@@ -398,7 +398,7 @@ function uiPoint(target, value) {
 	let hp = game.user.character.system.wounds.value;
 	let mp = game.user.character.system.powerPoints.general.value;
 	let point = (target == "hp") ? hp : mp;
-	let newpoint = (value == "heal") ? (target == "hp") ? --point : ++point : (target == "hp") ? ++point : --point;
+	let newpoint = (value == "heal") ? (target == "hp") ? point - 1 : point + 1 : (target == "hp") ? point + 1 : point - 1;
 		console.log(newpoint);
 	if (target == "hp") {
 		game.user.character.update({'system.wounds.value': newpoint});
@@ -423,10 +423,10 @@ function GoToChat() {
 
 function changeProfile() {
 	let name, src;
-	if (game.user == undefined) {
+	if (game.user === undefined) {
 		return;
 	}
-	if (game.user.character == undefined) {
+	if (game.user.character === undefined) {
 		name = "UNDEFINED";
 		src = "modules/mrkb-ui/src/chestnut.png";
 	}else {

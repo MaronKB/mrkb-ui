@@ -262,6 +262,9 @@ function getItemCaster() {
         return;
     }
     const chara = game.user.character;
+	if (chara === undefined || chara === null) {
+		return;
+	}
 	const parent = document.querySelector("#item-caster");
 	parent.innerHTML = "";
 	if (chara !== undefined && chara !== null) {

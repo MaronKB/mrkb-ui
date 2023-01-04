@@ -396,107 +396,58 @@
 #sidebar #playlists .playlist {
     padding: 0 4px;
 }
-#pause {
-    width: calc(100vw - var(--sidebar-width));
-    height: 100vh;
-    position: initial;
-    background: #00000077;
-}
 
 p.df-edited {
     display: none;
 }
 
 #pause.paused {
-    display: grid;
+    width: calc(100vw - var(--sidebar-width));
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+	display: grid!important;
+    align-items: center;
+    background: #00000077;
+    margin: 0;
 }
-#pause img {
+#pause.paused img {
     grid-column: 1/2;
     grid-row: 1/2;
     position: initial;
     margin: auto;
 }
-#pause h3 {
+#pause.paused h3,
+#pause.paused figcaption {
     grid-column: 1/2;
     grid-row: 1/2;
     position: initial;
     margin: auto;
     text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
 }
-#pause.paused.fullscreen {
-    width: calc(100vw - var(--sidebar-width));
+#pause.paused #pausescreenIconDIV {
+    grid-column: 1/2;
+    grid-row: 1/2;
     display: flex;
-    align-items: center;
+	width: calc(100vw - var(--sidebar-width));
+	height: 100%;
 }
-#pause.paused.fullscreen #pauseScreenText {
-    width: calc(100vw - var(--sidebar-width));
-    position: initial;
+#pause.paused #pausescreenIconDIV #pscreenIcon {
+	margin: auto;
+}
+#pause.paused .PauseTextContainer {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    align-items: center;
+	width: calc(100vw - var(--sidebar-width))!important;
+	height: 100%!important;
+}
+#pause.paused .PauseTextContainer #pauseScreenText {
+    margin: 0;
 }
 
 #module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
     color: var(--text-color);
-}
-
-.calc-header {
-    display: flex;
-    grid-gap: 5px;
-}
-.calc-header > span {
-    font-weight: 600;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 2px;
-}
-.power-template,
-.weapon-template {
-    
-}
-.calc-desc {
-    margin-bottom: 5px;
-}
-.calc-desc > h2 {
-    font-family: 'YESMyoungjo-Bold';
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 3px;
-}
-.calc-desc > p {
-    font-family: 'YESMyoungjo-Regular';
-    font-size: 11px;
-    font-style: italic;
-    background-color: #111111;
-    padding: 4px 8px;
-    border-radius: 3px;
-    margin: 5px 0 0 0;
-}
-.calc-tag {
-    background-color: black;
-    padding: 8px 8px 4px 8px;
-    border-radius: 5px;
-    margin: 2px 0;
-}
-.calc-tag > h3 {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 5px;
-}
-.calc-tag > h3::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-radius: 2px;
-    margin-right: 5px;
-    transform: rotate(45deg);
-}
-.calc-tag > p {
-    font-size: 10px;
 }

@@ -27,14 +27,18 @@
     border-image-slice: 1;
     margin-bottom: 8px;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 #chat-log .chat-message .message-header img {
+	display: block!important;
     width: 36px;
     height: 36px;
     flex: none;
     margin: 7px 5px 2px 0;
     border: 0!important;
+}
+#chat-log .chat-message .message-header > span {
+    color: var(--text-tooltip);
 }
 #chat-log .chat-message .message-header .message-sender{
     flex: 1 1 auto;
@@ -67,7 +71,7 @@
 }
 #chat-log .chat-message .message-header .message-metadata {
     font-family: 'NEXON Lv1 Gothic OTF';
-    flex: none;
+    flex: none!important;
     width: 0;
     height: 45px;
     color: var(--text-tooltip);
@@ -84,7 +88,7 @@
     transition: all 0.3s;
 }
 #chat-log .chat-message .message-header .message-metadata:hover {
-    width: 140px;
+    width: 200px;
 }
 #chat-log .chat-message .message-header .message-metadata .hovertext:before {
     display: none;
@@ -116,8 +120,13 @@
     border: 0;
     box-shadow: none;
 }
-#chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .dice > label{
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .dice > label,
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .modifier > label,
+#chat-log .chat-message .message-content .dice-roll .dice-result .dice-total .dice > label {
     color: white!important;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 #chat-log .chat-message .message-content .entity-link,
@@ -301,18 +310,40 @@
 
 /*each system*/
 #chat-log .swade.chat-card .card-header {
+	height: 36px;
     align-items: center;
+	text-align: center;
+    background-color: white;
+    padding: 0;
     border: 0;
-    padding: 3px 0;
+    border-radius: 3px 3px 0 0;
+	overflow: hidden;
+    pointer-events: none;
 }
 #chat-log .swade.chat-card .card-header h3 {
     flex: 1;
     display: flex;
-    color: white;
     align-items: center;
+	height: 36px;
+    font-family: 'YESMyoungjo-Bold';
+    color: black;
+    pointer-events: none;
+}
+#chat-log .swade.chat-card .card-header h3 img {
+	border-radius: 0;
 }
 #chat-log .swade.chat-card .card-header h3 a {
+    flex: 1;
+	text-align:center;
+	margin: 0 41px 0 0;
     pointer-events: none;
+}
+#chat-log .swade.chat-card .pp-counter {
+    color: black;
+	text-align: center;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 0 0 3px 3px;
 }
 #chat-log .swade.chat-card .card-content {
     display: block!important;
@@ -326,11 +357,11 @@
     color: black;
     background-color: white;
     padding: 4px 8px;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 #chat-log .swade.chat-card .card-buttons > button {
     background-color: black;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-top: 4px;
 }
 #chat-log .swade.chat-card .card-buttons > button:hover {
@@ -338,9 +369,102 @@
     text-shadow: none;
     background-color: white;
 }
-#chat-log .swade.chat-card .card-footer {
-    border: 0;
+#chat-log .swade.chat-card .card-buttons.pp-controls > span {
+	grid-gap: 4px;
+	color: black;
 }
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span {
+	grid-gap: 4px;
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span:first-child {
+	background-color: white;
+	border-radius: 3px;
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span > label {
+	flex: none;
+	padding: 0 10px;
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span > label:before {
+	font-family: "FontAwesome";
+	content: "\f0e7";
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span > input {
+	color: black;
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span > button {
+	border-radius: 3px;
+	margin: 0;
+}
+#chat-log .swade.chat-card .card-buttons.pp-controls > span > span > button:hover {
+    color: black;
+    text-shadow: none;
+    background-color: white;
+}
+#chat-log .swade.chat-card .card-footer {
+    display: none;
+}
+
+.calc-header {
+    display: flex;
+    grid-gap: 5px;
+}
+.calc-header > span {
+    flex: 1;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+.power-template,
+.weapon-template {
+}
+.calc-desc {
+    margin-bottom: 5px;
+}
+.calc-desc > h2 {
+    font-family: 'YESMyoungjo-Bold';
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+.calc-desc > p {
+    font-family: 'YESMyoungjo-Regular';
+    font-size: 11px;
+    font-style: italic;
+    background-color: #111111;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin: 5px 0 0 0;
+}
+.calc-tag {
+    background-color: black;
+    padding: 8px 8px 4px 8px;
+    border-radius: 5px;
+    margin: 2px 0;
+}
+.calc-tag > h3 {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 5px;
+}
+.calc-tag > h3::before {
+	font-family: "FontAwesome";
+    content: "\f02c";
+    margin-right: 5px;
+}
+.calc-tag > p {
+    font-size: 10px;
+}
+
 #chat-log .chat-message .mrkb-fatexroll {
     display: flex;
     justify-content: center;
