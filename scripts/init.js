@@ -369,7 +369,7 @@ function calcMana(target) {
 		let pp = actor.system.powerPoints.general;
 		mana.value = pp.value === undefined ? 0 : pp.value;
 		mana.max = pp.max === undefined ? 0 : pp.max;
-		mana.mpm = (pp.value == undefined || pp.max == undefined) ? 0 : parseInt((pp.value / pp.max) * 100);
+		mana.mpm = (pp.max === 0) ? 0 : parseInt((pp.value / pp.max) * 100);
 	}else if (game.system.id == "archmage" && actor.type == "character") {
 		let recovery = actor.system.attributes.recoveries;
 		mana.value = recovery.value;
@@ -422,11 +422,12 @@ function GoToChat() {
 }
 
 function changeProfile() {
+	
 	let name, src;
 	if (game.user === undefined) {
 		return;
 	}
-	if (game.user.character === undefined) {
+	if (game.user.character === undefined || game.user.character === null) {
 		name = "UNDEFINED";
 		src = "modules/mrkb-ui/src/chestnut.png";
 	}else {

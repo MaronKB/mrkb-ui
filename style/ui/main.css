@@ -298,6 +298,7 @@
     border: 0;
     text-shadow: 0 0 5px var(--highlight);
 }
+#sidebar #chat .illandril-chat-enhancements--currentSpeaker,
 #sidebar #chat .illandril-chat-enhancements--current-speaker {
     font-family: 'NEXON Lv1 Gothic OTF Bold';
     font-size: 16px;
