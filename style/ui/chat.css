@@ -61,14 +61,6 @@
     line-height: 12px;
     opacity: 0.5;
 }
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::before,
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name::before {
-    content: '[';
-}
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName::after,
-#chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name::after {
-    content: ']';
-}
 #chat-log .chat-message .message-header .message-metadata {
     font-family: 'NEXON Lv1 Gothic OTF';
     flex: none!important;
@@ -461,8 +453,18 @@
     content: "\f02c";
     margin-right: 5px;
 }
+.calc-tag > h4 {
+	width:fit-content;
+	font-size: 10px;
+	color: black;
+	background-color: white;
+	padding: 0 4px;
+	border-radius: 2px;
+	margin-top: 4px;
+}
 .calc-tag > p {
     font-size: 10px;
+	margin: 2px 0;
 }
 
 #chat-log .chat-message .mrkb-fatexroll {

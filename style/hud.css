@@ -642,6 +642,8 @@
     overflow: hidden;
 }
 #mrkb-hud #mrkb-middle #mrkb-left #players .player .player-avatar img {
+	width: 100%;
+	height: 100%;
     object-fit: cover;
     transform: rotate(-45deg) scale(1.5);
 }
