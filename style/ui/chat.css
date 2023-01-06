@@ -434,6 +434,16 @@
     border-radius: 3px;
     margin: 5px 0 0 0;
 }
+.calc-img {
+	display:flex;
+	min-height:120px;
+	background-size: contain, cover;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-color: gray;
+	background-blend-mode: normal, soft-light;
+	border-radius: 5px;
+}
 .calc-tag {
     background-color: black;
     padding: 8px 8px 4px 8px;

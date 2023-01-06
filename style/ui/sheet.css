@@ -34,6 +34,7 @@
 }
 
 .swade-official .primary .attribute select,
+.swade-official .primary .attribute .die,
 .swade-official .derived .running-die,
 .swade-official .skills .skill-die .skill-die-icon {
     filter: invert(1);

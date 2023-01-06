@@ -349,7 +349,6 @@
     text-overflow: ellipsis;
 	line-height: 16px;
 	color: black!important;
-    margin-left: 10px;
     font-weight: 600;
 }
 #kakao-talk #kakaolog .chat .kakao {
@@ -374,11 +373,11 @@
 	border-top-color: white;
 }
 #kakao-talk #kakaolog .chat.self {
-    grid-template-columns: 220px 42px;
+    grid-template-columns: 220px 0px;
     justify-content: end;
 }
 #kakao-talk #kakaolog .chat.self .profile {
-    grid-column: 2/3;
+    display: none;
 }
 #kakao-talk #kakaolog .chat.self .kakaoname {
     grid-column: 1/2;
