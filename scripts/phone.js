@@ -5,24 +5,6 @@ function getPhone() {
 	apps.forEach((e) => {
 		e.onclick = () => {activeApp(e.dataset.app)};
 	});
-
-	const dock = document.querySelector("#phone-dock");
-	const data = game.macros.filter(e => e.data.permission.default >= 2);
-	data.forEach(function(e) {
-		let app = document.createElement("a");
-		app.classList.add("dock-app");
-		app.onclick = () => {runApp(e._id)};
-
-		let img = document.createElement("img");
-		img.src = e.img;
-		app.appendChild(img);
-
-		let title = document.createElement("h4");
-		title.innerHTML = e.name;
-		app.appendChild(title);
-
-		phone.appendChild(app);
-	});
 }
 
 function openSide() {
