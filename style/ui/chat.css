@@ -1,506 +1,579 @@
 #chat-log {
-    padding: 2px 5px 0;
-    background:
-        linear-gradient(to bottom, var(--background-bright), transparent),
-        linear-gradient(15deg,var(--background) 30%, transparent 30%),
-        linear-gradient(-45deg,var(--background-bright) 50%, var(--foreground) 50%);
+  padding: 2px 5px 0;
+  background: none;
+  /*
+  linear-gradient(to bottom, var(--background-bright), transparent),
+  linear-gradient(15deg,var(--background) 30%, transparent 30%),
+  linear-gradient(-45deg,var(--background-bright) 50%, var(--foreground) 50%);
+  */
 }
 #chat-log::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 #chat-log .chat-message.message {
-    margin: 3px 0 0 0;
-    padding: 0 10px 10px 10px;
-    background:
-        linear-gradient(to top, var(--foreground), transparent),
-        linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
-    border: 0;
-    border-radius: var(--radius);
+  margin: 3px 0 0 0;
+  padding: 0 10px;
+  background: var(--background);
+  /*
+  linear-gradient(to top, var(--foreground), transparent),
+  linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
+  */
+  border: 0;
+  border-top: 2px solid;
+  border-color:  var(--foreground)!important;
+  border-radius: 0;
+  margin: 6px 0 0 0;
 }
 #chat-log .chat-message.whisper {
-	background-color: transparent;
-    box-shadow: none;
+  background-color: transparent;
+  box-shadow: none;
 }
 #chat-log .chat-message .message-header {
-    border-bottom: 1px solid;
-    border-image: linear-gradient(to right, transparent, var(--text-color) 140px, transparent 280px);
-    border-image-slice: 1;
-    margin-bottom: 8px;
-    align-items: center;
-    flex-wrap: wrap;
+  padding: 0 0 4px 0;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, transparent, var(--text-color) 140px, transparent 280px);
+  border-image-slice: 1;
+  margin: 0 0 6px 0;
+  align-items: center;
+  flex-wrap: wrap;
 }
 #chat-log .chat-message .message-header img {
-	display: block!important;
-    width: 36px;
-    height: 36px;
-    flex: none;
-    margin: 7px 5px 2px 0;
-    border: 0!important;
+  display: block!important;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  margin: 0 5px 0 0;
+  border: 0!important;
 }
 #chat-log .chat-message .message-header > span {
-    color: var(--text-tooltip);
+  color: var(--text-tooltip);
 }
 #chat-log .chat-message .message-header .message-sender{
-    flex: 1 1 auto;
-	font-family: 'YESMyoungjo-Regular';
-	font-weight: 600; 
-	font-size: 16px;
-    min-width: 0;
-	line-height: 20px;
-	color: var(--text-heading);
-	width: max-content;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-    padding: 7px 0 2px 0;
-    overflow: hidden;
+  flex: 1 1 auto;
+  font-family: 'YESMyoungjo-Regular';
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 0;
+  line-height: 20px;
+  color: var(--text-heading);
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 #chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName,
 #chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name {
-    font-size: 8px;
-    line-height: 12px;
-    opacity: 0.5;
+  font-size: 8px;
+  line-height: 12px;
+  opacity: 0.5;
 }
 #chat-log .chat-message .message-header .message-metadata {
-    font-family: 'NEXON Lv1 Gothic OTF';
-    flex: none!important;
-    width: 0;
-    height: 45px;
-    color: var(--text-tooltip);
-    background: linear-gradient(45deg, transparent 10px, var(--background) 45px);
-    background-origin: border-box;
-    border-left: 45px solid transparent;
-    margin: 0 0 0 -45px;
-    overflow: hidden;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    text-transform: uppercase;
-    white-space: nowrap;
-    transition: all 0.3s;
+  font-family: 'NEXON Lv1 Gothic OTF';
+  flex: none!important;
+  width: 0;
+  height: 45px;
+  color: var(--text-tooltip);
+  background: linear-gradient(45deg, transparent 10px, var(--background) 45px);
+  background-origin: border-box;
+  border-left: 45px solid transparent;
+  margin: 0 0 0 -45px;
+  overflow: hidden;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.3s;
 }
 #chat-log .chat-message .message-header .message-metadata:hover {
-    width: 200px;
+  flex: 5!important;
 }
 #chat-log .chat-message .message-header .message-metadata .hovertext:before {
-    display: none;
+  display: none;
 }
 #chat-log .chat-message .message-header .message-metadata .message-timestamp,
 #chat-log .chat-message .message-header .message-metadata .message-timestamps {
-    white-space: nowrap;
-    margin: 0 5px 0 0;
+  white-space: nowrap;
+  margin: 0 5px 0 0;
 }
 #chat-log .chat-message .message-content {
-	font-family: 'NEXON Lv1 Gothic OTF';
-	font-size: 14px;
-	text-indent: 0px;
-	line-height: 18px;
-	color: var(--text-color);
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 14px;
+  text-indent: 0px;
+  line-height: 18px;
+  color: var(--text-color);
 }
 #chat-log .chat-message .message-content img{
-	border: none;
-	max-width: 300px;
-	max-height: 300px;
+  border: none;
+  max-width: 300px;
+  max-height: 300px;
 }
 #chat-log .chat-message .message-content img[src=""] {
-	max-width: 0;
-	max-height: 0;
-    overflow: hidden;
+  max-width: 0;
+  max-height: 0;
+  overflow: hidden;
 }
 #chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula,
 #chat-log .chat-message .message-content .dice-roll .dice-result .dice-total {
-    border: 0;
-    box-shadow: none;
+  border: 0;
+  box-shadow: none;
 }
 #chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .dice > label,
 #chat-log .chat-message .message-content .dice-roll .dice-result .dice-formula .modifier > label,
 #chat-log .chat-message .message-content .dice-roll .dice-result .dice-total .dice > label {
-    color: white!important;
-    font-size: 16px;
-    font-weight: 600;
-    white-space: nowrap;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  color: white!important;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 #chat-log .chat-message .message-content .entity-link,
 #chat-log .chat-message .message-content .content-link,
 #chat-log .chat-message .message-content .inline-roll {
-    border: 0;
-    background:none;
+  border: 0;
+  background:none;
 }
 #chat-log .chat-message .message-content .inline-roll .dice-tooltip {
-    background: var(--background);
-    border: 0;
-    box-shadow: none;
+  background: var(--background);
+  border: 0;
+  box-shadow: none;
 }
 #chat-log .chat-message .message-content .df-edited {
-    display:none;
+  display: none;
+}
+#chat-log .chat-message.added {
+  border: 0;
+  margin: 4px 0 0 0;
+}
+#chat-log .chat-message.added .message-header {
+  display: none;
 }
 
 /*ChatCard*/
+
 #chat-log .mrkb-itemcard {
 }
 #chat-log .mrkb-itemcard .mrkb-itemhead {
-    display: flex;
-    margin-bottom: 3px;
-    border-bottom: 1px solid;
-    border-image: linear-gradient(to right, #00000000, var(--text-color), #00000000);
-    border-image-slice: 1;
+  display: flex;
+  margin-bottom: 3px;
+  border-bottom: 1px solid;
+  border-image: linear-gradient(to right, #00000000, var(--text-color), #00000000);
+  border-image-slice: 1;
 }
 #chat-log .mrkb-itemcard .mrkb-itemhead img {
-    width: 36px;
-    height: 36px;
-    margin-right: 5px;
-    object-fit: cover;
-    object-position: top;
+  width: 36px;
+  height: 36px;
+  margin-right: 5px;
+  object-fit: cover;
+  object-position: top;
 }
 #chat-log .mrkb-itemcard .mrkb-itemhead h3 {
-    line-height: 36px;
-    margin: 0;
+  line-height: 36px;
+  margin: 0;
 }
 #chat-log .mrkb-itemcard .mrkb-itemdesc {
-    margin: 10px;
-    font-size: 12px;
+  margin: 10px;
+  font-size: 12px;
 }
 #chat-log .mrkb-itemcard .mrkb-itemdesc > * {
-    margin: 2px 0;
+  margin: 2px 0;
 }
 
 /*Turn*/
 
 #chat-log .chat-message.message.mrkb-turn {
-    padding: 3px;
+  padding: 3px;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header {
-    margin: 0;
-    border: 0;
+  margin: 0;
+  border: 0;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header img {
-    max-width: 24px;
-    max-height: 24px;
-    margin: 0 -24px 0 0;
-    background: var(--text-color);
-    border-radius: 10px!important;
+  max-width: 24px;
+  max-height: 24px;
+  margin: 0 -24px 0 0;
+  background: var(--text-color);
+  border-radius: 10px!important;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header .message-sender {
-    text-align: center;
-    padding: 0;
-    margin: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header .message-metadata {
-    height: 30px;
+  height: 30px;
+}
+
+/*Kakao*/
+
+#chat-log .chat-message.message.kakao {
+  background: none;
+}
+#chat-log .chat-message.message.kakao .message-header {
+  margin: 0 0 -22px 0;
+  border: 0;
+}
+#chat-log .chat-message.message.kakao .message-header img {
+  background: white;
+  border-radius: 15px;
+  margin: 0 5px 0 0;
+}
+#chat-log .chat-message.message.kakao .message-header .message-sender {
+  height: 36px;
+  justify-content: flex-start;
+  font-family: 'NEXON Lv1 Gothic OTF';
+  font-size: 14px;
+  font-weight: 100;
+}
+#chat-log .chat-message.message.kakao .message-header .message-metadata {
+  background: none;
+}
+#chat-log .chat-message.message.kakao .message-content {
+  color: black;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin: 0 0 0 40px;
+}
+#chat-log .chat-message.message.kakao .message-content::before {
+  content: "";
+  float: left;
+  position: relative;
+  top: -7px;
+  left: -10px;
+  margin: 0 -10px 0 0;
+  border: 5px solid transparent;
+  border-left-color: white;
+}
+#chat-log .chat-message.message.kakao.self .message-header {
+  flex-direction: row-reverse;
+}
+#chat-log .chat-message.message.kakao.self .message-header img {
+  margin: 0 0 0 5px;
+}
+#chat-log .chat-message.message.kakao.self .message-header .message-sender {
+  text-align: right;
+}
+#chat-log .chat-message.message.kakao.self .message-content {
+  background: #FFEC42;
+  margin: 0 40px 0 0;
+}
+#chat-log .chat-message.message.kakao.self .message-content::before {
+  content: none;
 }
 
 /*NarratorChat*/
 
 #chat-log .chat-message.narrator-chat.narrator-description {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 100%;
-    padding: 3px;
-	border: 0;
-    text-align: center;
-    background:
-        linear-gradient(to top, var(--foreground), transparent),
-        linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  padding: 3px;
+  border: 0;
+  text-align: center;
+  background:
+  linear-gradient(to top, var(--foreground), transparent),
+  linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-header {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    border: 0;
-    margin: 0;
-    align-items: start;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  border: 0;
+  margin: 0;
+  align-items: start;
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-header .message-sender{
-	padding: 0;
-	box-shadow: none;
-	border-bottom: none;
-	background: none;
-	margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border-bottom: none;
+  background: none;
+  margin: 0;
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-header .message-metadata {
-    width: inherit;
-    height: 30px;
-    margin: 0px 0px -30px;
-    color: var(--text-color);
-    font-style: normal;
+  width: inherit;
+  height: 30px;
+  margin: 0px 0px -30px;
+  color: var(--text-color);
+  font-style: normal;
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-content {
-    grid-column: 1/2;
-    grid-row: 1/2;
-    display: flex;
-    justify-content: center;
-    min-height: 20px;
-    font-family: 'YESMyoungjo-Regular';
-    font-style: italic;
-    font-weight: 600;
-    color: white;
-    line-height: 30px;
-    text-shadow: 0 0 10px var(--background);
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: flex;
+  justify-content: center;
+  min-height: 20px;
+  font-family: 'YESMyoungjo-Regular';
+  font-style: italic;
+  font-weight: 600;
+  color: white;
+  line-height: 30px;
+  text-shadow: 0 0 10px var(--background);
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-content b,
 #chat-log .chat-message.narrator-chat.narrator-description .message-content strong {
-    font-family: 'YESMyoungjo-Bold';
+  font-family: 'YESMyoungjo-Bold';
 }
 #chat-log .chat-message.narrator-chat.narrator-description .message-content img {
-    max-width: 100%;
-    margin: auto;
+  max-width: 100%;
+  margin: auto;
 }
 
 #chat-log.roll20 .chat-message.message {
-    flex-direction: row;
-    padding: 3px;
-    border-width: 1px 0;
-    border-style: solid;
-    border-color: #aaaaaa44!important;
-    border-radius: 0;
-    margin: 0px;
+  flex-direction: row;
+  padding: 3px;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #aaaaaa44!important;
+  border-radius: 0;
+  margin: 0px;
 }
 #chat-log.roll20 .chat-message.message .message-header {
-	flex-direction: row;
-    flex-wrap: nowrap;
-    width: fit-content;
-    height: 34px;
-    margin: 0 5px 0 0;
-    border: 0;
-    align-items: center;
-    flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: fit-content;
+  height: 34px;
+  margin: 0 5px 0 0;
+  border: 0;
+  align-items: center;
+  flex: none;
 }
 #chat-log.roll20 .chat-message.message .message-header img {
-    width: 28px;
-    height: 28px;
-    margin: 0 3px 0 0;
+  width: 28px;
+  height: 28px;
+  margin: 0 3px 0 0;
 }
 #chat-log.roll20 .chat-message.message .message-header .message-sender {
-    font-family: 'NEXON Lv1 Gothic OTF Bold';
-    width: fit-content;
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    grid-gap: 4px;
+  font-family: 'NEXON Lv1 Gothic OTF Bold';
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  grid-gap: 4px;
 }
 #chat-log.roll20 .chat-message.message .message-header .message-sender:after {
-    content: ":";
-    margin: 0 5px;
-} 
+  content: ":";
+  margin: 0 5px;
+}
 #chat-log.roll20 .chat-message.message.narrator-chat .message-header .message-sender:after {
-    content: "";
-    margin: 0;
-} 
+  content: "";
+  margin: 0;
+}
 #chat-log.roll20 .chat-message.message .message-header .message-sender .illandril-chat-enhancements--playerName,
 #chat-log.roll20 .chat-message.message .message-header .message-sender .illandril-chat-enhancements--player-name {
-    display: none;
+  display: none;
 }
 #chat-log.roll20 .chat-message.message .message-header .message-metadata {
-    display: none;
+  display: none;
 }
 #chat-log.roll20 .chat-message.message .message-content {
-    padding: 8px 0;
+  padding: 8px 0;
 }
 
 /*each system*/
 #chat-log .swade.chat-card .card-header {
-	height: 36px;
-    align-items: center;
-	text-align: center;
-    background-color: white;
-    padding: 0;
-    border: 0;
-    border-radius: 3px 3px 0 0;
-	overflow: hidden;
-    pointer-events: none;
+  height: 36px;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding: 0;
+  border: 0;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 #chat-log .swade.chat-card .card-header h3 {
-    flex: 1;
-    display: flex;
-    align-items: center;
-	height: 36px;
-    font-family: 'YESMyoungjo-Bold';
-    color: black;
-    pointer-events: none;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  font-family: 'YESMyoungjo-Bold';
+  color: black;
+  pointer-events: none;
 }
 #chat-log .swade.chat-card .card-header h3 img {
-	border-radius: 0;
+  border-radius: 0;
 }
 #chat-log .swade.chat-card .card-header h3 a {
-    flex: 1;
-	text-align:center;
-	margin: 0 41px 0 0;
-    pointer-events: none;
+  flex: 1;
+  text-align:center;
+  margin: 0 41px 0 0;
+  pointer-events: none;
 }
 #chat-log .swade.chat-card .pp-counter {
-    color: black;
-	text-align: center;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 0 0 3px 3px;
+  color: black;
+  text-align: center;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 0 0 3px 3px;
 }
 #chat-log .swade.chat-card .card-content {
-    display: block!important;
+  display: block!important;
 }
 #chat-log .swade.chat-card .card-buttons {
-    
+
 }
 #chat-log .swade.chat-card .card-buttons .actions-subheading {
-    width: fit-conent;
-    font-weight: 600;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 3px;
+  width: fit-conent;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 3px;
 }
 #chat-log .swade.chat-card .card-buttons > button {
-    background-color: black;
-    border-radius: 3px;
-    margin-top: 4px;
+  background-color: black;
+  border-radius: 3px;
+  margin-top: 4px;
 }
 #chat-log .swade.chat-card .card-buttons > button:hover {
-    color: black;
-    text-shadow: none;
-    background-color: white;
+  color: black;
+  text-shadow: none;
+  background-color: white;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span {
-	grid-gap: 4px;
-	color: black;
+  grid-gap: 4px;
+  color: black;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span {
-	grid-gap: 4px;
+  grid-gap: 4px;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span:first-child {
-	background-color: white;
-	border-radius: 3px;
+  background-color: white;
+  border-radius: 3px;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span > label {
-	flex: none;
-	padding: 0 10px;
+  flex: none;
+  padding: 0 10px;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span > label:before {
-	font-family: "FontAwesome";
-	content: "\f0e7";
+  font-family: "FontAwesome";
+  content: "\f0e7";
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span > input {
-	color: black;
+  color: black;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span > button {
-	border-radius: 3px;
-	margin: 0;
+  border-radius: 3px;
+  margin: 0;
 }
 #chat-log .swade.chat-card .card-buttons.pp-controls > span > span > button:hover {
-    color: black;
-    text-shadow: none;
-    background-color: white;
+  color: black;
+  text-shadow: none;
+  background-color: white;
 }
 #chat-log .swade.chat-card .card-footer {
-    display: none;
+  display: none;
 }
 
 .calc-header {
-    display: flex;
-    grid-gap: 5px;
+  display: flex;
+  grid-gap: 5px;
 }
 .calc-header > span {
-    flex: 1;
-    font-weight: 600;
-    text-align: center;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 3px;
+  flex: 1;
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 3px;
 }
 .power-template,
 .weapon-template {
 }
 .calc-desc {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .calc-desc > h2 {
-    font-family: 'YESMyoungjo-Bold';
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-    color: black;
-    background-color: white;
-    padding: 4px 8px;
-    border-radius: 3px;
+  font-family: 'YESMyoungjo-Bold';
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  color: black;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 3px;
 }
 .calc-desc > p {
-    font-family: 'YESMyoungjo-Regular';
-    font-size: 11px;
-    font-style: italic;
-    background-color: #111111;
-    padding: 4px 8px;
-    border-radius: 3px;
-    margin: 5px 0 0 0;
+  font-family: 'YESMyoungjo-Regular';
+  font-size: 11px;
+  font-style: italic;
+  background-color: #111111;
+  padding: 4px 8px;
+  border-radius: 3px;
+  margin: 5px 0 0 0;
 }
 .calc-img {
-	display:flex;
-	min-height:120px;
-	background-size: contain, cover;
-	background-repeat:no-repeat;
-	background-position:center;
-	background-color: gray;
-	background-blend-mode: normal, soft-light;
-	border-radius: 5px;
+  display:flex;
+  min-height:120px;
+  background-size: contain, cover;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-color: gray;
+  background-blend-mode: normal, soft-light;
+  border-radius: 5px;
 }
 .calc-tag {
-    background-color: black;
-    padding: 8px 8px 4px 8px;
-    border-radius: 5px;
-    margin: 2px 0;
+  background-color: black;
+  padding: 8px 8px 4px 8px;
+  border-radius: 5px;
+  margin: 2px 0;
 }
 .calc-tag > h3 {
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 5px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 5px;
 }
 .calc-tag > h3::before {
-	font-family: "FontAwesome";
-    content: "\f02c";
-    margin-right: 5px;
+  font-family: "FontAwesome";
+  content: "\f02c";
+  margin-right: 5px;
 }
 .calc-tag > h4 {
-	width:fit-content;
-	font-size: 10px;
-	color: black;
-	background-color: white;
-	padding: 0 4px;
-	border-radius: 2px;
-	margin-top: 4px;
+  width:fit-content;
+  font-size: 10px;
+  color: black;
+  background-color: white;
+  padding: 0 4px;
+  border-radius: 2px;
+  margin-top: 4px;
 }
 .calc-tag > p {
-    font-size: 10px;
-	margin: 2px 0;
+  font-size: 10px;
+  margin: 2px 0;
 }
 
 #chat-log .chat-message .mrkb-fatexroll {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 #chat-log .chat-message .mrkb-fatexroll .fatexroll {
-    font-size: 30px;
-    line-height: 30px;
-    text-align: center;
-    padding: 0;
-    margin: 5px 0 5px 5px;
-    border-radius: 5px;
-    color: background;
-    font-family: "Fate Icons", sans-serif;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  margin: 5px 0 5px 5px;
+  border-radius: 5px;
+  color: var(--background);
+  font-family: "Fate Icons", sans-serif;
 }
 #chat-log .chat-message .mrkb-fatexresult {
-    font-size: 24px;
-    text-align: center;
-    margin: 5px;
+  font-size: 24px;
+  text-align: center;
+  margin: 5px;
 }
 #chat-log .chat-message .mrkb-fatexcomment {
-    font-size: 12px;
-    text-align: center;
-    margin: 5px;
+  font-size: 12px;
+  text-align: center;
+  margin: 5px;
 }
 #chat-log .chat-message .header .title {
-	color: white;
+  color: white;
 }

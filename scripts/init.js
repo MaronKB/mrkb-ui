@@ -5,26 +5,26 @@ Hooks.once("init", function () {
 	//link.href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css";
 	link.rel= "stylesheet";
 	document.getElementsByTagName("head")[0].append(link);
-	
+
 	CONFIG.TinyMCE.content_css.push("modules/mrkb-ui/style/ui/tinymce.css");
-	
+
 	let body = document.getElementsByClassName("vtt")[0];
 	let loadscreen = document.createElement("div");
 	loadscreen.setAttribute("id", "mrkb-loading");
 	body.appendChild(loadscreen);
-	$("#mrkb-loading").load("modules/mrkb-ui/templates/loadscreen.html");
-	
+	$("#mrkb-loading").load("/modules/mrkb-ui/templates/loadscreen.html");
+
 	let ui = document.createElement("div");
 	ui.setAttribute("id", "mrkb-hud");
 	body.appendChild(ui);
-	
+
 	CONFIG.debug.hooks = false;
-	
-	$("#mrkb-hud").load("modules/mrkb-ui/templates/main.html");
+
+	$("#mrkb-hud").load("/modules/mrkb-ui/templates/main.html");
 });
 Hooks.once("ready", function() {
 	HUDSetting.register();
-	
+
 	if (HUDSetting.get('roll20chat')) {
 		document.getElementById("chat-log").classList.add("roll20");
 	}
@@ -48,25 +48,32 @@ Hooks.once("ready", function() {
 			});
 		}
 	});
-	
+
 	hudInit();
 	observerinit();
 	readDisplay();
 	announce();
 	getBoss();
 	changeProfile();
-	
+
 	getAllies();
 	getResource();
 	getItemCaster();
-	
+	getPhone();
+	getKakaoData();
+	getInventory();
+	getTextGenerator();
+
+	startClock();
+	setInterval(startClock, 15000);
+
 	$("#mrkb-loading").fadeOut(1000);
 	//setTimeout(function() {
 		//document.getElementById("mrkb-loading").remove();
 	//}, 1100);
-	
+
 	document.documentElement.style.setProperty("--caster-height", HUDSetting.get("caster-height") + "px");
-	
+
 	if (game.system.id == "dx3rd") {
 		const div = document.createElement("div");
 		div.id = "conref";
@@ -131,9 +138,11 @@ Hooks.on("updateActor", function() {
 });
 Hooks.on("createItem", function() {
 	getItemCaster();
+	getInventory();
 });
 Hooks.on("updateItem", function() {
 	loadCharaData();
+	getInventory();
 });
 Hooks.on("updateJournalEntry", function() {
 	if (dialog === undefined) {
@@ -159,36 +168,13 @@ Hooks.on("getSceneControlButtons", function(controls) {
 		});
 	}
 });
-Hooks.on("renderKakaoTalk", function() {
-	getKakaoData();
-	addEnter();
-	addOpacity();
-});
-Hooks.on("renderItemCaster", function() {
-	let container = document.getElementsByClassName("caster-tab")[0];
-	container.classList.add("active");
-	let tabs = document.getElementsByClassName("item-tab");
-	for (tab of tabs) {
-		tab.addEventListener('wheel', (e) => {
-			e.preventDefault();
-			let target = document.querySelector(".caster-tab.active").lastElementChild;
-			let newheight;
-			if (e.deltaY < 0) {
-				newheight = target.scrollTop - 25;
-			}else {
-				newheight = target.scrollTop + 25;
-			}
-			target.scrollTo(0, newheight);
-		});
-	}
-});
 Hooks.on("renderDisplayRemote", function() {
 	const types = ["youtube", "embed", "image", "video"];
 	for (type of types) {
 		document.getElementById(`${type}-url`).value = HUDSetting.get(type);
 	}
 });
-	
+
 Hooks.on("renderActorSelector", function() {
 	onRenderInit("tab-actor", "actor-grid")
 });
@@ -204,8 +190,13 @@ Hooks.on("renderTokenHUD", function() {
 	addTemplateButton();
 });
 Hooks.on("createChatMessage", function(message, options) {
+	const lastMessage = game.messages.contents[game.messages.size - 1];
 	if (options.mrkbturn) {
 		message.setFlag("mrkb-ui", "turner", true);
+	}else if (options.kakao) {
+		message.setFlag("mrkb-ui", "kakao", true);
+	}else if (message.speaker.alias == lastMessage.speaker.alias) {
+	  message.setFlag("mrkb-ui", "added", true);
 	}
 });
 Hooks.on("renderChatMessage", function(message, html, data) {
@@ -232,19 +223,19 @@ function hudInit() {
 	const center = document.getElementById("mrkb-center");
 	const right = document.getElementById("mrkb-right");
 	const bot = document.getElementById("mrkb-bottom");
-	
+
 	left.append(document.getElementById("players"));
 	center.append(document.getElementById("notifications"));
 	bot.append(document.getElementById("controls"));
 	bot.append(document.getElementById("hotbar"));
 	bot.append(document.getElementById("sidebar-tabs"));
-	
+
 	if (game.system.id === "archmage") {
 		right.appendChild(document.getElementsByClassName("archmage-escalation")[0]);
 	}
 	ui.players._showOffline = true;
 	ui.players.render();
-	
+
 	if (game.system.id !== "swade" && game.system.id !== "archmage" && game.system.id !== "dx3rd") {
 		document.querySelector("#characon-toggle").classList.add("disabled");
 		document.querySelector("#characon-toggle").click();
@@ -261,10 +252,10 @@ function observerinit() {
 		newidth = mutations[0].target.attributes.style.value.replace("width: ", "");
 		document.documentElement.style.setProperty("--sidebar-width", newidth);
 	})
-	let config = { 
-		attributes: true, 
+	let config = {
+		attributes: true,
 		childList: false,
-		characterData: false 
+		characterData: false
 	};
 	observer.observe(sidebar, config);
 }
@@ -409,8 +400,8 @@ function uiPoint(target, value) {
 function GoToChat() {
 	if (!HUDSetting.get('quickchat') || canvas.tokens.controlled.length < 1) return;
 	const chatmsg = document.getElementById('chat-message');
-	
-	document.querySelector('#sidebar-tabs>a').click();setTimeout(function() { 
+
+	document.querySelector('#sidebar-tabs>a').click();setTimeout(function() {
 		chatmsg.focus();
 		if (chatmsg.value == "") {
 			chatmsg.value = "\"\"";
@@ -422,7 +413,7 @@ function GoToChat() {
 }
 
 function changeProfile() {
-	
+
 	let name, src;
 	if (game.user === undefined) {
 		return;
@@ -558,64 +549,6 @@ function setAttribute() {
 		info.innerHTML = `<i class="fa-solid fa-${e.fa}"></i>${e.name} ${e.value}`;
 		element.appendChild(info);
 	});
-}
-	
-
-function announce() {
-	let noti = document.getElementById("mrkb-notification");
-	let notiopen = document.getElementById("ui-noti-open");
-	let precept = HUDSetting.get("announcement");
-	if (precept == "") {
-		noti.classList.add("hidden");
-		notiopen.classList.remove("hidden");
-	}else {
-		noti.classList.remove("hidden");
-		notiopen.classList.add("hidden");
-		document.getElementById("notify").innerHTML = precept;
-	}
-}
-
-function turnNotice() {
-	const turnToken = game.combat.current.tokenId
-	const turnPlayer = game.canvas.tokens.get(turnToken).actor;
-	const turnTitle = `${turnPlayer.name}의 턴`;
-	const turnOwner = game.users.character?.find(e => e.character.id === turnPlayer.id);
-	if (game.user.isGM) {
-		if (turnOwner === undefined) {
-			ChatMessage.create({
-				type : 0,
-				speaker : {
-					actor : turnPlayer.id,
-					alias : turnTitle,
-					token : turnToken
-				}
-			}, {mrkbturn : true});
-		}else {
-			ChatMessage.create({
-				type : 0,
-				speaker : {
-					actor : turnPlayer.id,
-					alias : turnTitle,
-					token : turnToken
-				},
-				user : turnOwner
-			}, {mrkbturn : true});
-		}
-	}
-	const container = document.getElementById("turn-notice");
-	const image = document.getElementById("turn-img");
-	const name = document.getElementById("turn-name");
-	image.src = game.canvas.tokens.get(game.combat.current.tokenId).data.img;
-	name.innerHTML = turnTitle;
-	container.classList.remove("hidden");
-	setTimeout(function() {
-		container.classList.add("hidden");
-	}, 1300);
-}
-function checkNotice(message, html, data) {
-	if (message.getFlag("mrkb-ui", "turner")) {
-		html[0].classList.add("mrkb-turn");
-	}
 }
 
 function uiStop() {
@@ -764,8 +697,8 @@ function uiSheet() {
 
 function chatPlay() {
 	let chat = game.messages.contents[game.messages.size - 1];
-	let actor = game.actors.get(chat.data.speaker.actor);
-	if (chat.data.type != 2) {
+	let actor = game.actors.get(chat.speaker.actor);
+	if (chat.type != 2) {
 		return;
 	};
 	if (actor.hasPlayerOwner) {
@@ -779,7 +712,7 @@ function chatPlay() {
 	let img = actor.img;
 	uiportrait.src = `${location.origin}/${img}`;
 	uiname.innerHTML = chat.alias;
-	uichat.innerHTML = chat.data.content;
+	uichat.innerHTML = chat.content;
 }
 
 /*─────────────────────────TOGGLEBUTTONS─────────────────────────*/
@@ -875,10 +808,10 @@ function conref(type, dir) {
 	}
 	let skill = value[type];
 	let lvl = ((skill <= 0 && dir == "down") || (skill >= 3 && dir == "up")) ? skill : (dir == "up") ? ++skill : --skill;
-	let enc = (type == "con") ? (lvl == 0) ? 0 : (lvl == 1) ? 2 : (lvl == 2) ? 6 : (lvl == 3) ? 20 : 0 : (lvl == 0) ? 0 : (lvl == 1) ? 1 : (lvl == 2) ? 5 : (lvl == 3) ? 10 : 0;
-	
+	let enc = (type == "con") ? (lvl == 0) ? 0 : (lvl == 1) ? 2 : (lvl == 2) ? 6 : (lvl == 3) ? 10 : 0 : (lvl == 0) ? 0 : (lvl == 1) ? 1 : (lvl == 2) ? 4 : (lvl == 3) ? 7 : 0;
+
 	const item = (type == "con") ? chara.items.getName("컨센트레이트") : chara.items.getName("리플렉스");
-	
+
 	target.innerHTML = lvl;
 	item.update({
 		"system.level.init" : lvl,

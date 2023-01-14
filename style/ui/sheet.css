@@ -1,56 +1,60 @@
+.content-link {
+	background: var(--foreground)!important;
+	border: 0;
+}
+
 /*SWADE*/
-.swade.sheet.actor .sheet-body .attributes .attributes-list .attribute select,
-.swade.sheet.actor .sheet-body .attributes .attributes-list .attribute .toughness-block .armor-value,
-.swade-official .armor-display,
-.swade-official .parry-display {
+.app.window-app.sheet.actor .sheet-body .attributes .attribute select,
+.app.window-app.sheet.actor .sheet-body .attributes .attribute .toughness-block .armor-value,
+.app.window-app.sheet.actor .armor-display,
+.app.window-app.sheet.actor .parry-display {
     color: var(--text-color);
     text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
 }
-.swade-official {
+.app.window-app.sheet.actor {
     --default-font: inherit;
     --section-header-font: inherit;
 }
-.swade-official .tabs .item {
+.app.window-app.sheet.actor .tabs .item {
     color: var(--text-color);
     font-family: inherit;
 }
-.swade-official .tabs .item.active {
+.app.window-app.sheet.actor .tabs .item.active {
     text-shadow: 0 0 10px var(--highlight);
 }
-.swade-official .note-box {
+.app.window-app.sheet.actor .note-box {
     grid-template-rows: 1fr;
 }
-.swade-official .note-box .note-header,
-.swade-official .note-box .note-footer {
+.app.window-app.sheet.actor .note-box .note-header,
+.app.window-app.sheet.actor .note-box .note-footer {
     display: none;
 }
-.swade-official .note-box .note-main {
+.app.window-app.sheet.actor .note-box .note-main {
     background-image: none;
     grid-row: 1/2;
 }
-.swade-official .header,
-.swade-official .effects.active .effect-header {
+.app.window-app.sheet.actor .header,
+.app.window-app.sheet.actor .effects.active .effect-header {
     background-image: none;
 }
 
-.swade-official .primary .attribute select,
-.swade-official .primary .attribute .die,
-.swade-official .derived .running-die,
-.swade-official .skills .skill-die .skill-die-icon {
-    filter: invert(1);
+.app.window-app.sheet.actor .sheet-body .attributes.primary .attribute-value img.die,
+.app.window-app.sheet.actor .sheet-body .derived .running-die,
+.app.window-app.sheet.actor .sheet-body .skills .skill-die .skill-die-icon {
+    filter: invert(1) brightness(0.8);
 }
-.swade-official .section-header {
+.app.window-app.sheet.actor .section-header {
     color: white;
 }
-.swade-official input[type=number],
-.swade-official input[type=text],
-.swade-official input[type=number]:disabled,
-.swade-official input[type=text]:disabled {
+.app.window-app.sheet.actor input[type=number],
+.app.window-app.sheet.actor input[type=text],
+.app.window-app.sheet.actor input[type=number]:disabled,
+.app.window-app.sheet.actor input[type=text]:disabled {
     background: none;
     border: 0;
 }
-.swade-official input[type=number]:hover
-.swade-official input[type=text]:hover {
+.app.window-app.sheet.actor input[type=number]:hover
+.app.window-app.sheet.actor input[type=text]:hover {
     box-shadow: none;
 }
 

@@ -20,10 +20,12 @@
 	"type": "module",
 	"esmodules": [],
 	"scripts": [
-		"./scripts/init.js",
-		"./scripts/widget.js",
 		"./scripts/application.js",
-		"./scripts/setting.js"
+		"./scripts/chat.js",
+		"./scripts/init.js",
+		"./scripts/phone.js",
+		"./scripts/setting.js",
+		"./scripts/widget.js"
 	],
 	"styles": [
 		"./style/root.css",
