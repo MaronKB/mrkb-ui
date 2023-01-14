@@ -3,7 +3,7 @@
 	"name": "mrkb-ui",
 	"title": "MRKB UI",
 	"description": "<p>UI</p>",
-	"version": "1.1.7",
+	"version": "1.2.0",
 	"minimumCoreVersion" : "0.6.4",
 	"compatibleCoreVersion": "1.0.0",
 	"compatibility": {
