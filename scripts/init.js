@@ -190,14 +190,17 @@ Hooks.on("renderTokenHUD", function() {
 	addTemplateButton();
 });
 Hooks.on("createChatMessage", function(message, options) {
-	const lastMessage = game.messages.contents[game.messages.size - 1];
+	const lastMessage = (game.messages.size <= 1) ? null : game.messages.contents[game.messages.size - 1];
+	console.log(message.speaker.alias);
+	console.log(lastMessage);
 	if (options.mrkbturn) {
 		message.setFlag("mrkb-ui", "turner", true);
 	}else if (options.kakao) {
 		message.setFlag("mrkb-ui", "kakao", true);
-	}else if (message.speaker.alias == lastMessage.speaker.alias) {
+	}else if (lastMessage !== null && message.speaker.alias === lastMessage.speaker.alias) {
+		console.log("fuck");
 	  message.setFlag("mrkb-ui", "added", true);
-	}
+	}else {}
 });
 Hooks.on("renderChatMessage", function(message, html, data) {
 	chatPlay();
