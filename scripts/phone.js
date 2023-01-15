@@ -8,7 +8,12 @@ function getPhone() {
 }
 
 function openSide() {
-	document.querySelector("#mrkb-side").classList.add("open");
+	const side = document.querySelector("#mrkb-side");
+	if (side.classList.contains("open")) {
+		side.classList.remove("open");
+	}else {
+		side.classList.add("open");
+	}
 }
 
 function runApp(target) {
@@ -74,8 +79,6 @@ function getResource() {
 		<a id="resrcup" onclick="resourceValueUpdate('up');"><i class="fa-solid fa-plus"></i></a>
 		</div>
 		`;
-	}else {
-		parent.classList.add("hidden");
 	}
 }
 function resourceNameUpdate() {
@@ -84,14 +87,15 @@ function resourceNameUpdate() {
 }
 function resourceValueUpdate(direction) {
 	let value = game.user.character?.flags['mrkb-ui'].customresource.value;
+	let nv;
 	if (direction == "up") {
-		value++;
+		nv = value + 1;
 	}else if (direction == "down") {
-		value--;
+		nv = value - 1;
 	}else {
 		return;
 	};
-	game.user.character.update({"flags['mrkb-ui'].customresource.value" : value});
+	game.user.character.update({"flags.mrkb-ui.customresource.value" : nv});
 	getResource();
 }
 

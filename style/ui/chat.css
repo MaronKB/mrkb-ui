@@ -11,18 +11,17 @@
   display: none;
 }
 #chat-log .chat-message.message {
-  margin: 3px 0 0 0;
-  padding: 0 10px;
   background: var(--background);
   /*
   linear-gradient(to top, var(--foreground), transparent),
   linear-gradient(45deg, var(--foreground) 50%, var(--background) 50%);
   */
+  padding: 4px 10px;
   border: 0;
   border-top: 2px solid;
   border-color:  var(--foreground)!important;
   border-radius: 0;
-  margin: 6px 0 0 0;
+  margin: 0;
 }
 #chat-log .chat-message.whisper {
   background-color: transparent;
@@ -31,14 +30,14 @@
 #chat-log .chat-message .message-header {
   padding: 0 0 4px 0;
   border-bottom: 1px solid;
-  border-image: linear-gradient(to right, transparent, var(--text-color) 140px, transparent 280px);
+  border-image: linear-gradient(to right, transparent, #ffffff22 140px, transparent 280px);
   border-image-slice: 1;
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   align-items: center;
   flex-wrap: wrap;
 }
 #chat-log .chat-message .message-header img {
-  display: block!important;
+  display: block;
   width: 36px;
   height: 36px;
   flex: none;
@@ -50,21 +49,22 @@
 }
 #chat-log .chat-message .message-header .message-sender{
   flex: 1 1 auto;
-  font-family: 'YESMyoungjo-Regular';
-  font-weight: 600;
-  font-size: 16px;
-  min-width: 0;
-  line-height: 20px;
-  color: var(--text-heading);
   width: max-content;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: var(--text-heading);
+  font-family: 'YESMyoungjo-Regular';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
   overflow: hidden;
 }
 #chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--playerName,
 #chat-log .chat-message .message-header .message-sender .illandril-chat-enhancements--player-name {
-  font-size: 8px;
+  font-size: 10px;
   line-height: 12px;
   opacity: 0.5;
 }
@@ -85,6 +85,7 @@
   text-transform: uppercase;
   white-space: nowrap;
   transition: all 0.3s;
+  z-index: 3;
 }
 #chat-log .chat-message .message-header .message-metadata:hover {
   flex: 5!important;
@@ -143,11 +144,29 @@
   display: none;
 }
 #chat-log .chat-message.added {
+  padding: 0 10px 4px 10px;
   border: 0;
-  margin: 4px 0 0 0;
 }
 #chat-log .chat-message.added .message-header {
+  flex: none;
+  height: 0;
+  justify-content: flex-end;
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+#chat-log .chat-message.added .message-header img {
   display: none;
+}
+#chat-log .chat-message.added .message-header .message-sender {
+  display: none;
+}
+#chat-log .chat-message.added .message-header .message-metadata {
+  height: 22px;
+  background: linear-gradient(to right, transparent 40px, var(--background));
+}
+#chat-log .chat-message.added .message-header .message-metadata:hover {
+  height: 22px;
 }
 
 /*ChatCard*/

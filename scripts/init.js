@@ -190,21 +190,22 @@ Hooks.on("renderTokenHUD", function() {
 	addTemplateButton();
 });
 Hooks.on("createChatMessage", function(message, options) {
-	const lastMessage = (game.messages.size <= 1) ? null : game.messages.contents[game.messages.size - 1];
-	console.log(message.speaker.alias);
-	console.log(lastMessage);
+	const lastMessage = game.messages.contents[game.messages.size - 2];
 	if (options.mrkbturn) {
 		message.setFlag("mrkb-ui", "turner", true);
 	}else if (options.kakao) {
 		message.setFlag("mrkb-ui", "kakao", true);
-	}else if (lastMessage !== null && message.speaker.alias === lastMessage.speaker.alias) {
-		console.log("fuck");
+	}else if (lastMessage !== undefined && message.speaker.alias === lastMessage.speaker.alias) {
 	  message.setFlag("mrkb-ui", "added", true);
+	  message.setFlag("mrkb-ui", "parent", lastMessage.id);
 	}else {}
 });
 Hooks.on("renderChatMessage", function(message, html, data) {
 	chatPlay();
-	checkNotice(message, html, data);
+	checkChatFlag(message, html, data);
+});
+Hooks.on("deleteChatMessage", function(message) {
+	fixChatFlag(message);
 });
 Hooks.on("controlToken", function() {
 	GoToChat();
@@ -696,26 +697,6 @@ function uiStop() {
 }
 function uiSheet() {
 	game.user.character.sheet.render("true");
-}
-
-function chatPlay() {
-	let chat = game.messages.contents[game.messages.size - 1];
-	let actor = game.actors.get(chat.speaker.actor);
-	if (chat.type != 2) {
-		return;
-	};
-	if (actor.hasPlayerOwner) {
-		LR = "left";
-	}else {
-		LR = "right";
-	};
-	let uiportrait = document.getElementById(`ui-portrait-${LR}`);
-	let uiname = document.getElementById(`ui-name-${LR}`);
-	let uichat = document.getElementById(`ui-chat-${LR}`);
-	let img = actor.img;
-	uiportrait.src = `${location.origin}/${img}`;
-	uiname.innerHTML = chat.alias;
-	uichat.innerHTML = chat.content;
 }
 
 /*─────────────────────────TOGGLEBUTTONS─────────────────────────*/

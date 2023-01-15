@@ -76,9 +76,7 @@
       <h3 id="turn-name"></h3>
     </div>
   </div>
-  <a id="phone-opener" onclick="openSide()"><i class="fa-solid fa-caret-left"></i></a>
   <div id="mrkb-side">
-    <a id="phone-closer"><i class="fa-solid fa-caret-right"></i></a>
     <div id="phone">
       <div id="phone-top">
         <div id="phone-left"><span id="phone-time">99:99</span><i class="fa-brands fa-line"></i><i class="fa-brands fa-instagram"></i></div>
@@ -106,11 +104,11 @@
             </a>
             <a class="phone-app" data-app="text">
               <img src="/modules/mrkb-ui/src/text.png">
-              <h4>텍스트 입력기</h4>
+              <h4>특수 텍스트</h4>
             </a>
             <a class="phone-app" data-app="fdv">
               <img src="/modules/mrkb-ui/src/fdv_w.png">
-              <h4>유리화</h4>
+              <h4>로그</h4>
             </a>
             <a class="phone-app" data-app="wiki">
               <img src="/modules/mrkb-ui/src/fdv_wiki.png">
@@ -135,7 +133,7 @@
             </a>
       	  </div>
       	</div>
-      	<iframe id="phone-fdv" class="phone-window" src="https://fdv.kr"></iframe>
+      	<iframe id="phone-fdv" class="phone-window" src="https://fdv.kr/logs"></iframe>
       	<iframe id="phone-wiki" class="phone-window" src="https://wiki.fdv.kr"></iframe>
         <div id="phone-kakao" class="phone-window"></div>
         <div id="phone-caster" class="phone-window"></div>
@@ -162,34 +160,25 @@
   <video id="display-flash" class="hidden" src="" allow="autoplay" autoplay onended="removeDisplay('flash')"></video>
 </div>
 
-<div id="mrkb-chat">
-  <h3 id="ui-name-left" class="uiname"></h3>
+<div id="mrkb-chat" class="hidden">
+  <div id="port-container">
+    <img id="ui-port" src="">
+  </div>
+  <h3 id="ui-name"></h3>
   <a id="ui-chat-fold" onclick="uiHideChat();"><i class="fa-solid fa-caret-down"></i></a>
-  <h3 id="ui-name-right" class="uiname"></h3>
-  <div id="chat-container" class="chat-container">
-    <div id="port-container-left" class="uiport">
-      <img id="ui-portrait-left" src="">
-    </div>
-    <div id="ui-chat-left" class="uichat">
-    </div>
-    <div id="ui-chat-right" class="uichat">
-    </div>
-    <div id="port-container-right" class="uiport">
-      <img id="ui-portrait-right" src="">
-    </div>
+  <div id="chat-container">
+    <div id="ui-chat"></div>
   </div>
 </div>
 
 <div id="mrkb-openers">
-  <a id="ui-chat-open" class="hidden" onclick="uiHideChat();"><i class="fa-solid fa-caret-up"></i></a>
+  <a id="ui-chat-open" class="" onclick="uiHideChat();"><i class="fa-solid fa-caret-up"></i></a>
   <a id="ui-bot-open" class="hidden" onclick="hideBotHud();"><i class="fa-solid fa-caret-up"></i></a>
 </div>
 
 <div id="mrkb-bottom">
   <div id="mrkb-utils">
-    <a class="mrkbmenu" onclick="uiInventory();"><i class="fa-solid fa-box"></i></a>
-    <a class="mrkbmenu" onclick="kakaoDialog();"><i class="fa-solid fa-comment-dots"></i></a>
-    <a class="mrkbmenu" onclick="uiQuest();"><i class="fa-solid fa-clipboard-question"></i></a>
+    <a class="mrkbmenu" onclick="openSide()"><i class="fa-solid fa-mobile"></i></a>
     <a class="mrkbmenu" onclick="displayOpacity();"><i class="fa-solid fa-circle-half-stroke"></i></a>
     <a class="mrkbmenu" onclick="hideBotHud();"><i class="fa-solid fa-caret-down"></i></a>
   </div>

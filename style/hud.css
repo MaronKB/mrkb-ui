@@ -820,54 +820,44 @@
 /*─────────────────────────MIDDLE SIDE─────────────────────────*/
 
 #mrkb-hud #mrkb-middle #mrkb-side {
+  position: absolute;
+  right: 5px;
+  bottom: 70px;
   flex: none;
   display: flex;
-  width: 0;
+  align-items: flex-end;
+  width: 300px;
+  height: 0;
+  opacity: 0;
   overflow: hidden;
   transition: all 0.3s;
 }
 #mrkb-hud #mrkb-middle #mrkb-side.open {
-  width: 340px;
+  height: 600px;
+  opacity: 1;
 }
 
 /*─────────────────────────MIDDLE SIDE PHONE─────────────────────────*/
 
-#phone-opener {
-  width: 0;
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  color: white;
-  pointer-events: all;
-}
-#phone-closer {
-  width: 0;
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  color: white;
-  pointer-events: all;
-}
 #phone {
-  width: 100%;
-  height: 700px;
+  width: 300px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   background: var(--background);
   border-radius: 25px;
-  margin: auto 0;
   pointer-events: all;
   transition: all 0.3s;
 }
 #phone #phone-top {
   flex: 0 0 30px;
-  width: calc(100% - 20px);
+  width: calc(100% - 16px);
   display: flex;
   align-items: flex-end;
   background: #222222;
   padding: 5px 10px;
   border-radius: 20px 20px 0 0;
-  margin: 10px 10px 0 10px;
+  margin: 8px 8px 0 8px;
 }
 #phone #phone-top div i {
   flex: none;
@@ -933,12 +923,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  width: calc(100% - 20px);
-  background-image: url("/modules/mrkb-ui/src/phone-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 0 10px;
+  width: calc(100% - 16px);
+  margin: 0 8px;
   overflow: hidden;
 }
 #phone #phone-body .phone-window {
@@ -948,11 +934,13 @@
   border: 0;
   opacity: 0;
   overflow: hidden;
+  filter: brightness(0);
   transition: 0.3s all;
 }
 #phone #phone-body .phone-window.active {
   height: 100%;
   overflow: auto;
+  filter: none;
   opacity: 1;
 }
 #phone #phone-body .phone-window.active::-webkit-scrollbar {
@@ -962,6 +950,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-image: url("/modules/mrkb-ui/src/phone-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 #phone #phone-body #phone-home #phone-widget {
   display: flex;
@@ -973,7 +965,7 @@
   display: grid;
   flex: 1;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   margin: 5px 10px;
 }
 #phone #phone-body #phone-home #phone-apps .phone-app {
@@ -985,10 +977,10 @@
   align-items: center;
 }
 #phone #phone-body #phone-home #phone-apps .phone-app img {
-  width: 50px;
-  height: 50px;
+  width: 46px;
+  height: 46px;
   background: white;
-  border-radius: calc(var(--radius) + 5px);
+  border-radius: calc(var(--radius) + 3px);
   box-shadow: 0 0 8px #00000077;
   object-fit: cover;
 }
@@ -1016,8 +1008,8 @@
   align-items: center;
 }
 #phone #phone-body #phone-home #phone-dock .dock-app img {
-  width: 43px;
-  height: 43px;
+  width: 40px;
+  height: 40px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 0 8px #00000077;
@@ -1027,10 +1019,10 @@
   flex: 0 0 35px;
   display: flex;
   align-items: center;
-  width: calc(100% - 20px);
+  width: calc(100% - 16px);
   background: #222222;
   border-radius: 0 0 20px 20px;
-  margin: 0 10px 10px 10px;
+  margin: 0 8px 8px 8px;
   overflow: hidden;
   transition: all 0.3s;
   pointer-events: all;
@@ -1253,6 +1245,7 @@
 }
 #phone-inventory #inv-folder .tab-folder {
   flex: 1;
+  color: var(--text-color);
   text-align: center;
   line-height: 28px;
   border-radius: 5px 5px 0 0;
@@ -1273,34 +1266,32 @@
 }
 #phone-inventory #inv-slot .inv-pop {
   display: none;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 3fr;
-  grid-gap: 10px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 20px 1fr;
+  grid-gap: 5px 10px;
   width: 100%;
   height: 100%;
   padding: 10px;
 }
-#phone-inventory #inv-slot .inv-pop img {
-  grid-column: 1/2;
-  grid-row: 1/3;
-  width: 100%;
-  margin: auto;
-}
 #phone-inventory #inv-slot .inv-pop h4 {
-  grid-column: 2/3;
+  grid-column: 1/3;
   grid-row: 1/2;
   color: white;
   font-size: 18px;
   text-align: center;
   z-index: 1;
 }
+#phone-inventory #inv-slot .inv-pop img {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  width: 100%;
+  margin: auto;
+}
 #phone-inventory #inv-slot .inv-pop div {
   grid-column: 2/3;
   grid-row: 2/3;
   color: var(--text-color);
   font-size: 10px;
-  margin: 30px 5px 5px;
-  height: calc(100% - 30px);
   overflow: hidden;
   z-index: 1;
 }
@@ -1483,11 +1474,12 @@
 #phone-text {
   display: flex;
   flex-direction: column;
-  grid-gap: 20px;
+  justify-content: center;
+  grid-gap: 10px;
   background-color: var(--background);
 }
 #phone-text.active {
-  padding: 20px;
+  padding: 10px;
 }
 #phone-text .text-div {
   display: flex;
@@ -1496,7 +1488,7 @@
   align-items: center;
   grid-gap: 10px;
   background-color: var(--foreground);
-  padding: 20px;
+  padding: 15px;
   border-radius: 15px;
 }
 #phone-text .text-div h4 {
@@ -1847,90 +1839,77 @@
 
 #mrkb-hud #mrkb-chat {
   grid-row: -3/-2;
-  height: 105px;
+  height: 100px;
   align-content: start;
   align-self: end;
   display: grid;
-  grid-template-columns: 40px 1fr 1.5fr 1fr 40px;
-  grid-template-rows: 15px 15px fit-content(75px);
-  margin: -15px 0 0;
-  overflow: hidden;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: 70px 30px;
+  margin: 0;
   transition: all 0.3s;
   pointer-events: all;
 }
-#mrkb-hud #mrkb-chat.hidden {
-  height: 0;
-}
-#mrkb-hud #mrkb-chat .uiname {
+#mrkb-hud #mrkb-chat #port-container {
+  grid-column: 1/2;
   grid-row: 1/3;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 34px;
+  position: relative;
+  left: 26px;
+  bottom: 75px;
+  width: 150px;
+  height: 150px;
+  flex: none;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.3s all;
+}
+#mrkb-hud #mrkb-chat #port-container #ui-port {
+  object-fit: cover;
+}
+#mrkb-hud #mrkb-chat #ui-name {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  position: relative;
+  top: -10px;
+  width: 180px;
+  height: 30px;
   color: white;
-  background: linear-gradient(45deg, black 70%, var(--background) 70%);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 0 0 black, 0 2px 0 black, -2px 0 0 black, 0 -2px 0 black;
+  line-height: 34px;
+  background: linear-gradient(45deg, #eeeeee 70%, white 70%);
   border-radius: 10px;
-  margin: 0;
+  margin: auto;
+  box-shadow: 0 0 10px black;
   word-break: keep-all;
   z-index: 1;
 }
 #mrkb-hud #mrkb-chat #chat-container {
-  grid-row: 2/4;
+  grid-column: 1/4;
+  grid-row: 1/3;
   display: flex;
   width: calc(100vw - var(--sidebar-width));
   height: 100%;
-  background: linear-gradient(to top, var(--background), var(--background-bright));
+  background: linear-gradient(45deg, black 60px, var(--background) 60px, var(--background-bright), transparent);
   align-self: end;
   overflow: hidden;
 }
-#mrkb-hud #mrkb-chat #chat-container .uichat {
+#mrkb-hud #mrkb-chat #chat-container #ui-chat {
   flex: 1;
-  height: 65px;
-  margin: 20px 20px 5px;
+  height: 70px;
   color: white;
+  font-size: 18px;
   text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+  margin: 20px 30px 10px 220px;
   overflow: hidden;
   white-space: pre-line;
   word-break: break-all;
 }
-#mrkb-hud #mrkb-chat #chat-container .uiport {
-  width: 80px;
-  height: 80px;
-  flex: none;
-  transform: rotate(45deg) scale(1.5);
-  z-index: 0;
-  overflow: hidden;
-  position: relative;
-  top: 10px;
-}
-#mrkb-hud #mrkb-chat #chat-container .uiport img {
-  width: 80px;
-  transform: rotate(-45deg);
-  position: relative;
-}
-#mrkb-hud #mrkb-chat #ui-name-left {
-  grid-column: 2/3;
-}
-#mrkb-hud #mrkb-chat #ui-name-right {
-  grid-column: 4/5;
-}
-#mrkb-hud #mrkb-chat #chat-container #port-container-left {
-  left: -30px;
-}
-#mrkb-hud #mrkb-chat #chat-container #port-container-left #ui-portrait-left {
-  left: 10px;
-  bottom: 15px;
-}
-#mrkb-hud #mrkb-chat #chat-container #port-container-right {
-  left: 30px;
-}
-#mrkb-hud #mrkb-chat #chat-container #port-container-right #ui-portrait-right {
-  left: -15px;
-  bottom: -10px;
-}
 #mrkb-hud #mrkb-chat #ui-chat-fold {
-  grid-column: 3/4;
-  grid-row: 2/3;
+  grid-column: 2/3;
+  grid-row: 1/2;
   width: 60px;
   height: 20px;
   margin: 0 auto;
@@ -1940,6 +1919,14 @@
   line-height: 20px;
   pointer-events: all;
   z-index: 1;
+}
+#mrkb-hud #mrkb-chat.hidden {
+  height: 0;
+}
+#mrkb-hud #mrkb-chat.hidden #port-container {
+  left: 0;
+  bottom: 0;
+  transform: rotate(-360deg);
 }
 
 /*─────────────────────────BOTOPENERS─────────────────────────*/
