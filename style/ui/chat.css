@@ -168,6 +168,9 @@
 #chat-log .chat-message.added .message-header .message-metadata:hover {
   height: 22px;
 }
+#chat-log .chat-message.added .message-content .chat-portrait-flexrow {
+  display: none;
+}
 
 /*ChatCard*/
 
