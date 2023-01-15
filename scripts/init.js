@@ -244,9 +244,6 @@ function hudInit() {
 		document.querySelector("#characon-toggle").classList.add("disabled");
 		document.querySelector("#characon-toggle").click();
 	}
-	if (game.system.id !== "swade" && game.system.id !== "archmage") {
-		document.querySelector("#item-caster").classList.add("hidden");
-	}
 }
 function observerinit() {
 	let sidebar = document.getElementById("sidebar");
