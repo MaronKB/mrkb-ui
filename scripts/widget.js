@@ -1,27 +1,10 @@
-class Widget extends Application {
-	constructor(container, option) {
-		super(option);
-		this.container = container;
-	}
-	static get defaultOptions() {
-		return mergeObject(super.defaultOptions, {
-			popOut: false
-		});
-	}
-	_injectHTML(html) {
-		$(`#${this.container}`).append(html);
-		this._element = html;
-	}
-	close() {}
-}
-
 /*─────────────────────────ALLIES LIST─────────────────────────*/
 
 function getAllies() {
 	let pc = game.user.character;
 	let actors = game.user.isGM ? game.actors.filter(e => e.hasPlayerOwner && e.ownership.default >= 2) : game.actors.filter(e => e.hasPlayerOwner && e != pc && e.ownership.default >= 2);
 	let allies = [];
-	const parent = document.querySelector("#allies");
+	const parent = document.querySelector("#mrkb-allies");
 	parent.innerHTML = "";
 	actors.forEach(function(a) {
 		let resrc = (a.flags["mrkb-ui"]?.customresource === undefined) ? 0 : a.flags["mrkb-ui"].customresource.value;
@@ -31,19 +14,17 @@ function getAllies() {
 		div.classList.add('allies-container');
 		div.dataset.id = a.id;
 		div.innerHTML = `
-		<div class="charaprofile">
-		<img class="profilepic" src="${a.img}">
-		</div>
-		<div class="namespace">
 		<h3 class="profilename">${a.name} [${resrc}]</h3>
+		<div class="charaprofile">
+			<img class="profilepic" src="${a.img}">
 		</div>
 		<div class="mrkb-health">
-		<h4 class="healthnumber">${hp.value}/${hp.max}</h4>
-		<progress class="healthbar" value="${hp.hpm}" max="100">asdf</progress>
+			<h4 class="healthnumber">${hp.value}/${hp.max}</h4>
+			<progress class="healthbar" value="${hp.hpm}" max="100"></progress>
 		</div>
 		<div class="mrkb-mana">
-		<h4 class="mananumber">${mana.value}/${mana.max}</h4>
-		<progress class="manabar" value="${mana.mpm}" max="100">asdf</progress>
+			<h4 class="mananumber">${mana.value}/${mana.max}</h4>
+			<progress class="manabar" value="${mana.mpm}" max="100"></progress>
 		</div>
 		`;
 		parent.appendChild(div);
@@ -53,31 +34,21 @@ function getAllies() {
 function toggleAllies() {
 	let button = document.getElementById("toggleAllies");
 	let leftside = document.getElementById("mrkb-left");
-	if (button.classList.contains("char")) {
-		button.classList.remove("char");
-		leftside.classList.remove("char");
-		button.classList.add("pl");
-		leftside.classList.add("pl");
-		button.innerHTML = `<i class="fa-solid fa-users"></i>`;
-	}else if (button.classList.contains("pl")) {
-		button.classList.remove("pl");
-		leftside.classList.remove("pl");
-		button.classList.add("closed");
-		leftside.classList.add("closed");
+	if (button.classList.contains("open")) {
+		button.classList.remove("open");
+		leftside.classList.remove("open");
 		button.innerHTML = `<i class="fa-solid fa-users-slash"></i>`;
 	}else {
-		button.classList.remove("closed");
-		leftside.classList.remove("closed");
-		button.classList.add("char");
-		leftside.classList.add("char");
-		button.innerHTML = `<i class="fa-solid fa-people-group"></i>`;
+		button.classList.add("open");
+		leftside.classList.add("open");
+		button.innerHTML = `<i class="fa-solid fa-users"></i>`;
 	}
 }
 
 function userFace() {
 	let users = game.users;
 	users.forEach(function(u) {
-		let target = document.querySelector(`li[data-user-id=\"${u.id}\"]`);
+		let target = document.querySelector(`li[data-user-id=\"${u.id}\"] .player-name`);
 		if (target !== null) {
 			let image = game.users.get(u.id).avatar;
 			let div = document.createElement("div");

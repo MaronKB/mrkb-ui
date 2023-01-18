@@ -463,162 +463,26 @@
   width: 250px;
   height: 100%;
 }
-#mrkb-hud #mrkb-middle #mrkb-left.pl #allies,
-#mrkb-hud #mrkb-middle #mrkb-left.char #players,
-#mrkb-hud #mrkb-middle #mrkb-left.closed #allies,
-#mrkb-hud #mrkb-middle #mrkb-left.closed #players {
-  width: 0;
-}
-
-/*─────────────────────────MIDDLE LEFT ALLIES─────────────────────────*/
-
-#mrkb-hud #mrkb-middle #mrkb-left #allies {
-  width: 100%;
-  overflow: hidden;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container {
-  display: grid;
-  grid-template-columns: 50px minmax(0, 200px);
-  grid-template-rows: 15px 15px 10px 10px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .charaprofile {
-  display: flex;
-  grid-column: 1/2;
-  grid-row: 1/5;
-  background-color: var(--background);
-  border: 3px solid transparent;
-  border-radius: 0;
-  transform: rotateZ(45deg) scale(0.7);
-  overflow: hidden;
-  background-image: linear-gradient(var(--background), var(--background)),
-    linear-gradient(to bottom right, transparent 0px 30%, white 30% 100%);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  z-index: 1;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .charaprofile img{
-  transform: scale(1.5) rotate(-45deg);
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .namespace {
-  grid-column: 2/3;
-  grid-row: 2/3;
-  width: calc(100% + 15px);
-  height: 100%;
-  opacity: 0.75;
-  z-index: 3;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .namespace .profilename {
-  color: white;
-  font-weight: 600;
-  font-size: 10px;
-  text-align: right;
-  margin: 0 50px 0 0;
-  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-health {
-  grid-column: 2/3;
-  grid-row: 2/3;
-  display: flex;
-  width: calc(100% + 15px);
-  height: 100%;
-  margin: 0 0 0 -15px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-mana {
-  grid-column: 2/3;
-  grid-row: 3/4;
-  display: flex;
-  width: calc(100% + 15px);
-  height: 100%;
-  margin: 0 0 0 -15px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-health .healthbar {
-  width: 100%;
-  height: 100%;
-  -webkit-appearance: none;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-mana .manabar {
-  width: calc(100% - 10px);
-  height: 100%;
-  -webkit-appearance: none;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-health .healthbar::-webkit-progress-bar {
-  background: transparent;
-  background: linear-gradient(135deg,
-    var(--background) calc(100% - 15px),
-    transparent calc(100% - 15px)
-  );
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-health .healthbar::-webkit-progress-value {
-  height: 11px;
-  background: transparent;
-  background: linear-gradient(135deg,
-    var(--health-color) calc(100% - 16px),
-    transparent calc(100% - 16px)
-  );
-  position: relative;
-  top: 2px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-mana .manabar::-webkit-progress-bar {
-  background: transparent;
-  background: linear-gradient(135deg,
-    var(--background) calc(100% - 15px),
-    transparent calc(100% - 15px)
-  );
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-mana .manabar::-webkit-progress-value {
-  height: 6px;
-  background: transparent;
-  background-image: linear-gradient(135deg,
-    var(--mana-color) calc(100% - 16px),
-    transparent calc(100% - 16px)
-  );
-  position: relative;
-  top: 2px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-health .healthnumber {
-  width: 0;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: fantasy;
-  line-height: 15px;
-  margin: 0;
-  color: white;
-  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
-  z-index: 2;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container .mrkb-mana .mananumber {
-  width: 0;
-  font-size: 10px;
-  font-weight: 600;
-  font-family: fantasy;
-  line-height: 10px;
-  margin: 0;
-  color: white;
-  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
-  z-index: 2;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container:nth-child(2n)  {
-  margin: -9px 0 -9px 14px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #allies .allies-container:last-child {
-  margin-bottom: 0;
-}
 
 /*─────────────────────────MIDDLE LEFT PLAYERS─────────────────────────*/
 
 #mrkb-hud #mrkb-middle #mrkb-left #players {
   font-size: 12px;
-  width: 100%;
+  width: 0;
   height: 100%;
+  margin: 5px 0;
+}
+#mrkb-hud #mrkb-middle #mrkb-left.open #players {
+  width: 100%;
 }
 #mrkb-hud #mrkb-middle #mrkb-left #players > h3 {
   display: none;
 }
 #mrkb-hud #mrkb-middle #mrkb-left #players .player {
   width: 100%;
-  height: 50px;
-  display: grid;
-  grid-template-columns: 50px 1fr fit-content(70px);
+  height: 24px;
+  display: flex;
+  grid-template-columns: 1fr fit-content(70px);
   background: none;
   margin: 0;
   padding: 0;
@@ -630,59 +494,51 @@
   margin: 0;
   border: 0;
 }
-#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-avatar {
-  flex: none;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  width: 50px;
-  height: 50px;
-  background: white;
-  border: 3px solid transparent;
-  transform: rotate(45deg) scale(0.7);
-  overflow: hidden;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-avatar img {
-	width: 100%;
-	height: 100%;
-  object-fit: cover;
-  transform: rotate(-45deg) scale(1.5);
-}
 #mrkb-hud #mrkb-middle #mrkb-left #players .player .player-active {
-  flex: none;
-  grid-column: 1/2;
-  grid-row: 1/2;
-  height: 50px;
-  width: 50px;
-  margin: 0;
-  background: #000000aa!important;
-  border: 3px solid black!important;
-  border-radius: 0;
-  transform: rotate(45deg) scale(0.7);
+  display: none;
 }
-#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-active.active{
-  box-shadow: none;
-  background: transparent!important;
-  border-color: white!important;
+#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-active.inactive + .player-name {
+  opacity: 0.25;
 }
 #mrkb-hud #mrkb-middle #mrkb-left #players .player .player-name {
-  grid-column: 2/3;
-  grid-row: 1/2;
-  padding: 0 30px;
-  margin: 0 0 0 -20px;
-  background: linear-gradient(135deg,
-    var(--background) calc(100% - 15px),
+  flex: 1;
+  display: flex;
+  grid-gap: 14px;
+  align-items: center;
+  height: 20px;
+  font-size: 11px;
+  line-height: 11px;
+  padding: 0 30px 0 0;
+  margin: 0;
+  background: linear-gradient(120deg, transparent 30px,
+    var(--background) 30px,
     transparent calc(100% - 15px)
   );
 }
+#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-name .player-avatar {
+  flex: none;
+  width: 40px;
+  height: 50px;
+  background: #ffffff77;
+  border: 3px solid transparent;
+  margin: 0 0 0 10px;
+  transform: rotate(30deg) scale(1);
+  overflow: hidden;
+}
+#mrkb-hud #mrkb-middle #mrkb-left #players .player .player-name .player-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: rotate(-30deg) scale(1.5);
+}
 #mrkb-hud #mrkb-middle #mrkb-left #players .player .bennies-count {
-  grid-column: 3/4;
-  grid-row: 1/2;
+  flex: none;
   width: 60px;
   color: var(--background);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 20px;
   margin: 0 0 0 -20px;
-  background: linear-gradient(135deg,
+  background: linear-gradient(120deg,
     transparent 15px,
     var(--text-color) 15px calc(100% - 15px),
     transparent calc(100% - 15px)
@@ -692,19 +548,12 @@
 #mrkb-hud #mrkb-middle #mrkb-left #players .player .bennies-count:hover {
   filter: none;
   color: white;
-  background: linear-gradient(135deg,
+  background: linear-gradient(120deg,
     transparent 15px,
     var(--background) 15px calc(100% - 15px),
     transparent calc(100% - 15px)
   );
   text-shadow: 0 0 10px var(--highlight);
-}
-#mrkb-hud #mrkb-middle #mrkb-left #players .player:nth-child(2n) {
-  width: calc(100% - 14px);
-  margin: -9px 0 -9px 14px;
-}
-#mrkb-hud #mrkb-middle #mrkb-left #players .player:last-child {
-  border-bottom: 0;
 }
 /*─────────────────────────MIDDLE CENTER─────────────────────────*/
 
@@ -1564,275 +1413,121 @@
   pointer-events: none;
 }
 
-/*─────────────────────────SHOP─────────────────────────*/
+/*─────────────────────────ALLIES─────────────────────────*/
 
-#mrkb-hud #mrkb-shop {
-  grid-row: 2/-2;
-  font-family: "GmarketSansMedium";
+#mrkb-hud #mrkb-allies {
+  grid-row: -3/-2;
   width: 100%;
-  height: calc(100% - 70px);
-  margin: 0;
+  height: 120px;
   display: flex;
-  align-self: end;
-  background: linear-gradient(15deg,
-    var(--background) 230px,
-    transparent 230px
-  );
+  grid-gap: 5px;
+  padding: 0 10px;
   overflow: hidden;
 }
-#mrkb-hud[shop="hidden"] #mrkb-shop {
-  height: 0;
-}
-#mrkb-hud #mrkb-shop #merchant {
-  width: 420px;
-  flex: none;
+#mrkb-hud #mrkb-allies .allies-container {
   display: grid;
-  grid-template-rows: 1fr 15px 15px 100px;
-  margin: 0 10px;
+  grid-template-columns: 70px;
+  grid-template-rows: 70px 16px 14px;
+  margin: auto 0;
 }
-#mrkb-hud #mrkb-shop #merchant #merchant-npc {
+#mrkb-hud #mrkb-allies .allies-container .profilename {
   grid-column: 1/2;
-  grid-row: 1/3;
-  align-self: end;
-  width: 200px;
-  border-radius: 10px;
+  grid-row: 1/2;
+  width: 100%;
+  opacity: 0.8;
+  z-index: 3;
+  color: white;
+  font-weight: 600;
+  font-size: 10px;
+  text-align: right;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-#mrkb-hud #mrkb-shop #merchant #merchant-name {
+#mrkb-hud #mrkb-allies .allies-container .charaprofile {
   grid-column: 1/2;
-  grid-row: 2/4;
-  width: fit-content;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 30px;
-  margin: 0 10px;
-  border-radius: 10px;
-  background: linear-gradient(45deg, var(--background) 50%, var(--background-bright) 50%);
-  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+  grid-row: 1/2;
+  background-color: var(--background);
+  border: 3px solid transparent;
+  border-radius: 0;
+  overflow: hidden;
+  background-image: linear-gradient(var(--background), var(--background)),
+  linear-gradient(to bottom right, white 0px 30%, transparent 30% 100%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
   z-index: 1;
 }
-#mrkb-hud #mrkb-shop #merchant #merchant-dialog {
+#mrkb-hud #mrkb-allies .allies-container .charaprofile img{
   grid-column: 1/2;
-  grid-row: 3/5;
-  background: linear-gradient(45deg, var(--text-color) 85%, white 85%);
-  padding: 20px;
-  color: var(--background);
-  border-radius: 10px;
+  grid-row: 1/2;
+  width: 100%;
+  height: 100%;
 }
-#mrkb-hud #mrkb-shop #merchant #merchant-button {
+#mrkb-hud #mrkb-allies .allies-container .mrkb-health {
   grid-column: 1/2;
-  grid-row: 4/5;
-  align-self: end;
-  display: flex;
-  height: 40px;
-  color: var(--background);
-  border-radius: 0 0 10px 10px;
-  pointer-events: all;
-}
-#mrkb-hud #mrkb-shop #merchant #merchant-button button {
-  background: var(--background);
-  color: var(--text-color);
-  border: 0;
-  border-radius: 10px;
-  margin: 5px;
-}
-#mrkb-hud #mrkb-shop #merchant #merchant-confirm.hidden,
-#mrkb-hud #mrkb-shop #merchant #merchant-button.hidden {
-  display: none;
-}
-#mrkb-hud #mrkb-shop #shop-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px 0 0 0;
-  margin: 10px 0 0;
-  box-shadow: 0 0 10px var(--background);
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-category {
-  flex: none;
-  height: 32px;
-  display: flex;
-  align-items: end;
-  pointer-events: all;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-category .tab-category {
-  flex: 1;
-  height: 32px;
-  line-height: 32px;
-  font-size: 16px;
-  text-align: center;
-  padding: 0 5px;
-  overflow: hidden;
-  background: var(--background);
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-category .tab-category:first-child {
-  border-radius: 8px 0 0 0;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-category .tab-category.active {
-  color: black;
-  background: white;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop {
-  flex: 1;
-  background: linear-gradient(45deg, var(--background) 70%, var(--background-bright) 70%);
-  border: 2px solid white;
-  border-bottom: 0;
-  overflow-y: hidden;
-  pointer-events: all;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop h3{
-  height: 30px;
-  font-size: 24px;
-  text-align: center;
-  line-height: 32px;
-  font-weight: 600;
-  margin: 0;
-  color: black;
-  background: white;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist {
-  padding: 12px;
-  height: calc(100% - 30px);
-  overflow-y: scroll;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist h4 {
-  height: 20px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 22px;
-  font-weight: 600;
-  margin: 10px 0 0 0;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist h4:first-child {
-  margin: 0;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer {
-  padding: 2px 5px;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer:hover {
-  background: #fff3;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader {
-  display: flex;
-  height: 20px;
-  line-height: 20px;
+  grid-row: 2/3;
+  display: grid;
   align-items: center;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h5 {
-  flex: 1;
-  font-size: 14px;
-  display: flex;
-  margin: 0;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h5 i {
-  width: 20px;
-  line-height: 20px;
-  text-align: center;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h5 img {
-  width: 20px;
-  margin-right: 10px;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h6 {
-  flex: none;
-  width: 50px;
-  height: 20px;
-  font-size: 14px;
-  line-height: 20px;
-  margin: 0 5px;
-  white-space: nowrap;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h6.money {
-  width: 100px;
-  padding: 0 5px 0 0;
-  border-right: 2px solid;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader a {
-  flex: none;
-  width: fit-content;
-  height: 20px;
-  font-size: 14px;
-  line-height: 20px;
-  margin: 0 5px;
-  white-space: nowrap;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader h6 > i,
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopheader a > i {
-  width: 20px;
-  line-height: 20px;
-  text-align: center;
-  margin: 0 5px 0 0;
-}
-#mrkb-hud #mrkb-shop #shop-container .shop .shoplist .shopcontainer .shopdesc {
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  margin: 5px 0;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom {
-  flex: none;
-  height: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  background: var(--background);
-  border: 2px solid white;
-  border-top: 0;
-  pointer-events: all;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet {
-  display: flex;
   height: 100%;
-  color: var(--background);
-  background: white;
-  border-top: 2px solid white;
-  border-radius: 0 10px 0 0;
 }
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-profile,
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-money {
-  display: flex;
+#mrkb-hud #mrkb-allies .allies-container .mrkb-mana {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  display: grid;
   align-items: center;
-  padding: 0 10px;
-  border-right: 2px solid var(--background);
-  pointer-events: all;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-profile img {
-  width: 23px;
-  height: 23px;
-  object-fit: cover;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-profile h3,
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-money h3 {
-  width: fit-content;
-  height: 23px;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0 10px;
-  line-height: 24px;
-  text-align: center;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-profile a,
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-money i {
-  width: 23px;
-  height: 23px;
-  line-height: 23px;
-  text-align: center;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet #shop-profile a > i {
-  line-height: 23px;
-}
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet > a {
   height: 100%;
-  line-height: 23px;
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-health .healthbar {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-mana .manabar {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 100%;
+  height: 100%;
+  -webkit-appearance: none;
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-health .healthbar::-webkit-progress-bar {
+  background: var(--background);
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-health .healthbar::-webkit-progress-value {
+  background: var(--health-color);
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-mana .manabar::-webkit-progress-bar {
+  background: var(--background);
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-mana .manabar::-webkit-progress-value {
+  background: var(--mana-color);
+}
+#mrkb-hud #mrkb-allies .allies-container .mrkb-health .healthnumber {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 100%;
   font-size: 14px;
   font-weight: 600;
+  font-family: fantasy;
   text-align: center;
-  color: black;
-  padding: 0 20px;
+  line-height: 15px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  opacity: 0.5;
+  z-index: 2;
 }
-#mrkb-hud #mrkb-shop #shop-container #shop-bottom #wallet > a > i {
-  margin-right: 10px;
+#mrkb-hud #mrkb-allies .allies-container .mrkb-mana .mananumber {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 100%;
+  font-size: 10px;
+  font-weight: 600;
+  font-family: fantasy;
+  text-align: center;
+  line-height: 10px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  opacity: 0.5;
+  z-index: 2;
 }
 
 /*─────────────────────────CHAT─────────────────────────*/

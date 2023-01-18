@@ -50,7 +50,7 @@
     </div>
   </div>
   <div id="mrkb-buttons">
-    <button class="functionkey char" type="button" onclick="toggleAllies();" id="toggleAllies"><i class="fa-solid fa-people-group"></i></button>
+    <button class="functionkey open" type="button" onclick="toggleAllies();" id="toggleAllies"><i class="fa-solid fa-people-group"></i></button>
     <button class="functionkey" type="button" onclick="uiSheet();"><i class="fa-solid fa-id-card"></i></button>
     <button class="functionkey" type="button" onclick="uiChange()"><i class="fa-solid fa-arrows-rotate"></i></button>
     <button class="functionkey" type="button" onclick="uiStop()"><i class="fa-solid fa-pause"></i></button>
@@ -64,8 +64,7 @@
 </div>
 
 <div id="mrkb-middle">
-  <div id="mrkb-left" class="char">
-    <div id="allies" class="app"></div>
+  <div id="mrkb-left" class="open">
   </div>
   <div id="mrkb-center">
     <div id="loud-speaker">
@@ -159,6 +158,8 @@
   <video id="display-overlay" class="hidden" src="" allow="autoplay" autoplay muted loop></video>
   <video id="display-flash" class="hidden" src="" allow="autoplay" autoplay onended="removeDisplay('flash')"></video>
 </div>
+
+<div id="mrkb-allies"></div>
 
 <div id="mrkb-chat" class="hidden">
   <div id="port-container">
