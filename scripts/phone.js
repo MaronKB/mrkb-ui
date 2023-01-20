@@ -5,6 +5,8 @@ function getPhone() {
 	apps.forEach((e) => {
 		e.onclick = () => {activeApp(e.dataset.app)};
 	});
+	const bell = document.querySelector(`[data-app="bell"]`);
+	bell.onclick = () => {ringToAll(game.user.character?.id)};
 }
 
 function openSide() {
@@ -16,9 +18,6 @@ function openSide() {
 	}
 }
 
-function runApp(target) {
-	game.macros.get(target).execute();
-}
 function activeApp(app) {
 	const apps = document.querySelectorAll(".phone-window");
 	for (a of apps) {
@@ -97,6 +96,36 @@ function resourceValueUpdate(direction) {
 	};
 	game.user.character.update({"flags.mrkb-ui.customresource.value" : nv});
 	getResource();
+}
+
+/*─────────────────────────DOCK─────────────────────────*/
+
+function ringToAll() {
+	const id = game.user.character?.id;
+	if (id === undefined || id === null) {
+		return;
+	}else {
+		socket.executeForEveryone("ringBell", id);
+	}
+}
+
+function ringBell(id) {
+	const actor = game.actors.get(id);
+	const bell = document.querySelector("#mrkb-bell");
+	const face = document.querySelector("#bell-img");
+	const title = document.querySelector("#bell-title");
+	const alert = new Audio("/modules/mrkb-ui/src/alert.wav");
+
+	face.src = actor.img;
+	title.innerHTML = actor.name;
+
+	bell.classList.add("open");
+	alert.volume = 0.2;
+	alert.play();
+
+	setTimeout(() => {
+		bell.classList.remove("open");
+	}, 1500);
 }
 
 /*─────────────────────────ITEM CASTER─────────────────────────*/

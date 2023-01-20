@@ -255,26 +255,3 @@
     margin: 0 20px 0 0;
     border-bottom: 1px dashed var(--text-tooltip);
 }
-
-#mrkb-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    font-size: 32px;
-    text-align: center;
-    background: black;
-    color: white;
-    z-index: 100;
-    position: absolute;
-}
-#mrkb-loading img {
-    width: 50px;
-    animation: rotation 2s infinite;
-}
-#mrkb-loading h3 {
-    font-size: 18px;
-    margin: 10px 0 0 0;
-}

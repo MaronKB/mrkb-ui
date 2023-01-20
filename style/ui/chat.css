@@ -1,6 +1,8 @@
 #chat-log {
   padding: 2px 5px 0;
   background: none;
+  display: flex;
+  flex-direction: column;
   /*
   linear-gradient(to bottom, var(--background-bright), transparent),
   linear-gradient(15deg,var(--background) 30%, transparent 30%),
@@ -22,6 +24,9 @@
   border-color:  var(--foreground)!important;
   border-radius: 0;
   margin: 0;
+}
+#chat-log .chat-message:first-child {
+  margin: auto 0 0 0;
 }
 #chat-log .chat-message.whisper {
   background-color: transparent;
@@ -205,11 +210,12 @@
 /*Turn*/
 
 #chat-log .chat-message.message.mrkb-turn {
-  padding: 3px;
+  padding: 0;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header {
-  margin: 0;
+  padding: 0;
   border: 0;
+  margin: 0;
 }
 #chat-log .chat-message.message.mrkb-turn .message-header img {
   max-width: 24px;

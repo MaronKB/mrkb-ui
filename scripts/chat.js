@@ -13,7 +13,10 @@ function announce() {
 }
 
 function turnNotice() {
-	const turnToken = game.combat.current.tokenId
+	const turnToken = game.combat.current.tokenId;
+	if (turnToken === null) {
+		return;
+	}
 	const turnPlayer = game.canvas.tokens.get(turnToken).actor;
 	const turnTitle = `${turnPlayer.name}의 턴`;
 	const turnOwner = game.users.character?.find(e => e.character.id === turnPlayer.id);

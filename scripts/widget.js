@@ -1,34 +1,47 @@
 /*─────────────────────────ALLIES LIST─────────────────────────*/
 
 function getAllies() {
-	let pc = game.user.character;
-	let actors = game.user.isGM ? game.actors.filter(e => e.hasPlayerOwner && e.ownership.default >= 2) : game.actors.filter(e => e.hasPlayerOwner && e != pc && e.ownership.default >= 2);
-	let allies = [];
 	const parent = document.querySelector("#mrkb-allies");
 	parent.innerHTML = "";
-	actors.forEach(function(a) {
-		let resrc = (a.flags["mrkb-ui"]?.customresource === undefined) ? 0 : a.flags["mrkb-ui"].customresource.value;
-		const hp = calcHP(a.id);
-		const mana = calcMana(a.id);
-		let div = document.createElement("div");
+	if (game.combat === null) {
+		return;
+	}
+	const turnPlayer = game.canvas.tokens.get(game.combat.current.tokenId).actor;
+	const actors = game.combat.turns.filter(e => e.hasPlayerOwner && e.actor.ownership.default >= 2);
+	actors.forEach((a) => {
+		const actor = game.actors.get(a.actorId);
+		let resrc = (actor.flags["mrkb-ui"]?.customresource === undefined) ? 0 : actor.flags["mrkb-ui"].customresource.value;
+		const hp = calcHP(actor.id);
+		const mana = calcMana(actor.id);
+		const div = document.createElement("div");
+		div.dataset.id = actor.id;
 		div.classList.add('allies-container');
-		div.dataset.id = a.id;
+		if (actor.id == turnPlayer.id) {
+			div.classList.add('turn-player');
+		}
 		div.innerHTML = `
-		<h3 class="profilename">${a.name} [${resrc}]</h3>
-		<div class="charaprofile">
-			<img class="profilepic" src="${a.img}">
-		</div>
-		<div class="mrkb-health">
-			<h4 class="healthnumber">${hp.value}/${hp.max}</h4>
-			<progress class="healthbar" value="${hp.hpm}" max="100"></progress>
-		</div>
-		<div class="mrkb-mana">
-			<h4 class="mananumber">${mana.value}/${mana.max}</h4>
-			<progress class="manabar" value="${mana.mpm}" max="100"></progress>
-		</div>
+			<h3 class="profilename">${actor.name} [${resrc}]</h3>
+			<div class="charaprofile">
+				<img class="profilepic" src="${actor.img}">
+			</div>
+			<div class="mrkb-health">
+				<h4 class="healthnumber">${hp.value}/${hp.max}</h4>
+				<progress class="healthbar" value="${hp.hpm}" max="100"></progress>
+			</div>
+			<div class="mrkb-mana">
+				<h4 class="mananumber">${mana.value}/${mana.max}</h4>
+				<progress class="manabar" value="${mana.mpm}" max="100"></progress>
+			</div>
 		`;
 		parent.appendChild(div);
 	});
+	if (game.user.character?.id == turnPlayer.id || game.user.isGM) {
+		const next = document.createElement("a");
+		next.id = "combat-next";
+		next.onclick = () => {game.combat.nextTurn();}
+		next.innerHTML = `<h3>턴 종료<span>TURN END</span></h3>`;
+		parent.appendChild(next);
+	}
 }
 
 function toggleAllies() {

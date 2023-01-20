@@ -28,24 +28,14 @@ Hooks.once("ready", function() {
 	if (HUDSetting.get('roll20chat')) {
 		document.getElementById("chat-log").classList.add("roll20");
 	}
-	if (game.user.flags["mrkb-ui"] === undefined) {
-		game.user.update({
-			"flags.mrkb-ui" : {
-				currenttab : [],
-				favorites: []
-			}
-		});
+	if (game.user.getFlag("mrkb-ui", "currenttab") === undefined || game.user.getFlag("mrkb-ui", "favorites") === undefined) {
+		game.user.setFlag("mrkb-ui", "currenttab", []);
+		game.user.setFlag("mrkb-ui", "favorites", []);
+		setTimeout(() => {window.location.reload()}, 3000);
 	}
 	game.actors.forEach((e) => {
-		if (e.flags["mrkb-ui"] === undefined) {
-			e.update({
-				"flags.mrkb-ui" : {
-					customresource : {
-						name: null,
-						value: 0
-					}
-				}
-			});
+		if (e.getFlag("mrkb-ui", "customresource") === undefined) {
+			e.setFlag("mrkb-ui", "customresource", {name : "자원 이름", value : "0"});
 		}
 	});
 
@@ -99,6 +89,7 @@ Hooks.once("socketlib.ready", function() {
 	socket.register("getBoss", getBoss);
 	socket.register("announce", announce);
 	socket.register("getKakaoData", getKakaoData);
+	socket.register("ringBell", ringBell);
 });
 
 Hooks.on("chatCommandsReady", function(chatCommands) {
@@ -155,7 +146,11 @@ Hooks.on("updateJournalEntry", function() {
 });
 Hooks.on("updateCombat", function(combat, turn, data) {
 	turnNotice();
-})
+	getAllies();
+});
+Hooks.on("deleteCombat", function() {
+	getAllies();
+});
 Hooks.on("getSceneControlButtons", function(controls) {
 	if (game.user.isGM) {
 		controls[0].tools.push({
@@ -227,12 +222,23 @@ function hudInit() {
 	const center = document.getElementById("mrkb-center");
 	const right = document.getElementById("mrkb-right");
 	const bot = document.getElementById("mrkb-bottom");
+	const chat = document.getElementById("chat-controls");
+
+	const bell = document.createElement("div");
+	bell.id = "mrkb-bell";
+	bell.innerHTML = `
+		<img id="bell-img" src="">
+		<i class="fa-solid fa-bell"></i>
+		<h5 id="bell-subtitle">발언권 요청!</h5>
+		<h4 id="bell-title"></h4>
+	`;
 
 	left.append(document.getElementById("players"));
 	center.append(document.getElementById("notifications"));
 	bot.append(document.getElementById("controls"));
 	bot.append(document.getElementById("hotbar"));
 	bot.append(document.getElementById("sidebar-tabs"));
+	chat.before(bell);
 
 	if (game.system.id === "archmage") {
 		right.appendChild(document.getElementsByClassName("archmage-escalation")[0]);
@@ -293,7 +299,7 @@ function tabOpen(id, a, b) {
 	let currenttab = game.user.flags["mrkb-ui"].currenttab;
 	let n = currenttab.findIndex((e) => e.tab == a);
 	currenttab[n].id = id
-	game.user.update({"flags.mrkb-ui.currenttab" : currenttab});
+	game.user.setFlag("mrkb-ui", "currenttab", currenttab);
 	newtab[0].classList.add("active");
 	newtab[1].classList.add("active");
 }
@@ -313,7 +319,6 @@ function checkFolder(name, type) {
 	}
 	return true;
 }
-
 
 /*─────────────────────────HP CALCULATER─────────────────────────*/
 
@@ -727,14 +732,17 @@ function toggleNotify() {
 	};
 }
 function uiHideChat() {
-	let chat = document.getElementById("mrkb-chat");
-	let chatopener = document.getElementById("ui-chat-open");
+	const chat = document.getElementById("mrkb-chat");
+	const chatopener = document.getElementById("ui-chat-open");
+	const allies = document.querySelector("#mrkb-allies");
 	if (chat.classList.contains("hidden")) {
 		chat.classList.remove("hidden");
 		chatopener.classList.add("hidden");
+		allies.classList.add("jump");
 	}else {
 		chat.classList.add("hidden");
 		chatopener.classList.remove("hidden");
+		allies.classList.remove("jump");
 	};
 }
 function hideBotHud() {
