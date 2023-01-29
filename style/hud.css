@@ -674,7 +674,7 @@
   bottom: 70px;
   flex: none;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 300px;
   height: 0;
   opacity: 0;
@@ -1196,7 +1196,6 @@
   align-items: center;
   background-color: white;
   padding: 5px;
-  margin: 0 0 10px 0;
   color: black;
 }
 #phone-kakao #kakaoheader #kakaotitle {
@@ -1222,17 +1221,16 @@
 #phone-kakao #kakaolog {
   flex: 1;
   overflow-y:scroll;
-  padding-left: 18px;
   color: black;
 }
 #phone-kakao #kakaolog .chat {
   display: grid;
   font-size: 12px;
-  grid-template-columns: 42px 220px;
+  grid-template-columns: 42px 1fr;
   grid-template-rows: repeat(2, minmax(20px, auto));
   grid-column-gap: 10px;
   font-family: 'NEXON Lv1 Gothic OTF';
-  margin: 14px 0;
+  margin: 14px 0 14px 14px;
 }
 #phone-kakao #kakaolog .chat .profile {
   grid-column: 1/2;
@@ -1270,14 +1268,15 @@
 }
 #phone-kakao #kakaolog .chat.self {
   grid-template-columns: 220px 0px;
+  grid-template-rows: 1fr;
   justify-content: end;
+  margin: 14px 0 14px 0;
 }
 #phone-kakao #kakaolog .chat.self .profile {
   display: none;
 }
 #phone-kakao #kakaolog .chat.self .kakaoname {
-  grid-column: 1/2;
-  text-align: right;
+  display: none;
 }
 #phone-kakao #kakaolog .chat.self .kakao {
   grid-column: 1/2;

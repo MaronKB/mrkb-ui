@@ -50,7 +50,7 @@ Hooks.once("ready", function() {
 	getResource();
 	getItemCaster();
 	getPhone();
-	getKakaoData();
+	getKakaoData(true);
 	getInventory();
 	getTextGenerator();
 
@@ -185,6 +185,9 @@ Hooks.on("renderTokenHUD", function() {
 	addTemplateButton();
 });
 Hooks.on("createChatMessage", function(message, options) {
+	if(!message.isAuthor) {
+		return;
+	}
 	const lastMessage = game.messages.contents[game.messages.size - 2];
 	if (options.mrkbturn) {
 		message.setFlag("mrkb-ui", "turner", true);
@@ -223,6 +226,11 @@ function hudInit() {
 	const right = document.getElementById("mrkb-right");
 	const bot = document.getElementById("mrkb-bottom");
 	const chat = document.getElementById("chat-controls");
+	const chatform = document.querySelector("#chat-form");
+
+	const send = document.createElement("a");
+	send.id = "mobile-send";
+	send.onclick = () => {}
 
 	const bell = document.createElement("div");
 	bell.id = "mrkb-bell";

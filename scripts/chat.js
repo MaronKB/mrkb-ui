@@ -58,21 +58,21 @@ let chatCount = 0;
 function checkChatFlag(message, html, data) {
   let index = game.messages.contents.indexOf(game.messages.get(message.id));
   const before = game.messages.contents[index - 1];
-	if (message.getFlag("mrkb-ui", "turner")) {
-		html[0].classList.add("mrkb-turn");
-    chatCount = 0;
-	}else if (message.getFlag("mrkb-ui", "kakao")) {
-		html[0].classList.add("kakao");
-    chatCount = 0;
-	}else if (before?.speaker.alias == message.speaker.alias && message.type != 5 && before?.type != 5 && chatCount < 3) {
-    html[0].classList.add("added");
-    chatCount++;
-	}else {
-    chatCount = 0;
-  }
-	if (message.speaker.actor == game.user.character?.id) {
-		html[0].classList.add("self");
-	}
+    if (message.getFlag("mrkb-ui", "turner")) {
+        html[0].classList.add("mrkb-turn");
+        chatCount = 0;
+    }else if (message.getFlag("mrkb-ui", "kakao")) {
+        html[0].classList.add("kakao");
+        chatCount = 0;
+    }else if (before?.speaker.alias == message.speaker.alias && message.type != 5 && before?.type != 5 && chatCount < 3) {
+        html[0].classList.add("added");
+        chatCount++;
+    }else {
+        chatCount = 0;
+    }
+    if (message.speaker.actor == game.user.character?.id) {
+        html[0].classList.add("self");
+    }
 }
 
 function fixChatFlag() {
@@ -80,16 +80,16 @@ function fixChatFlag() {
   const msgs = game.messages.contents;
   let i = 0;
   msgs.forEach((e) => {
-    if (msgs.indexOf(e) == 0 || i > 3) {
-      document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
-      i = 0;
-    }else if (e.speaker.alias != msgs[msgs.indexOf(e) - 1].speaker.alias) {
-      document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
-      i = 0;
-    }else {
-      document.querySelector(`[data-message-id="${e.id}"]`).classList.add("added");
-      i++;
-    }
+	if (msgs.indexOf(e) == 0 || i > 3) {
+	  document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
+	  i = 0;
+	}else if (e.speaker.alias != msgs[msgs.indexOf(e) - 1].speaker.alias) {
+	  document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
+	  i = 0;
+	}else {
+	  document.querySelector(`[data-message-id="${e.id}"]`).classList.add("added");
+	  i++;
+	}
   });
 }
 

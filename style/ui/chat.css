@@ -237,9 +237,10 @@
 
 #chat-log .chat-message.message.kakao {
   background: none;
+  margin: 0 80px 0 0;
 }
 #chat-log .chat-message.message.kakao .message-header {
-  margin: 0 0 -22px 0;
+  margin: 0 0 -20px 0;
   border: 0;
 }
 #chat-log .chat-message.message.kakao .message-header img {
@@ -254,7 +255,11 @@
   font-size: 14px;
   font-weight: 100;
 }
+#chat-log .chat-message.message.kakao .message-header .message-sender .illandril-chat-enhancements--player-name {
+  display: none;
+}
 #chat-log .chat-message.message.kakao .message-header .message-metadata {
+  height: 20px;
   background: none;
 }
 #chat-log .chat-message.message.kakao .message-content {
@@ -273,6 +278,9 @@
   margin: 0 -10px 0 0;
   border: 5px solid transparent;
   border-left-color: white;
+}
+#chat-log .chat-message.message.kakao.self {
+  margin: 0 0 0 80px;
 }
 #chat-log .chat-message.message.kakao.self .message-header {
   flex-direction: row-reverse;

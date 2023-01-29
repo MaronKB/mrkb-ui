@@ -5,4 +5,10 @@
     #sidebar {
         width: 100vw!important;
     }
+    #sidebar #chat-controls {
+        display: none;
+    }
+    #sidebar #chat-form {
+        display: none;
+    }
 }

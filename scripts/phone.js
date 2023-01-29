@@ -361,8 +361,8 @@ function itemDetail(id, a) {
 
 /*─────────────────────────KAKAO─────────────────────────*/
 
-function getKakaoData() {
-	const kakao = document.querySelector("#phone-kakao");
+function getKakaoData(total = false) {
+	const kakao = total ? document.querySelector("#phone-kakao") : document.querySelector("#kakaolog");
 	const path = `worlds/${game.world.id}/`;
 	let obj = { "talk"  : [] };
 	let a = new Promise((resolve, reject) => {
@@ -378,21 +378,23 @@ function getKakaoData() {
 	});
 	a.then((data) => {
 		const top = document.createElement("div");
-		top.id = "kakaoheader";
-		const back = document.createElement("a");
-		back.onclick = () => activeApp('home');
-		back.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
-		top.appendChild(back);
-		const title = document.createElement("h4");
-		title.id = "kakaotitle";
-		title.innerHTML = "카카오톡 <span>99</span>";
-		top.appendChild(title);
-		const search = document.createElement("a");
-		search.innerHTML = "<i class='fa-solid fa-magnifying-glass'></i>";
-		top.appendChild(search);
-		const bars = document.createElement("a");
-		bars.innerHTML = "<i class='fa-solid fa-bars'></i>";
-		top.appendChild(bars);
+		if (total) {
+			top.id = "kakaoheader";
+			const back = document.createElement("a");
+			back.onclick = () => activeApp('home');
+			back.innerHTML = "<i class='fa-solid fa-arrow-left'></i>";
+			top.appendChild(back);
+			const title = document.createElement("h4");
+			title.id = "kakaotitle";
+			title.innerHTML = "카카오톡 <span>99</span>";
+			top.appendChild(title);
+			const search = document.createElement("a");
+			search.innerHTML = "<i class='fa-solid fa-magnifying-glass'></i>";
+			top.appendChild(search);
+			const bars = document.createElement("a");
+			bars.innerHTML = "<i class='fa-solid fa-bars'></i>";
+			top.appendChild(bars);
+		}
 
 		const log = document.createElement("div");
 		log.id = "kakaolog";
@@ -417,38 +419,50 @@ function getKakaoData() {
 		});
 
 		const bottom = document.createElement("div");
-		bottom.id = "kakaobottom";
-		const plus = document.createElement("a");
-		plus.innerHTML = "<i class='fa-solid fa-plus'></i>";
-		bottom.appendChild(plus);
-		const box = document.createElement("textarea");
-		box.id = "kakaomessage";
-		box.onchange = () => {resizeArea();}
-		box.onkeydown = (e) => {
-			resizeArea();
-			if (e.keyCode == 13 && !e.shiftKey) {
-				e.preventDefault();
-				sendtalk();
-				$('#kakaomessage').empty();
+		if (total) {
+			bottom.id = "kakaobottom";
+			const plus = document.createElement("a");
+			plus.innerHTML = "<i class='fa-solid fa-plus'></i>";
+			bottom.appendChild(plus);
+			const box = document.createElement("textarea");
+			box.id = "kakaomessage";
+			box.onchange = () => {
+				resizeArea();
 			}
+			box.onkeydown = (e) => {
+				resizeArea();
+				if (e.keyCode == 13 && !e.shiftKey) {
+					e.preventDefault();
+					sendtalk();
+					$('#kakaomessage').empty();
+				}
+			}
+			box.onkeyup = () => {
+				resizeArea();
+			}
+			box.rows = 1;
+			box.autofocus = true;
+			box.spellcheck = false;
+			bottom.appendChild(box);
+			const smile = document.createElement("a");
+			smile.innerHTML = "<i class='fa-regular fa-face-smile'></i>";
+			bottom.appendChild(smile);
+			const send = document.createElement("a");
+			send.innerHTML = "<i class='fa-solid fa-play'></i>";
+			send.onclick = () => {
+				sendtalk();
+			}
+			bottom.appendChild(send);
 		}
-		box.onkeyup = () => {resizeArea();}
-		box.rows = 1;
-		box.autofocus = true;
-		box.spellcheck = false;
-		bottom.appendChild(box);
-		const smile = document.createElement("a");
-		smile.innerHTML = "<i class='fa-regular fa-face-smile'></i>";
-		bottom.appendChild(smile);
-		const send = document.createElement("a");
-		send.innerHTML = "<i class='fa-solid fa-play'></i>";
-		send.onclick = () => {sendtalk();}
-		bottom.appendChild(send);
 
 		kakao.innerHTML = "";
-		kakao.appendChild(top);
-		kakao.appendChild(log);
-		kakao.appendChild(bottom);
+		if (total) {
+			kakao.appendChild(top);
+			kakao.appendChild(log);
+			kakao.appendChild(bottom);
+		}else {
+			kakao.appendChild(log);
+		}
 		const kakaolog = document.querySelector("#kakaolog");
 		kakaolog.scrollTo(0, kakaolog.scrollHeight);
 	});
@@ -480,17 +494,17 @@ function sendtalk() {
 			data.talk.push(newkakao);
 			saveKakao(data);
 			setTimeout(() => {
-				socket.executeForEveryone("getKakaoData");
+				socket.executeForEveryone("getKakaoData", false);
 			},100);
 			document.getElementById('kakaomessage').value = "";
-  		ChatMessage.create({
-        content: talk,
-  			type : 2,
-  			speaker : {
-  				actor : chara.id,
-  				alias : chara.name
-  			}
-  		}, {kakao : true});
+  			ChatMessage.create({
+        	content: talk,
+  				type : 2,
+  				speaker : {
+  					actor : chara.id,
+  					alias : chara.name
+  				}
+  			}, {kakao : true});
 		});
 	}
 }
