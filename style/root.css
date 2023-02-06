@@ -126,7 +126,6 @@ html{
     border: 0;
     background: var(--foreground);
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
 }
 .vtt button:hover,
@@ -138,4 +137,10 @@ html{
 }
 .vtt button > i {
     margin: 0;
+}
+.vtt .prosemirror menu .pm-dropdown {
+    background: transparent;
+}
+.vtt .prosemirror menu .pm-dropdown:hover {
+    text-shadow: none;
 }

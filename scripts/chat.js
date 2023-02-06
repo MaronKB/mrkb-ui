@@ -56,15 +56,17 @@ function turnNotice() {
 let chatCount = 0;
 
 function checkChatFlag(message, html, data) {
-  let index = game.messages.contents.indexOf(game.messages.get(message.id));
-  const before = game.messages.contents[index - 1];
+	console.log(message);
+	console.log(html);
+  //let index = game.messages.contents.indexOf(game.messages.get(message.id));
+  //const before = game.messages.contents[index - 1];
     if (message.getFlag("mrkb-ui", "turner")) {
         html[0].classList.add("mrkb-turn");
         chatCount = 0;
     }else if (message.getFlag("mrkb-ui", "kakao")) {
         html[0].classList.add("kakao");
         chatCount = 0;
-    }else if (before?.speaker.alias == message.speaker.alias && message.type != 5 && before?.type != 5 && chatCount < 3) {
+    }else if (message.getFlag("mrkb-ui", "added") && message.type != 5 && chatCount < 3) {
         html[0].classList.add("added");
         chatCount++;
     }else {
@@ -95,6 +97,9 @@ function fixChatFlag() {
 
 function chatPlay() {
 	let chat = game.messages.contents[game.messages.size - 1];
+	if (chat == undefined || chat == null) {
+		return;
+	}
 	let actor = game.actors.get(chat.speaker.actor);
 	if (chat.type != 2) {
 		return;

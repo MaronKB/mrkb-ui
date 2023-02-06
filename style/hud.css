@@ -1094,26 +1094,9 @@
   flex-direction: column;
   background-color: var(--background);
 }
-#phone-inventory #inv-folder {
-  display: flex;
-}
-#phone-inventory #inv-folder .tab-folder {
-  flex: 1;
-  color: var(--text-color);
-  text-align: center;
-  line-height: 28px;
-  border-radius: 5px 5px 0 0;
-  opacity: 0.5;
-  background: var(--foreground);
-  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
-}
-#phone-inventory #inv-folder .tab-folder.active {
-  opacity: 1;
-  background: var(--background);
-}
+
 #phone-inventory #inv-slot {
-  flex: none;
-  height: 200px;
+  flex: 1;
   border-radius: 5px;
   background: var(--background);
   overflow: hidden;
@@ -1139,7 +1122,7 @@
   grid-column: 1/2;
   grid-row: 2/3;
   width: 100%;
-  margin: auto;
+  margin: 10px auto;
 }
 #phone-inventory #inv-slot .inv-pop div {
   grid-column: 2/3;
@@ -1152,18 +1135,42 @@
 #phone-inventory #inv-slot .inv-pop.active {
   display: grid;
 }
-#phone-inventory #inv-folders {
+#phone-inventory #inv-folder {
+  display: flex;
+}
+#phone-inventory #inv-folder .tab-folder {
   flex: 1;
+  color: var(--text-color);
+  text-align: center;
+  line-height: 28px;
+  padding: 2px 2px 0 2px;
+  border-bottom: 2px solid white;
+  border-radius: 5px 5px 0 0;
+  text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+  box-sizing: border-box;
+}
+#phone-inventory #inv-folder .tab-folder.active {
+  opacity: 1;
+  background: var(--foreground);
+  padding: 0 0 2px 0;
+  border: 2px solid white;
+  border-bottom: 0;
+}
+#phone-inventory #inv-folders {
+  flex: none;
+  height: fit-content;
+  border: 2px solid white;
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
 }
 #phone-inventory #inv-folders .inv-grid {
   display: none;
-  grid-gap: 10px;
-  height: 100%;
+  height: fit-content;
   background: var(--foreground);
-  padding: 5px;
+  padding: 2px;
   border-radius: 0 0 5px 5px;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 55px);
+  grid-template-rows: repeat(3, 55px);
 }
 #phone-inventory #inv-folders .inv-grid.active {
   display: grid;
@@ -1171,16 +1178,38 @@
 #phone-inventory #inv-folders .inv-grid .inv-icon {
   width: 50px;
   height: 50px;
-  border-radius: 10px;
-  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border: 2px solid #ffffff22;
+  border-radius: 4px;
   margin: auto;
+  overflow: hidden;
 }
 #phone-inventory #inv-folders .inv-grid .inv-icon:hover {
-  box-shadow: 0 0 10px var(--highlight);
+  filter: brightness(1.5);
 }
 #phone-inventory #inv-folders .inv-grid .inv-icon img {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 50px;
+  height: 50px;
   object-fit: cover;
   transform: scale(1.2);
+}
+#phone-inventory #inv-folders .inv-grid .inv-icon h5 {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  width: 40px;
+  align-self: end;
+  color: white;
+  font-size: 10px;
+  text-shadow: 1px 0 0 black, 0 1px 0 black, -1px 0 0 black, 0 -1px 0 black;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 3px;
+  z-index: 1;
 }
 
 /*─────────────────────────PHONE APP KAKAO─────────────────────────*/

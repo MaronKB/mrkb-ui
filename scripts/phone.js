@@ -291,7 +291,10 @@ function getInventory() {
 			icon.onclick = () => {invUse(e.id)};
 			let image = document.createElement("img");
 			image.src = e.img;
+			let h5 = document.createElement("h5");
+			h5.innerHTML = e.name;
 			icon.appendChild(image);
+			icon.appendChild(h5);
 			page.appendChild(icon);
 
 			let pop = document.createElement("div");
@@ -309,12 +312,21 @@ function getInventory() {
 			pops.appendChild(pop);
 		});
 
+		if (i.item.length < 15) {
+			let num = 15 - i.item.length;
+			for (a = 0; a < num; a++) {
+				let icon = document.createElement("a");
+				icon.classList.add("inv-icon");
+				page.appendChild(icon);
+			}
+		}
+
 		div.appendChild(page);
 	});
 
 	inventory.innerHTML = "";
-	inventory.appendChild(nav);
 	inventory.appendChild(pops);
+	inventory.appendChild(nav);
 	inventory.appendChild(div);
 
 	onRenderInit("tab-folder", "inv-grid");
