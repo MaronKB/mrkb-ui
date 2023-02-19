@@ -6,6 +6,9 @@ function getAllies() {
 	if (game.combat === null) {
 		return;
 	}
+	if (game.combat.current.tokenId === null) {
+		return;
+	}
 	const turnPlayer = game.canvas.tokens.get(game.combat.current.tokenId).actor;
 	const actors = game.combat.turns.filter(e => e.hasPlayerOwner && e.actor.ownership.default >= 2);
 	actors.forEach((a) => {

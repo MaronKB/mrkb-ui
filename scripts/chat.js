@@ -55,18 +55,14 @@ function turnNotice() {
 
 let chatCount = 0;
 
-function checkChatFlag(message, html, data) {
+function checkChatFlag(message, html) {
 	if (message.getFlag("mrkb-ui", "turner")) {
 		html[0].classList.add("mrkb-turn");
-		chatCount = 0;
 	}else if (message.getFlag("mrkb-ui", "kakao")) {
 		html[0].classList.add("kakao");
-		chatCount = 0;
-	}else if (message.getFlag("mrkb-ui", "added") && message.type != 5 && chatCount < 3) {
+	}else if (message.getFlag("mrkb-ui", "added")) {
 		html[0].classList.add("added");
-		chatCount++;
 	}else {
-		chatCount = 0;
 	}
 	if (message.speaker.actor == game.user.character?.id) {
 		html[0].classList.add("self");
@@ -78,19 +74,22 @@ function fixChatFlag() {
   	const msgs = game.messages.contents;
   	let i = 0;
   	msgs.forEach((e) => {
-		if (msgs.indexOf(e) == 0 || i > 3) {
+		if (msgs.indexOf(e) == 0 || i >= 3) {
 			if (game.user.isGM) {
 				e.setFlag("mrkb-ui", "added", false);
 			}
 		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
 		  	i = 0;
-		}if (msgs.indexOf(e) == 0 || i > 3 || e.speaker.alias != msgs[msgs.indexOf(e) - 1].speaker.alias) {
+		}else if (e.speaker.alias != msgs[msgs.indexOf(e) - 1].speaker.alias && e.type != 5 && msgs[msgs.indexOf(e) - 1].type != 5) {
 			if (game.user.isGM) {
 				e.setFlag("mrkb-ui", "added", false);
 			}
 		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
 		  	i = 0;
 		}else {
+			if (game.user.isGM) {
+				e.setFlag("mrkb-ui", "added", true);
+			}
 		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.add("added");
 		  	i++;
 		}
