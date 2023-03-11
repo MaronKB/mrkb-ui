@@ -238,6 +238,7 @@
 #chat-log .chat-message.message.kakao {
   background: none;
   margin: 0 80px 0 0;
+  border: 0;
 }
 #chat-log .chat-message.message.kakao .message-header {
   margin: 0 0 -20px 0;
@@ -263,10 +264,11 @@
   background: none;
 }
 #chat-log .chat-message.message.kakao .message-content {
+  width: fit-content;
   color: black;
   background: white;
   padding: 6px 10px;
-  border-radius: 10px;
+  border-radius: 3px;
   margin: 0 0 0 40px;
 }
 #chat-log .chat-message.message.kakao .message-content::before {
@@ -293,10 +295,14 @@
 }
 #chat-log .chat-message.message.kakao.self .message-content {
   background: #FFEC42;
-  margin: 0 40px 0 0;
+  margin: 0 40px 0 auto;
 }
 #chat-log .chat-message.message.kakao.self .message-content::before {
   content: none;
+}
+
+#chat-log .chat-message.message.kakao.added .message-content {
+  margin: 22px 0 0 40px;
 }
 
 /*NarratorChat*/

@@ -199,53 +199,91 @@ function addTemplateButton() {
 	btn.innerHTML = `
 	<i class="fa-solid fa-shapes"></i>
 	<div class='templaters'>
-	<div class='templater' data-type='sqr8' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines"></i>
-	<span>08</span>
+	<input type="radio" name="skill-template" id="self" value="self">
+	<label class='templater' for="self">
+	<h5>자신</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq1" value='sq1'>
+	<label class='templater' for="sq1">
+	<h5>전방 1칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="cr4" value='cr4'>
+	<label class='templater' for="cr4">
+	<h5>접전 4칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq4" value='sq4'>
+	<label class='templater' for="sq4">
+	<h5>전방 4칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq8" value='sq8'>
+	<label class='templater' for="sq8">
+	<h5>전방 8칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="ci8" value='ci8'>
+	<label class='templater' for="ci8">
+	<h5>1서클</h5>
+	</label>
+	<input type="radio" name="skill-template" id="st12" value='st12'>
+	<label class='templater' for="st12">
+	<h5>직선 12칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq12" value='sq12'>
+	<label class='templater' for="sq12">
+	<h5>전방 12칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="rh12" value='rh12'>
+	<label class='templater' for="rh12">
+	<h5>마름모</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq18" value='sq18'>
+	<label class='templater' for="sq18">
+	<h5>전방 18칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="cr20" value='cr20'>
+	<label class='templater' for="cr20">
+	<h5>대십자</h5>
+	</label>
+	<input type="radio" name="skill-template" id="ci24" value='ci24'>
+	<label class='templater' for="ci24">
+	<h5>2서클</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq24" value='sq24'>
+	<label class='templater' for="sq24">
+	<h5>전방 24칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq30" value='sq30'>
+	<label class='templater' for="sq30">
+	<h5>전방 30칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="sq40" value='sq40'>
+	<label class='templater' for="sq40">
+	<h5>전방 40칸</h5>
+	</label>
+	<input type="radio" name="skill-template" id="ci48" value='ci48'>
+	<label class='templater' for="ci48">
+	<h5>3서클</h5>
+	</label>
+	<div class="arrows">
+	<input type="radio" name="skill-direction" id="temp-up" value='up'>
+	<label class="temp-arrow" for="temp-up">
+	<i class="fa-solid fa-caret-up"></i>
+	</label>
+	<input type="radio" name="skill-direction" id="temp-right" value='right'>
+	<label class="temp-arrow" for="temp-right">
+	<i class="fa-solid fa-caret-right"></i>
+	</label>
+	<input type="radio" name="skill-direction" id="temp-left" value='left'>
+	<label class="temp-arrow" for="temp-left">
+	<i class="fa-solid fa-caret-left"></i>
+	</label>
+	<input type="radio" name="skill-direction" id="temp-down" value='down'>
+	<label class="temp-arrow" for="temp-down">
+	<i class="fa-solid fa-caret-down"></i>
+	</label>
 	</div>
-	<div class='templater' data-type='sqc8' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines-vertical"></i>
-	<span>08</span>
-	</div>
-	<div class='templater' data-type='cir8' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-square"></i>
-	<span>08</span>
-	</div>
-	<div class='templater' data-type='cro8' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-xmark"></i>
-	<span>08</span>
-	</div>
-	<div class='templater' data-type='sqr12' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines"></i>
-	<span>12</span>
-	</div>
-	<div class='templater' data-type='sqc12' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines-vertical"></i>
-	<span>12</span>
-	</div>
-	<div class='templater' data-type='rho12' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-diamond"></i>
-	<span>12</span>
-	</div>
-	<div class='templater' data-type='cro12' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-xmark"></i>
-	<span>12</span>
-	</div>
-	<div class='templater' data-type='sqr26' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines"></i>
-	<span>26</span>
-	</div>
-	<div class='templater' data-type='sqc26' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-grip-lines-vertical"></i>
-	<span>26</span>
-	</div>
-	<div class='templater' data-type='cir24' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-square"></i>
-	<span>24</span>
-	</div>
-	<div class='templater' data-type='cro24' onclick='setupTemplate(this)'>
-	<i class="fa-solid fa-xmark"></i>
-	<span>24</span>
+	<div class="temp-buttons">
+	<button type="button" id="temp-submit" class="temp-button" onclick="setupTemplate()">결정</button>
+	<button type="button" id="temp-delete" class="temp-button">삭제</button>
 	</div>
 	</div>
 	`;
@@ -262,8 +300,20 @@ function getTemp() {
 	}
 }
 
-async function setupTemplate(target) {
-	const type = target.dataset.type;
+async function setupTemplate() {
+	const target = document.querySelector(`[name="skill-template"]:checked`);
+	if (target === null) {
+		return;
+	}
+	const dir = document.querySelector(`[name="skill-direction"]:checked`);
+	let type = target.value;
+	const nonedirection = ["self", "cr4", "ci8", "rh12", "cr20", "ci24", "ci48"];
+	if (!nonedirection.includes(type)) {
+		if (dir === null) {
+			return;
+		}
+		type = type + "-" + dir.value;
+	}
 	const token = game.canvas.tokens.controlled[0];
 	const old = game.canvas.drawings.objects.children.filter(e => e.document.text == token.name);
 	old.forEach((e) => {
@@ -273,35 +323,211 @@ async function setupTemplate(target) {
 	let pos, point;
 	let x = token.x;
 	let y = token.y;
-	if (type == "sqr8") {
+	if (type == "self") {
 		pos = {
-			x: x - 400,
+			x: x,
 			y: y,
-			w: 900,
+			w: 100,
 			h: 100
 		};
 		point = [
 			0, 0,
-			900, 0,
-			900, 100,
+			100, 0,
+			100, 100,
 			0, 100,
 			0, 0
 		];
-	}else if (type == "sqc8") {
+	}else if (type == "sq1-up") {
+		pos = {
+			x: x,
+			y: y - 100,
+			w: 100,
+			h: 100
+		};
+		point = [
+			0, 0,
+			100, 0,
+			100, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq1-right") {
+		pos = {
+			x: x + 100,
+			y: y,
+			w: 100,
+			h: 100
+		};
+		point = [
+			0, 0,
+			100, 0,
+			100, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq1-down") {
+		pos = {
+			x: x,
+			y: y + 100,
+			w: 100,
+			h: 100
+		};
+		point = [
+			0, 0,
+			100, 0,
+			100, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq1-left") {
+		pos = {
+			x: x - 100,
+			y: y,
+			w: 100,
+			h: 100
+		};
+		point = [
+			0, 0,
+			100, 0,
+			100, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "cr4") {
+		pos = {
+			x: x - 100,
+			y: y - 100,
+			w: 300,
+			h: 300
+		};
+		point = [
+			100, 0,
+			200, 0,
+			200, 100,
+			300, 100,
+			300, 200,
+			200, 200,
+			200, 300,
+			100, 300,
+			100, 200,
+			0, 200,
+			0, 100,
+			100, 100,
+			100, 0
+		];
+	}else if (type == "sq4-up") {
 		pos = {
 			x: x,
 			y: y - 400,
 			w: 100,
-			h: 900
+			h: 400
 		};
 		point = [
 			0, 0,
-			0, 900,
-			100, 900,
+			0, 400,
+			100, 400,
 			100, 0,
 			0, 0
 		];
-	}else if (type == "cir8") {
+	}else if (type == "sq4-right") {
+		pos = {
+			x: x + 100,
+			y: y,
+			w: 400,
+			h: 100
+		};
+		point = [
+			0, 0,
+			400, 0,
+			400, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq4-down") {
+		pos = {
+			x: x,
+			y: y + 100,
+			w: 100,
+			h: 400
+		};
+		point = [
+			0, 0,
+			0, 400,
+			100, 400,
+			100, 0,
+			0, 0
+		];
+	}else if (type == "sq4-left") {
+		pos = {
+			x: x - 400,
+			y: y,
+			w: 400,
+			h: 100
+		};
+		point = [
+			0, 0,
+			400, 0,
+			400, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq8-up") {
+		pos = {
+			x: x,
+			y: y - 800,
+			w: 100,
+			h: 800
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq8-right") {
+		pos = {
+			x: x + 100,
+			y: y,
+			w: 100,
+			h: 800
+		};
+		point = [
+			0, 0,
+			0, 800,
+			100, 800,
+			100, 0,
+			0, 0
+		];
+	}else if (type == "sq8-down") {
+		pos = {
+			x: x,
+			y: y + 100,
+			w: 100,
+			h: 800
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq8-left") {
+		pos = {
+			x: x - 800,
+			y: y,
+			w: 100,
+			h: 800
+		};
+		point = [
+			0, 0,
+			0, 800,
+			100, 800,
+			100, 0,
+			0, 0
+		];
+	}else if (type == "ci8") {
 		pos = {
 			x: x - 100,
 			y: y - 100,
@@ -315,57 +541,119 @@ async function setupTemplate(target) {
 			0, 300,
 			0, 0
 		];
-	}else if (type == "cro8") {
+	}else if (type == "st12-up") {
 		pos = {
-			x: x - 200,
-			y: y - 200,
-			w: 500,
-			h: 500
+			x: x,
+			y: y - 1200,
+			w: 100,
+			h: 1200
 		};
 		point = [
-			200, 0,
-			300, 0,
-			300, 200,
-			500, 200,
-			500, 300,
-			300, 300,
-			300, 500,
-			200, 500,
-			200, 300,
-			0, 300,
-			0, 200,
-			200, 200,
-			200, 0
+			0, 0,
+			0, 1200,
+			100, 1200,
+			100, 0,
+			0, 0
 		];
-	}else if (type == "sqr12") {
+	}else if (type == "st12-right") {
 		pos = {
-			x: x - 600,
+			x: x + 100,
 			y: y,
-			w: 1300,
+			w: 1200,
 			h: 100
 		};
 		point = [
 			0, 0,
-			1300, 0,
-			1300, 100,
+			1200, 0,
+			1200, 100,
 			0, 100,
 			0, 0
 		];
-	}else if (type == "sqc12") {
+	}else if (type == "st12-down") {
 		pos = {
 			x: x,
-			y: y - 600,
+			y: y + 100,
 			w: 100,
-			h: 1300
+			h: 1200
 		};
 		point = [
 			0, 0,
-			0, 1300,
-			100, 1300,
+			0, 1200,
+			100, 1200,
 			100, 0,
 			0, 0
 		];
-	}else if (type == "rho12") {
+	}else if (type == "st12-left") {
+		pos = {
+			x: x - 1200,
+			y: y,
+			w: 1200,
+			h: 100
+		};
+		point = [
+			0, 0,
+			1200, 0,
+			1200, 100,
+			0, 100,
+			0, 0
+		];
+	}else if (type == "sq12-up") {
+		pos = {
+			x: x - 100,
+			y: y - 400,
+			w: 300,
+			h: 400
+		};
+		point = [
+			0, 0,
+			0, 400,
+			300, 400,
+			300, 0,
+			0, 0
+		];
+	}else if (type == "sq12-right") {
+		pos = {
+			x: x + 100,
+			y: y - 100,
+			w: 400,
+			h: 300
+		};
+		point = [
+			0, 0,
+			400, 0,
+			400, 300,
+			0, 300,
+			0, 0
+		];
+	}else if (type == "sq12-down") {
+		pos = {
+			x: x - 100,
+			y: y + 100,
+			w: 300,
+			h: 400
+		};
+		point = [
+			0, 0,
+			0, 400,
+			300, 400,
+			300, 0,
+			0, 0
+		];
+	}else if (type == "sq12-left") {
+		pos = {
+			x: x - 400,
+			y: y - 100,
+			w: 400,
+			h: 300
+		};
+		point = [
+			0, 0,
+			400, 0,
+			400, 300,
+			0, 300,
+			0, 0
+		];
+	}else if (type == "rh12") {
 		pos = {
 			x: x - 200,
 			y: y - 200,
@@ -395,57 +683,85 @@ async function setupTemplate(target) {
 			200, 100,
 			200, 0
 		];
-	}else if (type == "cro12") {
+	}else if (type == "sq18-up") {
 		pos = {
-			x: x - 300,
-			y: y - 300,
-			w: 700,
-			h: 700
+			x: x - 100,
+			y: y - 600,
+			w: 300,
+			h: 600
 		};
 		point = [
+			0, 0,
+			0, 600,
+			300, 600,
 			300, 0,
-			400, 0,
-			400, 300,
-			700, 300,
-			700, 400,
-			400, 400,
-			400, 700,
-			300, 700,
-			300, 400,
-			0, 400,
-			0, 300,
-			300, 300,
-			300, 0
+			0, 0
 		];
-	}else if (type == "sqr26") {
+	}else if (type == "sq18-right") {
 		pos = {
-			x: x - 400,
+			x: x + 100,
 			y: y - 100,
-			w: 900,
+			w: 600,
 			h: 300
 		};
 		point = [
 			0, 0,
-			900, 0,
-			900, 300,
+			600, 0,
+			600, 300,
 			0, 300,
 			0, 0
 		];
-	}else if (type == "sqc26") {
+	}else if (type == "sq18-down") {
 		pos = {
 			x: x - 100,
-			y: y - 400,
+			y: y + 100,
 			w: 300,
-			h: 900
+			h: 600
 		};
 		point = [
 			0, 0,
-			0, 900,
-			300, 900,
+			0, 600,
+			300, 600,
 			300, 0,
 			0, 0
 		];
-	}else if (type == "cir24") {
+	}else if (type == "sq18-left") {
+		pos = {
+			x: x - 600,
+			y: y - 100,
+			w: 600,
+			h: 300
+		};
+		point = [
+			0, 0,
+			600, 0,
+			600, 300,
+			0, 300,
+			0, 0
+		];
+	}else if (type == "cr20") {
+		pos = {
+			x: x - 200,
+			y: y - 200,
+			w: 500,
+			h: 500
+		};
+		point = [
+			100, 0,
+			400, 0,
+			400, 100,
+			500, 100,
+			500, 400,
+			400, 400,
+			400, 500,
+			100, 500,
+			100, 400,
+			0, 400,
+			0, 100,
+			100, 100,
+			100, 0
+		];
+	}else if (type == "ci24") {
 		pos = {
 			x: x - 200,
 			y: y - 200,
@@ -459,27 +775,187 @@ async function setupTemplate(target) {
 			0, 500,
 			0, 0
 		];
-	}else if (type == "cro24") {
+	}else if (type == "sq24-up") {
 		pos = {
-			x: x - 600,
-			y: y - 600,
-			w: 1300,
-			h: 1300
+			x: x - 100,
+			y: y - 800,
+			w: 300,
+			h: 800
 		};
 		point = [
-			600, 0,
-			700, 0,
-			700, 600,
-			1300, 600,
-			1300, 700,
-			700, 700,
-			700, 1300,
-			600, 1300,
-			600, 700,
-			0, 700,
+			0, 0,
+			0, 800,
+			300, 800,
+			300, 0,
+			0, 0
+		];
+	}else if (type == "sq24-right") {
+		pos = {
+			x: x + 100,
+			y: y - 100,
+			w: 800,
+			h: 300
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 300,
+			0, 300,
+			0, 0
+		];
+	}else if (type == "sq24-down") {
+		pos = {
+			x: x - 100,
+			y: y + 100,
+			w: 300,
+			h: 800
+		};
+		point = [
+			0, 0,
+			0, 800,
+			300, 800,
+			300, 0,
+			0, 0
+		];
+	}else if (type == "sq24-left") {
+		pos = {
+			x: x - 800,
+			y: y - 100,
+			w: 800,
+			h: 300
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 300,
+			0, 300,
+			0, 0
+		];
+	}else if (type == "sq30-up") {
+		pos = {
+			x: x - 200,
+			y: y - 600,
+			w: 500,
+			h: 600
+		};
+		point = [
+			0, 0,
 			0, 600,
-			600, 600,
-			600, 0
+			500, 600,
+			500, 0,
+			0, 0
+		];
+	}else if (type == "sq30-right") {
+		pos = {
+			x: x + 100,
+			y: y - 200,
+			w: 600,
+			h: 500
+		};
+		point = [
+			0, 0,
+			600, 0,
+			600, 500,
+			0, 500,
+			0, 0
+		];
+	}else if (type == "sq30-down") {
+		pos = {
+			x: x - 200,
+			y: y + 100,
+			w: 500,
+			h: 600
+		};
+		point = [
+			0, 0,
+			0, 600,
+			500, 600,
+			500, 0,
+			0, 0
+		];
+	}else if (type == "sq30-left") {
+		pos = {
+			x: x - 600,
+			y: y - 200,
+			w: 600,
+			h: 500
+		};
+		point = [
+			0, 0,
+			600, 0,
+			600, 500,
+			0, 500,
+			0, 0
+		];
+	}else if (type == "sq40-up") {
+		pos = {
+			x: x - 200,
+			y: y - 800,
+			w: 500,
+			h: 800
+		};
+		point = [
+			0, 0,
+			0, 800,
+			500, 800,
+			500, 0,
+			0, 0
+		];
+	}else if (type == "sq40-right") {
+		pos = {
+			x: x + 100,
+			y: y - 200,
+			w: 800,
+			h: 500
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 500,
+			0, 500,
+			0, 0
+		];
+	}else if (type == "sq40-down") {
+		pos = {
+			x: x - 200,
+			y: y + 100,
+			w: 500,
+			h: 800
+		};
+		point = [
+			0, 0,
+			0, 800,
+			500, 800,
+			500, 0,
+			0, 0
+		];
+	}else if (type == "sq40-left") {
+		pos = {
+			x: x - 800,
+			y: y - 200,
+			w: 800,
+			h: 500
+		};
+		point = [
+			0, 0,
+			800, 0,
+			800, 500,
+			0, 500,
+			0, 0
+		];
+	}else if (type == "ci48") {
+		pos = {
+			x: x - 300,
+			y: y - 300,
+			w: 700,
+			h: 700
+		};
+		point = [
+			0, 0,
+			700, 0,
+			700, 700,
+			0, 700,
+			0, 0
 		];
 	}
 	await canvas.scene.createEmbeddedDocuments("Drawing", [{

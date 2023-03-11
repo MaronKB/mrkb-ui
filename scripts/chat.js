@@ -58,11 +58,12 @@ let chatCount = 0;
 function checkChatFlag(message, html) {
 	if (message.getFlag("mrkb-ui", "turner")) {
 		html[0].classList.add("mrkb-turn");
-	}else if (message.getFlag("mrkb-ui", "kakao")) {
+	}
+	if (message.getFlag("mrkb-ui", "kakao")) {
 		html[0].classList.add("kakao");
-	}else if (message.getFlag("mrkb-ui", "added")) {
+	}
+	if (message.getFlag("mrkb-ui", "added")) {
 		html[0].classList.add("added");
-	}else {
 	}
 	if (message.speaker.actor == game.user.character?.id) {
 		html[0].classList.add("self");
@@ -70,30 +71,30 @@ function checkChatFlag(message, html) {
 }
 
 function fixChatFlag() {
-  	if (game.messages.size == 0) return;
-  	const msgs = game.messages.contents;
-  	let i = 0;
-  	msgs.forEach((e) => {
-		if (msgs.indexOf(e) == 0 || i >= 3) {
+	if (game.messages.size == 0) return;
+	const msgs = game.messages.contents;
+	msgs.forEach((e) => {
+		let parent = msgs.find(a => a.id == e.getFlag("mrkb-ui", "parent"));
+		let prev = msgs[msgs.indexOf(e) - 1];
+		if (msgs.indexOf(e) == 0) {
 			if (game.user.isGM) {
 				e.setFlag("mrkb-ui", "added", false);
+				e.setFlag("mrkb-ui", "parent", null);
 			}
-		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
-		  	i = 0;
-		}else if (e.speaker.alias != msgs[msgs.indexOf(e) - 1].speaker.alias && e.type != 5 && msgs[msgs.indexOf(e) - 1].type != 5) {
+			document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
+		}else if (parent == undefined && e.speaker.actor != msgs[msgs.indexOf(e) - 1].speaker.actor) {
 			if (game.user.isGM) {
 				e.setFlag("mrkb-ui", "added", false);
+				e.setFlag("mrkb-ui", "parent", null);
 			}
-		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
-		  	i = 0;
+			document.querySelector(`[data-message-id="${e.id}"]`).classList.remove("added");
 		}else {
 			if (game.user.isGM) {
 				e.setFlag("mrkb-ui", "added", true);
+				e.setFlag("mrkb-ui", "parent", prev.id);
 			}
-		  	document.querySelector(`[data-message-id="${e.id}"]`).classList.add("added");
-		  	i++;
 		}
-  	});
+	});
 }
 
 function chatPlay() {

@@ -893,7 +893,7 @@
   transform: rotate(90deg);
 }
 
-/*─────────────────────────PHONE WDIGET CLOCK─────────────────────────*/
+/*─────────────────────────PHONE WIDGET CLOCK─────────────────────────*/
 
 #phone-clock {
   width: 100%;
@@ -1252,14 +1252,17 @@
   overflow-y:scroll;
   color: black;
 }
+#phone-kakao #kakaolog::-webkit-scrollbar {
+  display: none;
+}
 #phone-kakao #kakaolog .chat {
   display: grid;
   font-size: 12px;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: 42px 200px;
   grid-template-rows: repeat(2, minmax(20px, auto));
   grid-column-gap: 10px;
   font-family: 'NEXON Lv1 Gothic OTF';
-  margin: 14px 0 14px 14px;
+  margin: 7px 0px 7px 7px;
 }
 #phone-kakao #kakaolog .chat .profile {
   grid-column: 1/2;
@@ -1299,7 +1302,7 @@
   grid-template-columns: 220px 0px;
   grid-template-rows: 1fr;
   justify-content: end;
-  margin: 14px 0 14px 0;
+  margin: 6px 0 6px 0;
 }
 #phone-kakao #kakaolog .chat.self .profile {
   display: none;

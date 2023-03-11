@@ -191,12 +191,16 @@ Hooks.on("createChatMessage", function(message, options) {
 	const lastMessage = game.messages.contents[game.messages.size - 2];
 	if (options.mrkbturn) {
 		message.setFlag("mrkb-ui", "turner", true);
-	}else if (options.kakao) {
+	}
+	if (options.kakao) {
 		message.setFlag("mrkb-ui", "kakao", true);
-	}else if (lastMessage !== undefined && message.speaker.alias === lastMessage.speaker.alias) {
-	  message.setFlag("mrkb-ui", "added", true);
-	  message.setFlag("mrkb-ui", "parent", lastMessage.id);
-	}else {}
+	}
+	if (lastMessage !== undefined && message.speaker.alias === lastMessage.speaker.alias) {
+		message.setFlag("mrkb-ui", "added", true);
+	}else {
+		message.setFlag("mrkb-ui", "added", false);
+		message.setFlag("mrkb-ui", "parent", null);
+	}
 });
 Hooks.on("renderChatMessage", function(message, html, data) {
 	chatPlay();
