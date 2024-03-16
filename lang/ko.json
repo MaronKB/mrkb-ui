@@ -1,5 +1,8 @@
 {
   "MRKB": {
-    "Unclassified" : "미분류"
+    "Character" : "캐릭터",
+    "Sheet" : "시트",
+    "Unclassified" : "미분류",
+    "ActorSelectorTooltip" : "<span>[좌클릭]<br/>[Ctrl+좌클릭]</span><span>액터 변경<br/>시트 열기</span>"
   }
 }

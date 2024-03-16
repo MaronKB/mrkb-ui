@@ -33,7 +33,7 @@ export default class UtilityBar {
     static _getUtilities() {
         const list = [];
         list.push({
-            title : "시트",
+            title : game.i18n.localize("MRKB.Sheet"),
             onclick : () => {
                 const character = game.actors.get(game.user.character.id);
                 if (!character || character?.permission < 2) return;
@@ -42,7 +42,7 @@ export default class UtilityBar {
             fa : "id-card"
         });
         list.push({
-            title : "캐릭터",
+            title : game.i18n.localize("MRKB.Character"),
             tag : "actor",
             onclick : () => UIToggle.set("actor"),
             fa : "users-gear"

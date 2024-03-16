@@ -1,5 +1,8 @@
 {
   "MRKB": {
-    "Unclassified" : "Unclassified"
+    "Character" : "Character",
+    "Sheet" : "Sheet",
+    "Unclassified" : "Unclassified",
+    "ActorSelectorTooltip" : "<span>[Left click]<br/>[Ctrl+Left Click]</span><span>Change Actor<br/>Open Sheet</span>"
   }
 }

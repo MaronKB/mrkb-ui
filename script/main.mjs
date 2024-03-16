@@ -10,6 +10,10 @@ Hooks.once("renderSidebar", (sidebar, html, option) => onRenderSidebar(sidebar, 
 Hooks.on("renderSidebarTab", (tab, html, option) => onRenderSidebarTab(tab, html, option));
 Hooks.on("renderSceneControls", (controls, html, option) => UtilityBar.set(controls, html, option));
 Hooks.on("renderPlayerList", () => Players._appendAvatar());
+Hooks.on("updateUser", () => {
+    const target = document.querySelector("#mrkb-nameplate");
+    target.innerHTML = (game.user.character) ? game.user.character.name : game.user.name;
+});
 Hooks.on("preCreateChatMessage", (message, source, options, id) => ChatHandler.preProcesser(message, source, options, id));
 Hooks.on("renderChatMessage", (message, html, data) => ChatHandler.renderProcesser(message, html, data));
 Hooks.on("deleteChatMessage", (message) => ChatHandler.fixChatFlag(message));
@@ -107,8 +111,8 @@ const onRenderSidebarTab = (tab, html, option) => {
         document.querySelector(`#roll-mode-${target}`).classList.add("active");
     }
 
-    const controler = html[0].querySelector(".control-buttons");
-    controler.prepend(...rollList);
+    const controller = html[0].querySelector(".control-buttons");
+    controller.prepend(...rollList);
 
     const namePlate = document.createElement("h4");
     namePlate.id = "mrkb-nameplate";
@@ -116,10 +120,4 @@ const onRenderSidebarTab = (tab, html, option) => {
 
     const form = html[0].querySelector("#chat-form");
     form.prepend(namePlate);
-}
-const interfaceRealignment = () => {
-
-}
-class MRKBSetting {
-
 }
