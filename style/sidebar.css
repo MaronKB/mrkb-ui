@@ -1,0 +1,667 @@
+*::-webkit-scrollbar-thumb {
+    background-color: #ffffffaa;
+    border: 0;
+    border-radius: 3px;
+}
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: 0;
+    border-radius: 3px;
+}
+#sidebar {
+    position: relative;
+    height: 100%!important;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 0;
+    overflow: visible!important;
+    transform-origin: right;
+}
+#sidebar.collapsed {
+    width: 0!important;
+    height: 100vh;
+}
+
+
+#sidebar a:hover,
+#sidebar a:focus,
+#sidebar a.active {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+}
+#sidebar button {
+    color: var(--text-color);
+    font-family: var(--gothic-regular);
+    border: 0;
+    background: var(--foreground);
+    margin: 3px 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#sidebar button:hover,
+#sidebar button:focus,
+#sidebar button.active {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: none;
+}
+#sidebar button > i {
+    margin: 0;
+}
+#sidebar #sidebar-tabs {
+    flex: none;
+    width: 100%;
+    height: 40px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 40px);
+    justify-items: center;
+    background-color: var(--background);
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid var(--foreground);
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+    overflow: hidden;
+    pointer-events: all;
+    transition: height 0.3s;
+    z-index: 10;
+}
+#sidebar #sidebar-tabs.opened {
+    height: 80px;
+}
+#sidebar #sidebar-tabs .item,
+#sidebar #sidebar-tabs .collapse {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: var(--text-color);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    order: 99;
+}
+#sidebar #sidebar-tabs .item.active,
+#sidebar #sidebar-tabs .item:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: none;
+}
+#sidebar #sidebar-tabs .collapse {
+    order: 0;
+}
+#sidebar.collapsed #sidebar-tabs .collapse {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 40px;
+}
+#sidebar #sidebar-tabs .item[data-tab='chat'] {
+    order: 1;
+}
+#sidebar #sidebar-tabs .item[data-tab='combat'] {
+    order: 2;
+}
+#sidebar #sidebar-tabs .item[data-tab='actors'] {
+    order: 3;
+}
+#sidebar #sidebar-tabs .item[data-tab='items'] {
+    order: 4;
+}
+#sidebar #sidebar-tabs .item[data-tab='settings'] {
+    order: 5;
+}
+#sidebar #sidebar-tabs .item.fold {
+    order: 6;
+}
+#sidebar #sidebar-tabs .item.empty {
+    font-size: 8px;
+    opacity: 0.5;
+}
+#sidebar #sidebar-tabs > .item > i.notification-pip {
+    top: 3px;
+    right: 3px;
+    font-size: 10px;
+    color: var(--highlight);
+}
+#sidebar .sidebar-tab {
+    background: var(--background);
+}
+#sidebar #context-menu {
+    font-size: 12px;
+    max-width: unset;
+    background: var(--foreground);
+    padding: 3px;
+    border: 0;
+    border-radius: var(--radius);
+    margin: 1px 0 0 0;
+}
+#sidebar #context-menu .context-item {
+    line-height: 24px;
+}
+#sidebar #chat .jump-to-bottom {
+    width: 100%;
+    height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+#sidebar #chat .jump-to-bottom.hidden {
+    display: none;
+}
+#sidebar #chat .jump-to-bottom > a {
+    position: relative;
+    bottom: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: black;
+    background: white;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 auto;
+    opacity: 0.3;
+    overflow: hidden;
+    white-space: nowrap;
+    transform: rotate(45deg) scale(0.7);
+    transition: transform 0.3s 0.3s, width 0.3s, opacity 0.3s;
+}
+#sidebar #chat .jump-to-bottom > a:hover {
+    width: 170px;
+    opacity: 1;
+    text-shadow: none;
+    transform: none;
+    transition: transform 0.3s, width 0.3s 0.3s, opacity 0.3s;
+}
+#sidebar #chat .jump-to-bottom > a > i {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-45deg);
+    transition: transform 0.3s 0.3s;
+}
+#sidebar #chat .jump-to-bottom > a:hover > i {
+    transform: none;
+    transition: transform 0.3s;
+}
+#sidebar #chat #mrkb-bell {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    grid-template-rows: 17px 23px;
+    align-items: center;
+    text-align: center;
+    text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
+    background: var(--background);
+    border-radius: var(--radius);
+    box-shadow: 0 0 5px #1a1a1a;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    transition: 0.3s opacity;
+}
+#sidebar #chat #mrkb-bell.open {
+    opacity: 0.75;
+}
+#sidebar #chat #mrkb-bell #bell-img  {
+    grid-column: 1/4;
+    grid-row: 1/3;
+    width: 100%;
+    height: 40px;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.5;
+}
+#sidebar #chat #mrkb-bell #bell-subtitle {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    align-self: flex-end;
+    font-size: 12px;
+    z-index: 1;
+}
+#sidebar #chat #mrkb-bell #bell-title {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    height: 100%;
+    align-self: flex-start;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 1;
+}
+#sidebar #chat #mrkb-bell .fa-bell {
+    grid-column: 1/2;
+    grid-row: 1/3;
+    font-size: 24px;
+    font-weight: 600;
+    z-index: 1;
+}
+@-webkit-keyframes ring {
+    0% {
+    rotate(30deg);
+    }
+    100% {
+    rotate(-30deg);
+    }
+}
+
+#sidebar #chat #mrkb-favorite {
+    flex: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 3px;
+    padding: 0;
+    border-radius: 10px;
+    margin: 0 10px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    transition: 0.3s all;
+}
+#sidebar #chat #mrkb-favorite.active {
+    flex: 0 46px;
+    padding: 5px 0 0 0;
+}
+#sidebar #chat #mrkb-favorite::-webkit-scrollbar {
+    display: none;
+}
+#sidebar #chat #mrkb-favorite #favorites {
+    display: flex;
+    gap: 3px;
+}
+#sidebar #chat #mrkb-favorite .actor-icon {
+    position: relative;
+    flex: none;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    filter: brightness(0.7);
+}
+#sidebar #chat #mrkb-favorite .actor-icon.active,
+#sidebar #chat #mrkb-favorite .actor-icon:hover {
+    text-shadow: none;
+    filter: none;
+}
+#sidebar #chat #mrkb-favorite .actor-icon input,
+#sidebar #chat #mrkb-favorite .actor-icon label {
+    display: none;
+}
+#sidebar #chat #mrkb-favorite .actor-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+#sidebar #chat #mrkb-favorite .actor-icon h4 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    text-shadow: 0 1px 0 black, 1px 0 0 black, 0 -1px 0 black, -1px 0 0 black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+#sidebar #chat #msg-mode-list {
+    flex: none;
+    width: calc(100% - 10px);
+    height: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: var(--background);
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: transparent;
+    margin: 0 5px;
+    transition: 0.3s height;
+    overflow: hidden;
+}
+#sidebar #chat #msg-mode-list.active {
+    height: 34px;
+    border-color: var(--foreground);
+}
+#sidebar #chat #msg-mode-list > a {
+    flex: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    text-shadow: none;
+    color: #aaaaaa;
+    border-radius: 2px;
+}
+#sidebar #chat #msg-mode-list > a:hover {
+    color: white;
+}
+#sidebar #chat #msg-mode-list > a.active {
+    color: var(--highlight);
+}
+#sidebar #chat #msg-mode-list > a > i {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+#sidebar #chat #chat-controls {
+    flex: none;
+    height: 30px;
+    margin: 0 5px;
+}
+#sidebar #chat #chat-controls .chat-control-icon {
+    display: none;
+}
+#sidebar #chat #chat-controls .control-buttons {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+}
+#sidebar #chat #chat-controls .control-buttons > a {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 18px;
+    text-align: center;
+    text-shadow: none;
+    color: #aaaaaa;
+}
+#sidebar #chat #chat-controls .control-buttons > a.active,
+#sidebar #chat #chat-controls .control-buttons > a:hover {
+    color: white;
+}
+#sidebar #chat #chat-controls .control-buttons > a > i {
+    width: 24px;
+    font-size: 18px;
+    line-height: 24px;
+}
+#sidebar #chat #chat-controls .control-buttons .roll-mode {
+    display: none;
+    flex: 3;
+    justify-content: flex-start;
+    padding: 0 5px;
+}
+#sidebar #chat #chat-controls .control-buttons .roll-mode > span {
+    font-size: 12px;
+}
+#sidebar #chat #chat-controls .control-buttons .roll-mode.active {
+    display: flex;
+    color: var(--text-color);
+}
+#sidebar #chat #chat-controls .control-buttons .roll-mode:hover {
+    color: white;
+}
+#sidebar #chat #chat-controls .control-buttons#chat-controller {
+    flex: 4;
+}
+#sidebar #chat #chat-controls #msg-mode-changer {
+    position: relative;
+}
+#sidebar #chat #chat-controls #msg-mode-changer::after {
+    content: "\f021";
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    width: 16px;
+    height: 16px;
+    font-family: "FontAwesome", serif;
+    font-size: 14px;
+    text-shadow: 0 1px 0 black, 1px 0 0 black, 0 -1px 0 black, -1px 0 0 black;
+    color: white;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+#sidebar #chat #chat-form {
+    position: relative;
+    font-size: 14px;
+    margin: 0 5px 5px;
+}
+#sidebar #chat #chat-form #mobile-send {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 35px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    font-family: var(--gothic-bold);
+    font-size: 14px;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+#sidebar #chat #chat-form textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    font-family: var(--gothic-regular);
+    font-size: 14px;
+    color: var(--text-color);
+    background: var(--foreground);
+    box-shadow: none;
+    border: none;
+    border-radius: var(--radius);
+    transition: height 0.3s;
+}
+#sidebar #chat #chat-form textarea::-webkit-scrollbar  {
+    display: none;
+}
+#sidebar #chat #chat-form textarea::spelling-error  {
+    text-decoration: none;
+}
+#sidebar #chat #chat-form textarea.disabled {
+    flex: none;
+    height: 0!important;
+    padding: 0;
+}
+#sidebar #chat #chat-form #chat-editor {
+    background-position: center;
+    background-size: 60px;
+    background-repeat: no-repeat;
+}
+#sidebar #chat #chat-form #mrkb-nameplate {
+    font-family: var(--gothic-bold);
+    font-size: 24px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    line-height: 20px;
+    z-index: 1;
+    opacity: 0.1;
+    pointer-events: none;
+}
+#sidebar #chat #chat-form #cgmp-typing-notify {
+    font-size: 12px;
+    line-height: 12px;
+}
+
+#sidebar #chat .illandril-chat-enhancements--currentSpeaker,
+#sidebar #chat .illandril-chat-enhancements--current-speaker {
+    font-family: var(--gothic-bold);
+    font-size: 16px;
+    position: fixed;
+    bottom:5px;
+    right:5px;
+    line-height: 20px;
+    z-index: 1;
+    opacity: 0.4;
+    pointer-events: none;
+}
+#sidebar #chat #conref {
+    flex: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 8px;
+    overflow: hidden;
+    transition: flex 0.3s;
+}
+#sidebar #chat #conref.active {
+    flex: 0 0 30px;
+}
+#sidebar #chat #conref > h4 {
+    font-size: 14px;
+    text-align: center;
+}
+#sidebar #chat #conref .conref-title {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+    background: #ffffff0a;
+}
+#sidebar #chat #conref #con-title {
+}
+#sidebar #chat #conref #ref-title {
+    margin: 0 0 0 5px;
+}
+#sidebar #chat #conref > button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #ffffff0a;
+    padding: 0;
+    border-radius: 0;
+}
+#sidebar #chat #conref > div {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--gothic-bold);
+    font-size: 16px;
+    text-align: center;
+    background: #ffffff0a;
+}
+#sidebar #chat #conref #conref-divider {
+    flex: 0 0 2px;
+    background: white;
+}
+
+#sidebar .directory-footer button{
+    font-size: 12px;
+}
+#sidebar .directory .directory-list {
+    font-size: 12px;
+    line-height: 12px;
+    margin: 5px;
+}
+#sidebar .directory .directory-list .directory-item {
+    line-height: 30px;
+}
+#sidebar .directory .directory-list .directory-item .document {
+    padding: 2px 0;
+}
+#sidebar .directory .directory-list .directory-item .thumbnail {
+    width: 48px;
+    height: 32px;
+    margin: auto;
+    object-fit: cover;
+    object-position: center;
+}
+#sidebar .directory .directory-header .header-search input {
+    background: none;
+}
+#sidebar .folder > .folder-header {
+    border: none;
+    border-left: 5px solid var(--text-color);
+}
+#sidebar .document-name {
+    line-height: 32px;
+}
+
+#sidebar #global-volume {
+    order: 1;
+}
+#sidebar #playlists #currently-playing {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+#sidebar #playlists #global-volume {
+    border: none!important;
+}
+#sidebar #playlists .global-control .playlist-header {
+    border: none!important;
+}
+#sidebar #playlists .playlist {
+    padding: 0 4px;
+}
+
+@media (hover: none), (pointer: coarse), (pointer: none), (max-width: 400px) {
+    #mrkb-hud {
+        display: none!important;
+    }
+    #sidebar {
+        width: 100vw!important;
+    }
+    #sidebar #chat #selector-opener {
+        display: none;
+    }
+    #sidebar #chat #chat-controls {
+    }
+    #sidebar #chat #chat-form {
+        flex: none!important;
+        height: fit-content;
+    }
+    #sidebar #chat #chat-form #mobile-send {
+        display: flex;
+    }
+    .vtt.spreadsheet #sidebar #chat #chat-form #mobile-send {
+        display: none;
+    }
+    #sidebar #chat #chat-form textarea {
+        height: 35px;
+        line-height: 19px;
+        width: calc(100% - 65px);
+        padding: 8px 12px;
+        transition: none;
+    }
+    .vtt.spreadsheet #sidebar #chat #chat-form textarea {
+        width: 100%;
+        padding: 4px;
+    }
+    #sidebar #chat #chat-form #mrkb-nameplate {
+        width: calc(100% - 65px);
+        font-size: 16px;
+    }
+    #overlay-control {
+        display: none;
+    }
+}

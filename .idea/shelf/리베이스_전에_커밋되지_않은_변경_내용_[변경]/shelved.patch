@@ -1,0 +1,21 @@
+Index: .idea/mrkb-ui-core.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/src\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/mrkb-ui-core.iml b/.idea/mrkb-ui-core.iml
+--- a/.idea/mrkb-ui-core.iml	(revision 0c2a9127fa8304dc38ce596ac2d93ea7e7d5cdbe)
++++ b/.idea/mrkb-ui-core.iml	(date 1710501117647)
+@@ -3,8 +3,9 @@
+   <component name="NewModuleRootManager" inherit-compiler-output="true">
+     <exclude-output />
+     <content url="file://$MODULE_DIR$">
+-      <excludeFolder url="file://$MODULE_DIR$/src" />
++      <excludeFolder url="file://$MODULE_DIR$/node_modules" />
+     </content>
++    <content url="file://$MODULE_DIR$/node_modules" />
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>

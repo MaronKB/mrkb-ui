@@ -1,0 +1,61 @@
+@import "root.css";
+@import "chat.css";
+
+@import url("https://font.elice.io/css?family=Elice+Digital+Coding");
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans&display=swap&subset=korean');
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family:'DNFForgedBlade';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Light.otf') format('opentype');
+    font-style:normal;
+    font-weight:500;
+}
+@font-face{
+    font-family:'DNFForgedBladeBold';
+    src:url('//cdn.df.nexon.com/img/common/font/DNFForgedBlade-Bold.otf') format('opentype');
+    font-style:normal;
+    font-weight:700;
+}
+@font-face {
+    font-family: 'Fairytale_ddobak';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_03@1.0/Fairytale_ddobak.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KCCImkwontaek';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/KCCImkwontaek.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ROEHOE-CHAN';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/ROEHOE-CHAN.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MYArirang-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/MYArirang-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EliceDigitalBaeum_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EliceDigitalBaeum_Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}

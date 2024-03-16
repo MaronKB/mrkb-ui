@@ -1,0 +1,193 @@
+#mrkb-selector {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-family: var(--monospace);
+    color: white;
+    padding: 0;
+    background: #000000aa;
+    pointer-events: all;
+    transition: 0.3s all;
+    overflow: hidden;
+    z-index: 50;
+}
+#mrkb-selector.active {
+    width: 450px;
+}
+#mrkb-selector #actor-folder {
+    flex: none;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #00000044;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#mrkb-selector #actor-folder::-webkit-scrollbar-track {
+    display: none;
+}
+#mrkb-selector #actor-folder li {
+    flex: none;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 36px;
+    color: #aaaaaa;
+    padding: 2px 0;
+    border-bottom: 1px solid #555555;
+    margin: 0 0 0 5px;
+}
+#mrkb-selector #actor-folder li.active,
+#mrkb-selector #actor-folder li:hover {
+    color: white;
+}
+#mrkb-selector #actor-folder li:last-child {
+    border-bottom: 0;
+}
+#mrkb-selector #actor-folder li::before {
+    flex: none;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "\f07b";
+    font-family: "FontAwesome", serif;
+    font-size: 18px;
+    margin: 0 5px 0 0;
+}
+#mrkb-selector #actor-folder li.active::before {
+    content: "\f07c";
+}
+#mrkb-selector #actor-folder li > span {
+    max-height: 26px;
+    display: -webkit-box;
+    font-size: 11px;
+    line-height: 13px;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+#mrkb-selector #actor-tab {
+    flex: none;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#mrkb-selector #actor-selector-title {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #dddddd;
+    padding: 0 5px;
+    margin: 0 0 auto 0;
+}
+#mrkb-selector #actor-selector-refresh {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 5px;
+}
+#mrkb-selector .actor-grid {
+    display: none;
+    max-height: calc(100% - 100px);
+    padding: 10px;
+    grid-template-columns: repeat(4, 60px);
+    grid-auto-rows: 80px;
+    gap: 5px;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#mrkb-selector .actor-grid::-webkit-scrollbar-track {
+    display: none;
+}
+#mrkb-selector .actor-grid.active {
+    display: grid;
+}
+#mrkb-selector .actor-grid .actor-icon {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 60px 20px;
+    border-radius: 10px;
+}
+#mrkb-selector .actor-grid .actor-icon:hover,
+#mrkb-selector .actor-grid .actor-icon.active {
+    text-shadow: none;
+}
+#mrkb-selector .actor-grid .actor-icon input {
+    display: none;
+}
+#mrkb-selector .actor-grid .actor-icon input + label {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    color: grey;
+    justify-self: end;
+    margin: 5px 5px 0 0;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    pointer-events: none;
+    z-index: 1;
+}
+#mrkb-selector .actor-grid .actor-icon input:checked + label {
+    color: white;
+    text-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-selector .actor-grid .actor-icon img {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 5px;
+    filter: brightness(0.7);
+}
+#mrkb-selector .actor-grid .actor-icon:hover img,
+#mrkb-selector .actor-grid .actor-icon.active img {
+    filter: none;
+}
+#mrkb-selector .actor-grid .actor-icon h4 {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    font-size: 11px;
+    line-height: 20px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #aaaaaa;
+    margin: 0;
+}
+#mrkb-selector .actor-grid .actor-icon:hover h4,
+#mrkb-selector .actor-grid .actor-icon.active h4 {
+    color: white;
+}
+#mrkb-selector #actor-selector-tooltip {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    line-height: 14px;
+    color: #dddddd;
+    padding: 0 10px;
+    margin: auto 0 0 0;
+}
+#mrkb-selector #actor-selector-tooltip span:last-child {
+    text-align: right;
+}

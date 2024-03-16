@@ -1,0 +1,47 @@
+{
+  "id": "mrkb-ui",
+  "title": "MRKB UI",
+  "description": "<p>Core interface for MRKB UI.</p><p>MRKB UI의 코어 인터페이스입니다.</p>",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11.315"
+  },
+  "authors": [
+    {
+      "name": "MRKB",
+      "discord": "mrkb",
+      "flags": {}
+    }
+  ],
+  "scripts": [
+  ],
+  "esmodules": [
+    "script/main.mjs"
+  ],
+  "styles": [
+    "style/main.css",
+    "style/sidebar.css",
+    "style/mrkbui.css"
+  ],
+  "relationships": {
+    "requires": []
+  },
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json",
+      "flags": {}
+    },
+    {
+      "lang": "ko",
+      "name": "한국어 (Korean)",
+      "path": "lang/ko.json",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/MaronKB/mrkb-ui/",
+  "manifest": "https://raw.githubusercontent.com/MaronKB/mrkb-ui/main/module.json",
+  "download": "https://github.com/MaronKB/mrkb-ui/archive/main.zip"
+}

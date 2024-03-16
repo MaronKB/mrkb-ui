@@ -1,0 +1,502 @@
+@import "actorSelector.css";
+@import "utilityBar.css";
+
+#ui-left,
+#ui-middle,
+#ui-right {
+    display: none;
+}
+#mrkb-hud {
+    position: relative;
+    flex: 1;
+    height: 100%;
+    max-height: 100vh;
+    font-family: var(--gothic-regular);
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+#mrkb-header {
+    grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 10px;
+    z-index: 2;
+}
+#mrkb-bodies {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#mrkb-float {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+}
+#mrkb-openers {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin: -40px 0 0 0;
+    pointer-events: none;
+    z-index: 99;
+}
+#mrkb-openers #ui-bot-open {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    font-size: 18px;
+    margin: 0 auto 20px auto;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    pointer-events: all;
+    transition: 0.3s all;
+}
+#mrkb-openers #ui-bot-open:hover {
+    text-shadow: 0 0 10px var(--highlight);
+}
+#mrkb-openers #ui-bot-open.active {
+    margin: 20px auto 0 auto;
+    transform: rotateZ(180deg);
+}
+#mrkb-openers #ui-bot-open > i {
+    line-height: 25px;
+}
+
+#mrkb-buttons {
+    grid-column: 1/2;
+    grid-row: 1/4;
+    width: fit-content;
+    margin: 10px 0 0 0;
+    align-self: end;
+    display: flex;
+    pointer-events: all;
+    transition: all 0.3s;
+}
+#mrkb-buttons #toggle-players {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 36px;
+    flex: none;
+    color: var(--text-color);
+    font-size: 16px;
+    background: #00000022;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0 5px 0 0;
+    transition: margin 0.3s;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+#mrkb-buttons #toggle-players:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #toggle-players > i {
+    line-height: 30px;
+    margin: 0;
+}
+#mrkb-buttons #toggle-players > i::before {
+    content: "\e073";
+}
+#mrkb-buttons #toggle-players.active > i::before {
+    content: "\f0c0";
+}
+#mrkb-buttons #hotbar {
+    width: fit-content;
+    height: 30px;
+    background: none;
+    border: 0;
+    margin: 0;
+}
+#mrkb-buttons #hotbar #hotbar-directory-controls {
+    flex: 0 0 30px;
+    height: 30px;
+    color: var(--text-color);
+    margin: 0 5px 0 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+#mrkb-buttons #hotbar #hotbar-directory-controls #bar-toggle {
+    display: none;
+}
+#mrkb-buttons #hotbar #hotbar-directory-controls #macro-directory {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 36px;
+    flex: none;
+    color: var(--text-color);
+    font-size: 16px;
+    background: #00000022;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+#mrkb-buttons #hotbar #hotbar-directory-controls #macro-directory:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #hotbar #action-bar {
+    display: grid;
+    grid-template-columns: 30px 345px 30px 30px 10px;
+    grid-template-rows: 30px;
+    gap: 5px;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    display: flex;
+    gap: 5px;
+    border: none;
+    margin: 0;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    line-height: 36px;
+    flex: none;
+    background: #00000022;
+    box-shadow: none;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro .macro-icon {
+    width: 26px;
+    height: 26px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    border-radius: 50%;
+    margin: auto;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro .macro-key {
+    position: initial;
+    width: 30px;
+    height: 30px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+    text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+    padding: 2px 0 0 0;
+    background: none;
+    z-index: 1;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro:hover {
+    background: #00ffff22;
+    box-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro:hover .macro-key {
+    opacity: 0;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro #context-menu {
+    background: var(--background-trans);
+    border: none;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro #context-menu .context-items {
+    list-style: none;
+    margin: 0;
+    padding: 5px 8px 3px 8px;
+}
+#mrkb-buttons #hotbar #action-bar #macro-list .macro #context-menu .context-items .context-item {
+    font-size: 12px;
+    line-height: 20px;
+    text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
+    padding: 0;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-lock {
+    grid-column: 4/5;
+    grid-row: 1/2;
+    width: 30px;
+    height: 30px;
+    background: #00000022;
+    box-shadow: none;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-lock:hover {
+    background: #00ffff22;
+    box-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-lock a.page-control {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-lock:hover a.page-control {
+    text-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls {
+    grid-column: 1/6;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 30px 345px 30px 30px 10px;
+    grid-template-rows: 30px;
+    gap: 5px;
+    margin: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls a.page-control {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 36px;
+    flex: none;
+    color: var(--text-color);
+    font-size: 16px;
+    background: #00000022;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    transform: rotate(90deg);
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls a.page-control:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--highlight);
+    box-shadow: 0 0 5px var(--highlight);
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls a.page-control[data-action="page-down"] {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls a.page-control[data-action="page-up"] {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+#mrkb-buttons #hotbar #action-bar #hotbar-page-controls span.page-number {
+    grid-column: 5/6;
+    grid-row: 1/2;
+    height: fit-content;
+    align-items: flex-end;
+    font-size: 12px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    margin: auto 0 4px 0;
+    pointer-events: none;
+}
+
+#mrkb-players {
+    flex: none;
+    display: flex;
+    width: 250px;
+    height: 100%;
+}
+#mrkb-players #players {
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    background-color: transparent;
+    border: 0;
+    margin: 5px 0;
+    pointer-events: none;
+    overflow: hidden;
+    transition: 0.3s width;
+}
+#mrkb-players.active #players {
+    width: 100%;
+}
+#mrkb-players #players > h3 {
+    display: none;
+}
+#mrkb-players #players .player {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    flex-wrap: nowrap;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    align-items: center;
+    text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+    pointer-events: all;
+}
+#mrkb-players #players .player.context {
+    margin: 0;
+    border: 0;
+}
+#mrkb-players #players .player .player-active {
+    display: none;
+}
+#mrkb-players #players .player .player-active.inactive + .player-name {
+    opacity: 0.25;
+}
+#mrkb-players #players .player .player-name {
+    flex: 1;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    height: 20px;
+    font-size: 11px;
+    line-height: 11px;
+    padding: 0 30px 0 0;
+    margin: 0;
+    background: linear-gradient(120deg, transparent 30px,
+    var(--background) 30px,
+    transparent calc(100% - 15px)
+    );
+}
+#mrkb-players #players .player .player-name .player-avatar {
+    flex: none;
+    width: 40px;
+    height: 50px;
+    background: #ffffff77;
+    margin: 0 0 0 10px;
+    border-right: 3px solid #ffffff77;
+    transform: rotate(30deg) scale(1);
+    overflow: hidden;
+}
+#mrkb-players #players .player .player-name .player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(-30deg) scale(1.5);
+}
+#mrkb-players #players .player .bennies-count {
+    flex: none;
+    width: 60px;
+    color: var(--background);
+    font-size: 12px;
+    line-height: 20px;
+    margin: 0 0 0 -20px;
+    background: linear-gradient(120deg,
+    transparent 15px,
+    var(--text-color) 15px calc(100% - 15px),
+    transparent calc(100% - 15px)
+    );
+    text-shadow: none;
+}
+#mrkb-players #players .player .bennies-count:hover {
+    filter: none;
+    color: white;
+    background: linear-gradient(120deg,
+    transparent 15px,
+    var(--background) 15px calc(100% - 15px),
+    transparent calc(100% - 15px)
+    );
+    text-shadow: 0 0 10px var(--highlight);
+}
+
+#portrait-view {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    width: 300px;
+    height: 300px;
+    display: grid;
+    border-radius: 20px 0;
+    pointer-events: none;
+    z-index: 99;
+    animation: appear ease 0.3s forwards;
+    overflow: hidden;
+}
+#portrait-view-bck {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(2);
+    filter: blur(4px) brightness(0.4);
+}
+#portrait-view-img {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    z-index: 1;
+    object-fit: contain;
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+#pause {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    margin: 0;
+    background: none;
+    opacity: 0;
+}
+#pause.paused {
+    display: flex;
+    backdrop-filter: blur(2px) brightness(0.7);
+    opacity: 1;
+}
+#pause.paused:hover {
+    backdrop-filter: none;
+}
+#pause.paused img {
+    display: none;
+}
+#pause.paused figcaption {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 0;
+    text-shadow: none;
+    color: black;
+    background: linear-gradient(to right, darkgoldenrod, gold, darkgoldenrod);
+    border-width: 10px 0;
+    border-style: solid;
+    border-image: repeating-linear-gradient(135deg, transparent 0, transparent 5px, black 5px, black 10px) 10;
+    box-shadow: 0 0 10px black;
+    margin: auto 0;
+    opacity: 0.7;
+    transform: rotateZ(-5deg) scale(1.2);
+}

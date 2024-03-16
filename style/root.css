@@ -1,0 +1,70 @@
+html{
+    --gothic-regular: 'NEXON Lv1 Gothic OTF', serif;
+    --gothic-bold: 'NEXON Lv1 Gothic OTF Bold', serif;
+    --gothic-extra: 'Black Han Sans', serif;
+
+    --mingjo-regular: "DNFForgedBlade", serif;
+    --mingjo-bold: "DNFForgedBladeBold", serif;
+
+    --handwrite-regular: "Fairytale_ddobak", serif;
+    --handwrite-bold: "KCCImkwontaek", serif;
+
+    --cursive-regular: "ROEHOE-CHAN", serif;
+    --cursive-bold: "MYArirang-Medium", serif;
+
+    --text-heading: white;
+    --text-color: lightgrey;
+    --text-tooltip: grey;
+
+    --highlight: cornflowerblue;
+    --highlight-dark: steelblue;
+    --highlight-light: powderblue;
+    --highlight-thick: #00AAFF;
+
+    --health-color: white;
+    --mana-color: lightgrey;
+    --boss-color: darkred;
+
+    --foreground: #222222;
+    --foreground-trans: #22222277;
+
+    --background: #1a1a1a;
+    --background-trans: #1a1a1a77;
+    --background-highlight: darkcyan;
+    --background-bright: #333333;
+
+    --radius: 5px;
+
+    --sidebar-width: 300px;
+    --sidebar-nav-width: 40px;
+    --bottom-main-height: 50px;
+    --bottom-sub-height: 30px;
+
+    --max-height: 100vh;
+}
+body.vtt {
+    font-family: var(--gothic-regular);
+    max-height: var(--max-height);
+}
+.vtt h1,
+.vtt h2,
+.vtt h3,
+.vtt h4,
+.vtt h5,
+.vtt h6 {
+    font-family: var(--gothic-bold);
+    border: 0;
+    margin: 0;
+}
+.vtt em {
+    font-family: var(--mingjo-regular);
+}
+.vtt img {
+    border: 0;
+}
+
+.app {
+    background: none;
+    background-color: var(--background);
+    box-shadow: none;
+}

@@ -1,0 +1,102 @@
+#mrkb-bottom {
+    position: relative;
+    width: 100%;
+    height: 0;
+    justify-self: flex-end;
+    display: flex;
+    overflow: hidden;
+    z-index: 90;
+    transition: all 0.3s;
+}
+#mrkb-bottom.active {
+    height: var(--bottom-main-height);
+    overflow: visible;
+}
+#mrkb-bottom #controls {
+    width: 100%;
+    height: 100%;
+    background: var(--background);
+    padding: 0;
+}
+#mrkb-bottom #controls .control-tools {
+    flex: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    padding: 0;
+    margin: 0;
+}
+#mrkb-bottom #controls .control-tools li {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-color);
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    margin: 0;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: center;
+}
+#mrkb-bottom #controls .control-tools li.active,
+#mrkb-bottom #controls .control-tools li:hover {
+    color: white;
+    border: 0;
+    text-shadow: 0 0 10px var(--highlight);
+}
+#mrkb-bottom #controls .control-tools li h5 {
+    font-size: 10px;
+    white-space: nowrap;
+    line-height: 10px;
+}
+#mrkb-bottom #controls .main-controls {
+    background: var(--background);
+}
+#mrkb-bottom #controls .main-controls li {
+    flex: 1;
+}
+#mrkb-bottom #controls .main-controls li[data-widget="bottom"] {
+    order: 99;
+}
+#mrkb-bottom #controls .main-controls.disabled {
+    opacity: 1;
+}
+#mrkb-bottom #controls .main-controls.disabled li {
+    filter: brightness(0.5);
+    pointer-events: none;
+}
+#mrkb-bottom #controls .main-controls.disabled li[data-tool="mrkb-menu"] {
+    filter: none;
+    pointer-events: all;
+}
+#mrkb-bottom #controls .sub-controls {
+    position: absolute;
+    top: calc(-1 * (var(--bottom-sub-height) + 10px));
+    left: 0;
+    width: calc(100% - 10px);
+    height: var(--bottom-sub-height);
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    margin: 5px;
+}
+#mrkb-bottom #controls .sub-controls li {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    color: var(--text-color);
+    background: #00000022;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
