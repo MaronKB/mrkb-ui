@@ -36,7 +36,6 @@ export default class ChatHandler {
         message.updateSource({
             type : type,
             speaker : speaker,
-            content : con,
             flags : {"mrkb-ui" : option}
         });
     }
