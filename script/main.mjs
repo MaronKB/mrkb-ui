@@ -111,7 +111,7 @@ const onRenderSidebarTab = (tab, html, option) => {
         document.querySelector(`#roll-mode-${target}`).classList.add("active");
     }
 
-    const controller = html[0].querySelector(".control-buttons");
+    const controller = html[0].querySelector("#chat-controls");
     controller.prepend(...rollList);
 
     const namePlate = document.createElement("h4");

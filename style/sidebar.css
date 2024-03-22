@@ -379,7 +379,7 @@
     display: flex;
     justify-content: space-around;
 }
-#sidebar #chat #chat-controls .control-buttons > a {
+#sidebar #chat #chat-controls > a {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -390,29 +390,29 @@
     text-shadow: none;
     color: #aaaaaa;
 }
-#sidebar #chat #chat-controls .control-buttons > a.active,
-#sidebar #chat #chat-controls .control-buttons > a:hover {
+#sidebar #chat #chat-controls > a.active,
+#sidebar #chat #chat-controls > a:hover {
     color: white;
 }
-#sidebar #chat #chat-controls .control-buttons > a > i {
+#sidebar #chat #chat-controls > a > i {
     width: 24px;
     font-size: 18px;
     line-height: 24px;
 }
-#sidebar #chat #chat-controls .control-buttons .roll-mode {
+#sidebar #chat #chat-controls .roll-mode {
     display: none;
     flex: 3;
     justify-content: flex-start;
     padding: 0 5px;
 }
-#sidebar #chat #chat-controls .control-buttons .roll-mode > span {
+#sidebar #chat #chat-controls .roll-mode > span {
     font-size: 12px;
 }
-#sidebar #chat #chat-controls .control-buttons .roll-mode.active {
+#sidebar #chat #chat-controls .roll-mode.active {
     display: flex;
     color: var(--text-color);
 }
-#sidebar #chat #chat-controls .control-buttons .roll-mode:hover {
+#sidebar #chat #chat-controls .roll-mode:hover {
     color: white;
 }
 #sidebar #chat #chat-controls .control-buttons#chat-controller {
