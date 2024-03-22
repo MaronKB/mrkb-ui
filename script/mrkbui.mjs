@@ -25,15 +25,44 @@ export default class MRKBUI {
 
         const container = document.createElement("div");
         container.id = "mrkb-profile";
-        container.append(buttons)
+        container.append(buttons);
 
         const player = Players.create();
 
+        const controller = this.sceneController();
+
         const head = document.createElement("div");
         head.id = "mrkb-header";
-        head.append(container, player);
+        head.append(container, player, controller);
 
         return head;
+    }
+    static sceneController() {
+        const nav = document.querySelector("#navigation");
+
+
+        const button = document.createElement("a");
+        button.id = "display-btn-sceneNavToggle";
+        button.title = "장면 네비게이션 보이기/숨기기";
+        button.className = "display-button fa-solid fa-grid";
+        button.onclick = () => {
+            const target = document.querySelector("#navigation");
+            target.classList.toggle("active");
+        }
+
+        const controller = document.createElement("div");
+        controller.id = "display-controller";
+        controller.append(button);
+
+        const menu = document.createElement("div");
+        menu.id = "screen-controller-nav";
+        menu.append(nav, controller);
+
+        const div = document.createElement("div");
+        div.id = "screen-controller";
+        div.append(menu);
+
+        return div;
     }
     static createBodyUI() {
         const float = this.createFloatsUI();
@@ -79,8 +108,6 @@ export default class MRKBUI {
         bot.className = UIToggle.get("bottom");
         bot.dataset.widget = "bottom";
         bot.append(controls);
-
-        const left = document.querySelector("#ui-left");
 
         return bot;
     }

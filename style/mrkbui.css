@@ -349,7 +349,7 @@
     padding: 0;
     border: 0;
     align-items: center;
-    text-shadow: -2px 0px black, 0px 2px black, 2px 0px black, 0px -2px black;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
     pointer-events: all;
 }
 #mrkb-players #players .player.context {
@@ -499,4 +499,91 @@
     margin: auto 0;
     opacity: 0.7;
     transform: rotateZ(-5deg) scale(1.2);
+}
+
+#screen-controller {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 100;
+}
+#screen-controller-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    border-radius: var(--radius);
+    overflow: hidden;
+    pointer-events: all;
+}
+#screen-controller-nav #navigation {
+    width: 0;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    border-radius: 0;
+    margin: 0;
+}
+#screen-controller-nav #navigation.active {
+    width: fit-content;
+}
+#screen-controller-nav #navigation .nav-item {
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+    white-space: nowrap;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+}
+#screen-controller-nav #navigation #nav-toggle {
+    display: none;
+}
+#screen-controller-nav #navigation #scene-list {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+#screen-controller-nav #navigation #scene-list .scene {
+    width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#screen-controller-nav #navigation #scene-list .scene.gm,
+#screen-controller-nav #navigation #scene-list .scene.view,
+#screen-controller-nav #navigation #scene-list .scene.context {
+    background: none;
+    border: 0;
+    box-shadow: none;
+}
+#screen-controller-nav #navigation #scene-list .scene:hover,
+#screen-controller-nav #navigation #scene-list .scene.view {
+    color: black;
+    background: white;
+}
+#screen-controller-nav #navigation #scene-list .scene > a:hover {
+    color: black;
+    text-shadow: none;
+}
+#screen-controller-nav #display-controller {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#screen-controller-nav #display-controller .display-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    color: var(--text-color);
+    text-shadow: none;
+}
+#screen-controller-nav #display-controller .display-button:hover {
+    color: black;
+    background: white;
 }
