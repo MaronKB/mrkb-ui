@@ -2,7 +2,7 @@
   "id": "mrkb-ui",
   "title": "MRKB UI",
   "description": "<p>Core interface for MRKB UI.</p><p>MRKB UI의 코어 인터페이스입니다.</p>",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "compatibility": {
     "minimum": "11",
     "verified": "11.315"

@@ -7,6 +7,28 @@ export default class Setting {
     }
 
     static register() {
+        game.settings.register("mrkb-ui", "font-size", {
+            name: game.i18n.localize("MRKB.Settings.FontSize.Title"),
+            hint: game.i18n.localize("MRKB.Settings.FontSize.Hint"),
+            scope: "client",
+            config: true,
+            type: Number,
+            range: {
+                min: 8,
+                max: 20
+            },
+            default: 14,
+            onChange: (value) => document.querySelector("#chat-log").style.setProperty("--font-size", value + "px")
+        });
+        game.settings.register("mrkb-ui", "use-portrait", {
+            name: game.i18n.localize("MRKB.Settings.UsePortrait.Title"),
+            hint: game.i18n.localize("MRKB.Settings.UsePortrait.Hint"),
+            scope: "world",
+            config: true,
+            type: Boolean,
+            default: true,
+            onChange: () => window.location.reload()
+        });
 
         /*UI*/
 

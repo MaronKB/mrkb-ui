@@ -568,6 +568,17 @@
     color: black;
     text-shadow: none;
 }
+#screen-controller-nav #navigation #scene-list .scene .scene-players {
+
+}
+#screen-controller-nav #navigation #scene-list .scene .scene-players .scene-player {
+    width: 10px;
+    height: 7px;
+    color: transparent;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+}
 #screen-controller-nav #display-controller {
     display: flex;
     justify-content: center;

@@ -1,3 +1,5 @@
+import Setting from "./setting.mjs";
+
 const getPortrait = (id, userId) => {
     const avatar = game.users.get(userId).avatar ?? "";
     return game.actors.get(id)?.img ?? avatar;
@@ -61,17 +63,19 @@ export default class ChatHandler {
         }
     }
     static renderProcesser(message, html) {
-        const id = message.speaker.actor;
-        const actorImage = getPortrait(id, message.user.id);
+        if (Setting.get("use-portrait")) {
+            const id = message.speaker.actor;
+            const actorImage = getPortrait(id, message.user.id);
 
-        const portrait = document.createElement("img");
-        portrait.src = actorImage;
-        portrait.className = "message-portrait";
-        portrait.onmouseenter = (event) => ChatHandler.expandPortrait(event);
-        portrait.onmouseleave = () => ChatHandler.cleanupExpanded();
+            const portrait = document.createElement("img");
+            portrait.src = actorImage;
+            portrait.className = "message-portrait";
+            portrait.onmouseenter = (event) => ChatHandler.expandPortrait(event);
+            portrait.onmouseleave = () => ChatHandler.cleanupExpanded();
 
-        const header = html[0].querySelector(".message-header");
-        header.prepend(portrait);
+            const header = html[0].querySelector(".message-header");
+            header.prepend(portrait);
+        }
 
         const date = ChatHandler.realignTime(message.timestamp);
         const time = `${date.ye}.${date.mo}.${date.da} ${date.ho}:${date.mi}:${date.se}`;

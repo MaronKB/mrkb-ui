@@ -3,6 +3,16 @@
     "Character" : "캐릭터",
     "Sheet" : "시트",
     "Unclassified" : "미분류",
-    "ActorSelectorTooltip" : "<span>[좌클릭]<br/>[Ctrl+좌클릭]</span><span>액터 변경<br/>시트 열기</span>"
+    "ActorSelectorTooltip" : "<span>[좌클릭]<br/>[Ctrl+좌클릭]</span><span>액터 변경<br/>시트 열기</span>",
+    "Settings" : {
+      "FontSize" : {
+        "Title" : "채팅 폰트 사이즈",
+        "Hint" : "채팅 메시지에 사용되는 폰트 사이즈를 지정합니다. 과도하게 올리거나 내릴 경우 스타일이 붕괴할 수 있습니다. 기본 사이즈는 14입니다."
+      },
+      "UsePortrait" : {
+        "Title" : "포트레이트 사용",
+        "Hint" : "자체 포트레이트를 사용합니다. D&D5e 시스템이나 다른 모듈과의 호환성을 위해 사용하지 않도록 설정할 수 있습니다."
+      }
+    }
   }
 }

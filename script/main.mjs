@@ -41,7 +41,7 @@ const onInit = () => {
 const onReady = () => {
     MRKBUI.create();
 }
-const onRenderSidebar = (sidebar, html, option) => {
+const onRenderSidebar = (sidebar, html/*, option*/) => {
     html[0].parentElement.parentElement.append(html[0]);
 
     const fold = document.createElement("a");
@@ -60,8 +60,10 @@ const onRenderSidebar = (sidebar, html, option) => {
         tabs.append(empty);
     }
 }
-const onRenderSidebarTab = (tab, html, option) => {
+const onRenderSidebarTab = (tab, html/*, option*/) => {
     if (tab.id !== "chat") return;
+
+    html[0].querySelector("#chat-log").style.setProperty("--font-size", Setting.get("font-size") + "px");
 
     html[0].querySelector(".chat-control-icon").remove();
     html[0].querySelector(".roll-type-select").remove();

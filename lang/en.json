@@ -3,6 +3,16 @@
     "Character" : "Character",
     "Sheet" : "Sheet",
     "Unclassified" : "Unclassified",
-    "ActorSelectorTooltip" : "<span>[Left click]<br/>[Ctrl+Left Click]</span><span>Change Actor<br/>Open Sheet</span>"
+    "ActorSelectorTooltip" : "<span>[Left click]<br/>[Ctrl+Left Click]</span><span>Change Actor<br/>Open Sheet</span>",
+    "Settings" : {
+      "FontSize" : {
+        "Title" : "Font size for chat messages",
+        "Hint" : "Specifies the font size used in chat messages. If you raise or lower it excessively, the style may collapse. The default size is 14."
+      },
+      "UsePortrait" : {
+        "Title" : "Use portraits",
+        "Hint" : "This module uses their own portraits. This can be disabled for compatibility with D&D5e systems or other modules."
+      }
+    }
   }
 }
