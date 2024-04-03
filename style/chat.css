@@ -145,12 +145,6 @@
     word-break: break-all;
     color: var(--text-color);
 }
-#chat-log .chat-message .message-content .confilct-text {
-    width: 0;
-    float: left;
-    white-space: nowrap;
-    user-select: text;
-}
 #chat-log .chat-message .message-content img{
     border: none;
     max-width: 1200px;
