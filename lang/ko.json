@@ -2,6 +2,7 @@
   "MRKB": {
     "Character" : "캐릭터",
     "Clear" : "지우기",
+    "EditMessage" : "메시지 수정",
     "Export" : "내보내기",
     "Roll" : {
       "Public" : "공개",

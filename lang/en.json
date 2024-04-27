@@ -2,6 +2,7 @@
   "MRKB": {
     "Character" : "Character",
     "Clear" : "Clear",
+    "EditMessage" : "Edit Message",
     "Export" : "Export",
     "Roll" : {
       "Public" : "Public",

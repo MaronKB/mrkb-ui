@@ -1,4 +1,5 @@
 import Setting from "./setting.mjs";
+import ChatEditor from "./chatEditor.mjs";
 
 const getPortrait = (id, userId) => {
     const avatar = game.users.get(userId).avatar ?? "";
@@ -95,6 +96,14 @@ export default class ChatHandler {
 
         const sender = html[0].querySelector("h4.message-sender");
         sender.innerHTML += `<span class="message-user">${message.user.name}</span>`;
+
+        if (message.isAuthor || game.user.isGM) {
+            const a = document.createElement("a");
+            a.classList.add("message-edit");
+            a.onclick = () => ChatEditor._edit(message.id);
+            a.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+            times.after(a);
+        }
 
         ChatHandler.checkChatFlag(message, html);
     }
