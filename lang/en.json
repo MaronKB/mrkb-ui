@@ -1,6 +1,14 @@
 {
   "MRKB": {
     "Character" : "Character",
+    "Clear" : "Clear",
+    "Export" : "Export",
+    "Roll" : {
+      "Public" : "Public",
+      "Private" : "Private",
+      "Blind" : "Blind",
+      "Self" : "Self"
+    },
     "Sheet" : "Sheet",
     "Unclassified" : "Unclassified",
     "ActorSelectorTooltip" : "<span>[Left click]<br/>[Ctrl+Left Click]</span><span>Change Actor<br/>Open Sheet</span>",

@@ -50,9 +50,15 @@ export default class MRKBUI {
             target.classList.toggle("active");
         }
 
+        const collapse = document.createElement("a");
+        collapse.id = "display-btn-collapse";
+        collapse.title = game.i18n.localize("SIDEBAR.CollapseToggle");
+        collapse.className = "display-button fa-solid fa-caret-right";
+        collapse.onclick = () => document.querySelector("#sidebar-tabs > .collapse").click();
+
         const controller = document.createElement("div");
         controller.id = "display-controller";
-        controller.append(button);
+        controller.append(button, collapse);
 
         const menu = document.createElement("div");
         menu.id = "screen-controller-nav";
