@@ -32,6 +32,9 @@
     box-shadow: none;
     opacity: 0.4;
 }
+#chat-log .chat-message.message::before {
+    content: none;
+}
 #chat-log .chat-message .message-header {
     position: relative;
     width: 100%;
@@ -425,4 +428,45 @@
 }
 .chat-message .fatex-description p {
     margin: 3px 0;
+}
+
+/*dnd5e*/
+.system-dnd5e #chat-log .chat-message .message-header .message-sender {
+    flex-direction: row;
+    gap: 5px;
+}
+.system-dnd5e #chat-log .chat-message .message-header .message-sender .avatar {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    margin: 0;
+    border: 0 !important;
+    border-radius: 5px !important;
+}
+.system-dnd5e #chat-log .chat-message .message-header .message-sender .avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.system-dnd5e #chat-log .chat-message .message-header .message-sender .name-stacked {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    overflow: hidden;
+}
+.system-dnd5e #chat-log .chat-message .message-header .message-sender .title {
+    color: var(--text-heading);
+    font-family: var(--mingjo-bold);
+    font-weight: 600;
+    font-size: calc(var(--font-size) + 2px);
+    line-height: 20px;
+}
+.system-dnd5e #chat-log .chat-message .message-header .message-sender .subtitle {
+    font-size: calc(var(--font-size) - 4px);
+    line-height: 12px;
+    color: #aaaaaa;
 }
