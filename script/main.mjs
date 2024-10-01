@@ -40,11 +40,16 @@ const onInit = () => {
 
     CONFIG.TinyMCE.content_css.push("modules/mrkb-ui-core/style/etc/tinymce.css");
 
-    const mrkbUI = document.createElement("div");
-    mrkbUI.id = "mrkb-hud";
+    const mrkbHud = document.createElement("div");
+    mrkbHud.id = "mrkb-hud";
 
     const body = document.querySelector("#interface");
-    body.append(mrkbUI);
+
+    const mainUI = document.createElement("section");
+    mainUI.id = "ui-main";
+    mainUI.append(...body.children, mrkbHud);
+
+    body.append(mainUI);
 
     const calcScreenHeight = () => {
         document.documentElement.style.setProperty("--max-height", window.innerHeight + "px");
@@ -70,6 +75,9 @@ const onRenderSidebar = (sidebar, html/*, option*/) => {
     fold.innerHTML = "<i class=\"fa-solid fa-bars\"></i>";
 
     html[0].prepend(fold);
+
+    const body = document.querySelector("#interface");
+    body.append(html[0]);
 }
 const onRenderSidebarTab = (tab, html/*, option*/) => {
     if (tab.id !== "chat") return;
