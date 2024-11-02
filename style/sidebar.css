@@ -395,7 +395,7 @@
     margin-bottom: 0;
 }
 #sidebar #playlists .directory-list li.sound.flexrow.playing{
-	color: var(--color-text-hyperlink);
+    color: var(--color-text-hyperlink);
 }
 #sidebar #playlists #global-volume {
     border: none!important;
@@ -405,6 +405,10 @@
 }
 #sidebar #playlists .playlist {
     padding: 0 4px;
+}
+#sidebar #playlists .directory-list .sound-name, .playlist-name {
+    line-height: 24px;
+    margin-left: 10px;
 }
 
 @media (hover: none), (pointer: coarse), (pointer: none), (max-width: 400px) {
