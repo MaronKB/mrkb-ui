@@ -394,6 +394,9 @@
     box-shadow: none;
     margin-bottom: 0;
 }
+#sidebar #playlists .directory-list li.sound.flexrow.playing{
+	color: var(--color-text-hyperlink);
+}
 #sidebar #playlists #global-volume {
     border: none!important;
 }
