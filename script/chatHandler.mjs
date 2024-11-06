@@ -11,8 +11,8 @@ export default class ChatHandler {
 
         const chara = game.user.character;
         const speaker = { ...message.speaker };
-        const speakerNeeded = !speaker.alias && chara && message.type === 1;
-        const type = speakerNeeded ? 2 : message.type;
+        const speakerNeeded = !speaker.alias && chara && message.style === 1;
+        const style = speakerNeeded ? 2 : message.style;
         if (speakerNeeded) {
             speaker.actor = chara._id;
             speaker.alias = chara.name;
@@ -37,7 +37,7 @@ export default class ChatHandler {
         option.order = lastMessage ? getOrder() : 0;
 
         message.updateSource({
-            type : type,
+            style : style,
             speaker : speaker,
             flags : {"mrkb-ui" : option}
         });
@@ -48,7 +48,7 @@ export default class ChatHandler {
             parent &&
             speaker.alias === parent.speaker.alias &&
             speaker.actor === parent.speaker.actor &&
-            child.user._id === parent.user._id &&
+            child.author._id === parent.author._id &&
             !options.desc
         )
     }
@@ -66,7 +66,7 @@ export default class ChatHandler {
     static renderProcesser(message, html) {
         if (Setting.get("use-portrait")) {
             const id = message.speaker.actor;
-            const actorImage = getPortrait(id, message.user.id);
+            const actorImage = getPortrait(id, message?.author?.id);
 
             const portrait = document.createElement("img");
             portrait.src = actorImage;
@@ -95,7 +95,7 @@ export default class ChatHandler {
         metadata.prepend(times);
 
         const sender = html[0].querySelector("h4.message-sender");
-        sender.innerHTML += `<span class="message-user">${message.user.name}</span>`;
+        sender.innerHTML += `<span class="message-user">${message.author?.name ?? "Deleted User"}</span>`;
 
         if (message.isAuthor || game.user.isGM) {
             const a = document.createElement("a");
@@ -104,7 +104,6 @@ export default class ChatHandler {
             a.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
             times.after(a);
         }
-
         ChatHandler.checkChatFlag(message, html);
     }
     static expandPortrait(event) {
