@@ -2,7 +2,7 @@ import Setting from "./setting.mjs";
 import ChatEditor from "./chatEditor.mjs";
 
 const getPortrait = (id, userId) => {
-    const avatar = game.users.get(userId).avatar ?? "";
+    const avatar = game.users.get(userId)?.avatar ?? "";
     return game.actors.get(id)?.img ?? avatar;
 }
 export default class ChatHandler {
